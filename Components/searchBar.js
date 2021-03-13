@@ -7,9 +7,9 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     marginLeft: "auto",
-    justifyContent: "flexEnd",
-    justifyContent: "right",
-    float: "right",
+    // justifyContent: "flexEnd",
+    // justifyContent: "right",
+    // float: "right",
   },
   search: {
     position: "relative",
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     [theme.breakpoints.up("sm")]: {
       marginLeft: 100,
-      width: "20%",
+      width: "30%",
     },
   },
   searchIcon: {
@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
     transition: theme.transitions.create("width"),
     width: "100%",
     [theme.breakpoints.up("md")]: {
-      width: "20ch",
+      width: "30ch",
     },
   },
 }));

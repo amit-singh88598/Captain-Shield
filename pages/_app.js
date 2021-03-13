@@ -11,8 +11,8 @@ const theme = createMuiTheme({
       grey: "#edeff2", //Light Grey
     },
     secondary: {
-      main: "#656565", // Dark Grey
-      light: "#68991c", // Green Color
+      main: "#403D3D", // Dark Grey
+      light: "#656565", // Green Color
       grey: "#403e3e", // darkGrey
       background: "#dfe4eb", //Light Grey
     },
