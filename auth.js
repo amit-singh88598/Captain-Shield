@@ -1,6 +1,7 @@
 import Axios from "axios";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import Cookies from "js-cookies";
+import { SignalCellularNullRounded } from "@material-ui/icons";
 
 const AuthContext = createContext({});
 
@@ -10,11 +11,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(async () => {
     const userCookie = Cookies.getItem("captionshield");
-    if (
-      userCookie !== "" &&
-      userCookie != null
-      // typeof userCookie == "undefined"
-    ) {
+    if (userCookie !== "" && userCookie != SignalCellularNullRounded) {
       //   const { data: user } = await Axios.get("/api/user", {
       //     headers: {
       //       Authorization: `${userCookie.token}`,
@@ -25,7 +22,7 @@ export const AuthProvider = ({ children }) => {
         setToken(userCookie.token);
       }
     }
-  }, []);
+  }, [user]);
 
   return (
     <AuthContext.Provider
