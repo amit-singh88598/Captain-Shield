@@ -1,5 +1,5 @@
 import { createMuiTheme, NoSsr, ThemeProvider } from "@material-ui/core";
-// import { AuthProvider } from "../auth";
+import { AuthProvider } from "../auth";
 import "../styles/globals.css";
 
 const theme = createMuiTheme({
@@ -23,9 +23,9 @@ function MyApp({ Component, pageProps }) {
   return (
     <NoSsr>
       <ThemeProvider theme={theme}>
-        {/* <AuthProvider> */}
-        <Component {...pageProps} />
-        {/* </AuthProvider> */}
+        <AuthProvider>
+          <Component {...pageProps} />
+        </AuthProvider>
       </ThemeProvider>
     </NoSsr>
   );

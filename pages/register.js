@@ -11,17 +11,18 @@ import {
   Typography,
 } from "@material-ui/core";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
-// import axios from "axios";
-// import jsCookies from "js-cookies";
+import axios from "axios";
+import jsCookies from "js-cookies";
 import React, { useState } from "react";
 // import Footer from "../layout/footer";
 // import Header from "../layout/header";
-// import {
-//   regxUserName,
-//   regxEmail,
-//   // regxPhoneNumber,
-//   regxPassword,
-// } from "../regular-Expression";
+import {
+  regxFirstName,
+  regxLastName,
+  regxEmail,
+  regxPrimaryNumber,
+  regxPassword,
+} from "../regular-Expression";
 import { useRouter } from "next/router";
 
 const useStyles = makeStyles((theme) => ({
@@ -68,9 +69,10 @@ const useStyles = makeStyles((theme) => ({
 function Register(props) {
   const classes = useStyles();
   const router = useRouter();
-  const [userName, setUserName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  // const [phone, setPhone] = useState("");
+  const [primaryNumber, setPrimaryNumber] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isPassVisible, setIsPassVisible] = useState(false);
@@ -78,9 +80,10 @@ function Register(props) {
   // const [gender, setGender] = React.useState("");
 
   const [error, setError] = useState({
-    userNameErr: false,
+    firstNameErr: false,
+    lastNameErr: false,
     emailErr: false,
-    // phoneErr: false,
+    primaryNumberErr: false,
     passwordErr: false,
     confirmPasswordErr: false,
   });
@@ -88,12 +91,16 @@ function Register(props) {
   // const [open, setOpen] = React.useState(false);
 
   const handleChange = () => {
-    if (!(userName != "" && regxUserName.test(userName))) {
-      setError({ userNameErr: true });
+    if (!(firstName != "" && regxFirstName.test(firstName))) {
+      setError({ firstNameErr: true });
+    } else if (!(lastName != "" && regxLastName.test(lastName))) {
+      setError({ lastNameErr: true });
     } else if (!(email != "" && regxEmail.test(email))) {
       setError({ emailErr: true });
-      // } else if (!(phone != "" && regxPhoneNumber.test(phone))) {
-      //   setError({ phoneErr: true });
+    } else if (
+      !(primaryNumber != "" && regxPrimaryNumber.test(primaryNumber))
+    ) {
+      setError({ primaryNumberErr: true });
     } else if (!(password != "" && regxPassword.test(password))) {
       setError({ passwordErr: true });
     } else if (confirmPassword === "") {
@@ -102,7 +109,13 @@ function Register(props) {
       if (password !== confirmPassword) {
         setError({ confirmPasswordErr: true });
       } else {
-        const postData = { username: userName, email, password };
+        const postData = {
+          firstName,
+          lastName,
+          primaryNumber,
+          email,
+          password,
+        };
         console.log(postData);
         userRegister(postData);
       }
@@ -112,12 +125,12 @@ function Register(props) {
   const userRegister = async (data) => {
     try {
       const res = await axios.post(
-        "https://talentheight.herokuapp.com/api/users/register",
+        "https://captionshield.herokuapp.com/api/users/register",
         data
       );
       if (res && res.data.isAuth) {
         // to save token in cookies
-        jsCookies.setItem("talentHeight", res.data.token, { expires: 3 });
+        jsCookies.setItem("captionshield", res.data.token, { expires: 3 });
         router.replace("/");
         // alert("Register successful");
       } else {
@@ -166,20 +179,47 @@ function Register(props) {
                           className={classes.textFieldStyle}
                           style={{ marginTop: 10 }}
                           onChange={(event) => {
-                            setError({ userNameErr: false });
-                            setUserName(event.target.value);
+                            setError({ firstNameErr: false });
+                            setFirstName(event.target.value);
                           }}
-                          error={error.userNameErr}
+                          error={error.firstNameErr}
                           helperText={
-                            error.userNameErr
-                              ? "Please enter valid User Name"
+                            error.firstNameErr
+                              ? "Please enter valid First Name"
                               : ""
                           }
                           fullWidth
-                          placeholder="User Name"
+                          placeholder="First Name"
                           // autoFocus
                         />
                       </Grid>
+                      <Grid
+                        item
+                        xs={12}
+                        sm={12}
+                        style={{ display: "flex", justifyContent: "center" }}
+                      >
+                        <TextField
+                          id="outlined-basic"
+                          variant="outlined"
+                          className={classes.textFieldStyle}
+                          style={{ marginTop: 10 }}
+                          onChange={(event) => {
+                            setError({ lastNameErr: false });
+                            setLastName(event.target.value);
+                          }}
+                          error={error.lastNameErr}
+                          helperText={
+                            error.lastNameErr
+                              ? "Please enter valid Last Name"
+                              : ""
+                          }
+                          fullWidth
+                          placeholder="Last Name"
+                          // autoFocus
+                        />
+                      </Grid>
+
                       <Grid
                         item
                         xs={12}
@@ -203,27 +243,29 @@ function Register(props) {
                           placeholder="Email"
                         />
                       </Grid>
-                      {/* <Grid
-                      item
-                      xs={12}
-                      sm={12}
-                      style={{ display: "flex", justifyContent: "center" }}
-                    >
-                      <TextField
-                        id="outlined-basic"
-                        variant="outlined"
-                        onChange={(event) => {
-                          setError({ phoneErr: false });
-                          setPhone(event.target.value);
-                        }}
-                        error={error.phoneErr}
-                        helperText={
-                          error.phoneErr ? "please enter valid Phone no." : ""
-                        }
-                        fullWidth
-                        placeholder="Phone no."
-                      />
-                    </Grid> */}
+                      <Grid
+                        item
+                        xs={12}
+                        sm={12}
+                        style={{ display: "flex", justifyContent: "center" }}
+                      >
+                        <TextField
+                          id="outlined-basic"
+                          variant="outlined"
+                          onChange={(event) => {
+                            setError({ primaryNumberErr: false });
+                            setPrimaryNumber(event.target.value);
+                          }}
+                          error={error.primaryNumberErr}
+                          helperText={
+                            error.primaryNumberErr
+                              ? "please enter valid Phone no."
+                              : ""
+                          }
+                          fullWidth
+                          placeholder="Phone no."
+                        />
+                      </Grid>
                       <Grid
                         item
                         xs={12}
