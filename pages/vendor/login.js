@@ -12,7 +12,7 @@ import {
 } from "@material-ui/core";
 import axios from "axios";
 import React, { useState } from "react";
-import { regxPrimaryNumber, regxPassword } from "../regular-Expression";
+import { regxPrimaryNumber, regxPassword } from "../../regular-Expression";
 import cookies from "js-cookies";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 import { useRouter } from "next/router";
@@ -69,7 +69,7 @@ function Login(props) {
           //to save token in cookies
           cookies.setItem("captionshield", res.data.token, { expires: 3 });
           router;
-          router.replace("/");
+          router.replace("/vendor/dashboard");
         } else {
           alert("Something went wrong");
         }
@@ -81,7 +81,6 @@ function Login(props) {
 
   return (
     <div>
-      {/* <Header /> */}
       <div className={classes.root}>
         <div>
           <Container component="main">
@@ -194,9 +193,12 @@ function Login(props) {
                         </Button>
                       </Grid>
                       <a
-                        href="/forgetPassword"
                         onClick={() => router.push("/forgetPassword")}
-                        style={{ fontWeight: "bold", marginLeft: 10 }}
+                        style={{
+                          fontWeight: "bold",
+                          marginLeft: 10,
+                          cursor: "pointer",
+                        }}
                       >
                         Forgot your password?
                       </a>
@@ -214,12 +216,11 @@ function Login(props) {
                         >
                           <div style={{ display: "flex" }}>
                             <Typography style={{ fontWeight: "bold" }}>
-                              New Here ?{" "}
+                              New Here ?
                             </Typography>
                             <a
-                              href="/register"
-                              onClick={() => router.push("/register")}
-                              style={{ fontWeight: "bold" }}
+                              onClick={() => router.push("/vendor/register")}
+                              style={{ fontWeight: "bold", cursor: "pointer" }}
                             >
                               Register !
                             </a>

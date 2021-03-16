@@ -11,7 +11,14 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import { Dashboard, Description, Receipt, Settings } from "@material-ui/icons";
+import {
+  Dashboard,
+  Description,
+  Receipt,
+  Router,
+  Settings,
+} from "@material-ui/icons";
+import { useRouter } from "next/router";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
 
 function SideBar(props) {
   const classes = useStyles();
+  const router = useRouter();
   return (
     <div className={classes.root}>
       <div className={classes.detail}>
@@ -49,33 +57,53 @@ function SideBar(props) {
         Kamal Singh
       </Typography>
       <Typography className={classes.detail} variant="body2">
-        Sub Vendor
+        Vendor
       </Typography>
       <div style={{ marginTop: 20 }} className={classes.detail}>
         <List className={classes.listItem}>
           <ListItem button>
-            <ListItemIcon>
-              <Dashboard className={classes.listItem} />
-            </ListItemIcon>
-            <ListItemText primary="Dashboard" />
+            <a
+              style={{ display: "flex" }}
+              onClick={() => router.push("/vendor/dashboard")}
+            >
+              <ListItemIcon>
+                <Dashboard className={classes.listItem} />
+              </ListItemIcon>
+              <ListItemText primary="Dashboard" />
+            </a>
           </ListItem>
           <ListItem button>
-            <ListItemIcon>
-              <Description className={classes.listItem} />
-            </ListItemIcon>
-            <ListItemText primary="Purchase" />
+            <a
+              style={{ display: "flex" }}
+              onClick={() => router.push("/vendor/purchase")}
+            >
+              <ListItemIcon>
+                <Description className={classes.listItem} />
+              </ListItemIcon>
+              <ListItemText primary="Purchase" />
+            </a>
           </ListItem>
           <ListItem button>
-            <ListItemIcon>
-              <Receipt className={classes.listItem} />
-            </ListItemIcon>
-            <ListItemText primary="Sale" />
+            <a
+              style={{ display: "flex" }}
+              onClick={() => router.push("/vendor/sale")}
+            >
+              <ListItemIcon>
+                <Receipt className={classes.listItem} />
+              </ListItemIcon>
+              <ListItemText primary="Sale" />
+            </a>
           </ListItem>
           <ListItem button>
-            <ListItemIcon>
-              <Settings className={classes.listItem} />
-            </ListItemIcon>
-            <ListItemText primary="Setting" />
+            <a
+              style={{ display: "flex" }}
+              onClick={() => router.push("/vendor/dashboard")}
+            >
+              <ListItemIcon>
+                <Settings className={classes.listItem} />
+              </ListItemIcon>
+              <ListItemText primary="Setting" />
+            </a>
           </ListItem>
         </List>
       </div>

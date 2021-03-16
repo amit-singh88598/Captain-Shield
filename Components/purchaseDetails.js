@@ -1,8 +1,9 @@
 import {
   Avatar,
   Card,
+  CardActions,
+  CardContent,
   Grid,
-  List,
   makeStyles,
   Typography,
 } from "@material-ui/core";
@@ -44,15 +45,6 @@ const useStyle = makeStyles((theme) => ({
     margin: 20,
     backgroundColor: theme.palette.secondary.main,
   },
-  //   moreStyle: {
-  //     flexGrow: 1,
-  //     marginLeft: "auto",
-  //     justifyContent: "flexEnd",
-  //     justifyContent: "right",
-  //     float: "right",
-  //     marginTop: -50,
-  //     color: theme.palette.primary.light,
-  //   },
   priceTag: {
     color: theme.palette.primary.light,
   },
@@ -69,59 +61,38 @@ const useStyle = makeStyles((theme) => ({
     margin: 20,
     backgroundColor: theme.palette.secondary.main,
   },
-  codesStyle: {
+  availableCodesStyle: {
     display: "flex",
     justifyContent: "center",
     color: theme.palette.primary.light,
   },
-  listStyle: {
-    marginTop: 10,
-    marginRight: 30,
-    marginLeft: 30,
+  details: {
+    // marginLeft: 5,
+    color: theme.palette.primary.light,
+  },
+  heading: {
+    fontSize: "1.5em",
+    display: "flex",
+    justifyContent: "center",
+    color: theme.palette.primary.light,
+  },
+  expand: {
+    transform: "rotate(0deg)",
+    marginLeft: "auto",
+    // marginRight: 5,
     backgroundColor: theme.palette.secondary.main,
     color: theme.palette.primary.light,
   },
 }));
 
-// const gradients = [
-//   ["#363131", "#bda713"],
-//   ["#363131", "#363131"],
-// ];
 const gradients = [
   ["#363131", "#363131"],
   ["#363131", "#bda713"],
 ];
 
-const Lists = [
-  {
-    sno: "S No.",
-    codes: "Codes",
-  },
-  {
-    sno: "1",
-    codes: "100001",
-  },
-  {
-    sno: "2",
-    codes: "100002",
-  },
-  {
-    sno: "3",
-    codes: "100003",
-  },
-  {
-    sno: "4",
-    codes: "100004",
-  },
-  {
-    sno: "5",
-    codes: "100005",
-  },
-];
-
 // Dashboard
 
-function Dashboard(props) {
+export default function PurchaseDetails(props) {
   const classes = useStyle();
 
   return (
@@ -137,7 +108,7 @@ function Dashboard(props) {
             }}
             variant="h5"
           >
-            Dashboard
+            Purchase
           </Typography>
           <div>
             <Grid container>
@@ -152,59 +123,23 @@ function Dashboard(props) {
                   duration={3000}
                   angle="45deg"
                 >
-                  <Avatar alt="Remy Sharp" src="rupee6.jpg" />
-                  {/* <IconButton className={classes.moreStyle}>
-                    <MoreVert />
-                  </IconButton> */}
-                  <Typography
-                    variant="h5"
-                    style={{
-                      marginTop: 20,
-                      fontWeight: 530,
-                    }}
-                    className={classes.priceTag}
-                  >
-                    ₹ 5000
-                  </Typography>
                   <div style={{ display: "flex" }}>
+                    <Avatar alt="Remy Sharp" src="rupee6.jpg" />
+
                     <Typography
-                      variant="body1"
+                      // variant="h5"
                       style={{
-                        marginTop: 10,
-                        fontWeight: 400,
+                        // marginTop: 20,
+                        float: "right",
+                        marginLeft: "auto",
+                        fontWeight: 530,
+                        fontSize: "1.6em",
                       }}
                       className={classes.priceTag}
                     >
-                      ₹ 15,000
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      style={{
-                        marginLeft: 10,
-                        marginTop: 12,
-                        fontWeight: 500,
-                      }}
-                      className={classes.priceTag}
-                    >
-                      Total
+                      Purchase
                     </Typography>
                   </div>
-                </Gradient>
-              </Grid>
-              <Grid item xs={12} sm={4}>
-                {/*///////////////////////////////////////////////////////////////   Sale Card */}
-
-                <Gradient
-                  className={classes.purchaseCard}
-                  gradients={gradients}
-                  property="background"
-                  duration={3000}
-                  angle="45deg"
-                >
-                  <Avatar alt="Remy Sharp" src="rupee6.jpg" />
-                  {/* <IconButton className={classes.moreStyle}>
-                    <MoreVert />
-                  </IconButton> */}
                   <Typography
                     variant="h5"
                     style={{
@@ -213,7 +148,7 @@ function Dashboard(props) {
                     }}
                     className={classes.priceTag}
                   >
-                    ₹ 5000
+                    5000
                   </Typography>
                   <div style={{ display: "flex" }}>
                     <Typography
@@ -224,7 +159,7 @@ function Dashboard(props) {
                       }}
                       className={classes.priceTag}
                     >
-                      ₹ 15,000
+                      15,000
                     </Typography>
                     <Typography
                       variant="body2"
@@ -235,7 +170,7 @@ function Dashboard(props) {
                       }}
                       className={classes.priceTag}
                     >
-                      Total
+                      Total Purchase Codes
                     </Typography>
                   </div>
                 </Gradient>
@@ -250,52 +185,99 @@ function Dashboard(props) {
                   duration={3000}
                   angle="45deg"
                 >
-                  <Typography variant="h5" className={classes.codesStyle}>
+                  <Typography
+                    // variant="h5"
+                    style={{ fontSize: "1.8em" }}
+                    className={classes.availableCodesStyle}
+                  >
                     Available Codes
                   </Typography>
                   <Typography
                     variant="h4"
                     style={{ marginTop: 25 }}
-                    className={classes.codesStyle}
+                    className={classes.availableCodesStyle}
                   >
                     340
                   </Typography>
                 </Gradient>
               </Grid>
-            </Grid>
-          </div>
-
-          <div style={{ marginLeft: 20 }}>
-            <Grid container>
-              <Grid item xs={12} sm={8}>
-                <MyChart />
-              </Grid>
               <Grid item xs={12} sm={4}>
-                {/*/////////////////////////////////////////////////////        Total Codes */}
-                <Card className={classes.totalCodes}>
-                  <Typography variant="h5" className={classes.codesStyle}>
-                    Top 5 Codes
-                  </Typography>
+                {/*///////////////////////////////////////////////////////////////   Details of purchase Codes */}
 
-                  {/*//////////////////////////////////////////////////          List Of Available Codes */}
-                  {Lists.map((item, index) => (
-                    <List
-                      className={classes.listStyle}
-                      component="nav"
-                      aria-label="available codes"
-                      key={index}
+                <Card className={classes.totalCodes} elevation={2}>
+                  <CardContent>
+                    <Typography className={classes.heading} variant="h1">
+                      Purchase Details
+                    </Typography>
+                  </CardContent>
+                  <CardActions disableSpacing>
+                    <Typography className={classes.details} variant="subtitle1">
+                      Date
+                    </Typography>
+                    <Typography className={classes.expand} variant="subtitle1">
+                      Codes
+                    </Typography>
+                  </CardActions>
+                  <CardActions disableSpacing>
+                    <Typography className={classes.details} variant="subtitle1">
+                      1/04/2020
+                    </Typography>
+                    <Typography
+                      className={classes.expand}
+                      aria-label="show more"
+                      variant="subtitle1"
                     >
-                      <Typography>{item.sno}</Typography>
-                      <div
-                        style={{
-                          marginTop: -25,
-                          float: "right",
-                        }}
-                      >
-                        <Typography>{item.codes}</Typography>
-                      </div>
-                    </List>
-                  ))}
+                      500
+                    </Typography>
+                  </CardActions>
+                  <CardActions disableSpacing>
+                    <Typography className={classes.details} variant="subtitle1">
+                      12/07/2020
+                    </Typography>
+                    <Typography
+                      className={classes.expand}
+                      aria-label="show more"
+                      variant="subtitle1"
+                    >
+                      1000
+                    </Typography>
+                  </CardActions>
+                  <CardActions disableSpacing>
+                    <Typography className={classes.details} variant="subtitle1">
+                      14/10/2020
+                    </Typography>
+                    <Typography
+                      className={classes.expand}
+                      aria-label="show more"
+                      variant="subtitle1"
+                    >
+                      1000
+                    </Typography>
+                  </CardActions>
+                  <CardActions disableSpacing>
+                    <Typography className={classes.details} variant="subtitle1">
+                      29/12/2020
+                    </Typography>
+                    <Typography
+                      className={classes.expand}
+                      aria-label="show more"
+                      variant="subtitle1"
+                    >
+                      1200
+                    </Typography>
+                  </CardActions>
+                  <CardActions disableSpacing>
+                    <Typography className={classes.details} variant="subtitle1">
+                      5/02/2021
+                    </Typography>
+                    <Typography
+                      className={classes.expand}
+                      aria-label="show more"
+                      variant="subtitle1"
+                    >
+                      1500
+                    </Typography>
+                  </CardActions>
                 </Card>
               </Grid>
             </Grid>
@@ -305,5 +287,3 @@ function Dashboard(props) {
     </div>
   );
 }
-
-export default Dashboard;

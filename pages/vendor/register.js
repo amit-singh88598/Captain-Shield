@@ -14,15 +14,14 @@ import { Visibility, VisibilityOff } from "@material-ui/icons";
 import axios from "axios";
 import jsCookies from "js-cookies";
 import React, { useState } from "react";
-// import Footer from "../layout/footer";
-// import Header from "../layout/header";
 import {
   regxFirstName,
   regxLastName,
   regxEmail,
   regxPrimaryNumber,
   regxPassword,
-} from "../regular-Expression";
+  regxSecondaryNumber,
+} from "../../regular-Expression";
 import { useRouter } from "next/router";
 
 const useStyles = makeStyles((theme) => ({
@@ -42,7 +41,6 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
     marginTop: 20,
-    // color: theme.palette.primary.light,
   },
   button: {
     display: "block",
@@ -73,22 +71,21 @@ function Register(props) {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [primaryNumber, setPrimaryNumber] = useState("");
+  const [secondaryNumber, setSecondaryNumber] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isPassVisible, setIsPassVisible] = useState(false);
   const [isConfirmPassVisible, setIsConfirmPassVisible] = useState(false);
-  // const [gender, setGender] = React.useState("");
 
   const [error, setError] = useState({
     firstNameErr: false,
     lastNameErr: false,
     emailErr: false,
     primaryNumberErr: false,
+    secondaryNumberErr: false,
     passwordErr: false,
     confirmPasswordErr: false,
   });
-
-  // const [open, setOpen] = React.useState(false);
 
   const handleChange = () => {
     if (!(firstName != "" && regxFirstName.test(firstName))) {
@@ -101,6 +98,10 @@ function Register(props) {
       !(primaryNumber != "" && regxPrimaryNumber.test(primaryNumber))
     ) {
       setError({ primaryNumberErr: true });
+    } else if (
+      !(secondaryNumber != "" && regxSecondaryNumber.test(secondaryNumber))
+    ) {
+      setError({ secondaryNumberErr: true });
     } else if (!(password != "" && regxPassword.test(password))) {
       setError({ passwordErr: true });
     } else if (confirmPassword === "") {
@@ -113,6 +114,7 @@ function Register(props) {
           firstName,
           lastName,
           primaryNumber,
+          secondaryNumber,
           email,
           password,
         };
@@ -131,7 +133,7 @@ function Register(props) {
       if (res && res.data.isAuth) {
         // to save token in cookies
         jsCookies.setItem("captionshield", res.data.token, { expires: 3 });
-        router.replace("/");
+        router.replace("/vendor/dashboard");
         // alert("Register successful");
       } else {
         alert("Something went wrong");
@@ -141,21 +143,8 @@ function Register(props) {
     }
   };
 
-  // const handleGender = (event) => {
-  //   setGender(event.target.value);
-  // };
-
-  // const handleClose = () => {
-  //   setOpen(false);
-  // };
-
-  // const handleOpen = () => {
-  //   setOpen(true);
-  // };
-
   return (
     <div>
-      {/* <Header /> */}
       <div className={classes.root}>
         <div>
           <Container component="main">
@@ -216,7 +205,6 @@ function Register(props) {
                           }
                           fullWidth
                           placeholder="Last Name"
-                          // autoFocus
                         />
                       </Grid>
 
@@ -273,6 +261,29 @@ function Register(props) {
                         style={{ display: "flex", justifyContent: "center" }}
                       >
                         <TextField
+                          id="outlined-basic"
+                          variant="outlined"
+                          onChange={(event) => {
+                            setError({ secondaryNumberErr: false });
+                            setSecondaryNumber(event.target.value);
+                          }}
+                          error={error.secondaryNumberErr}
+                          helperText={
+                            error.secondaryNumberErr
+                              ? "please enter valid Phone no."
+                              : ""
+                          }
+                          fullWidth
+                          placeholder="Phone no."
+                        />
+                      </Grid>
+                      <Grid
+                        item
+                        xs={12}
+                        sm={12}
+                        style={{ display: "flex", justifyContent: "center" }}
+                      >
+                        <TextField
                           variant="outlined"
                           onChange={(event) => {
                             setError({ passwordErr: false });
@@ -284,9 +295,6 @@ function Register(props) {
                               ? " Password Contains Minimum Six Characters, At Least One Letter And One Number:"
                               : ""
                           }
-                          // helperText={
-                          //   error.passwordErr ? "please enter valid Password" : ""
-                          // }
                           fullWidth
                           InputProps={{
                             endAdornment: (
@@ -333,12 +341,6 @@ function Register(props) {
                               ? "Please Match your Password"
                               : ""
                           }
-                          // helperText={
-                          //   error.confirmPasswordErr
-                          //     ? "please enter valid Password"
-                          //     : ""
-                          // }
-
                           fullWidth
                           value={confirmPassword}
                           InputProps={{
@@ -365,33 +367,6 @@ function Register(props) {
                           placeholder="Confirm Password"
                         />
                       </Grid>
-                      {/* <Grid
-                      item
-                      xs={12}
-                      sm={12}
-                      style={{ display: "flex", justifyContent: "center" }}
-                    >
-                      <FormControl className={classes.formControl} fullWidth>
-                        <InputLabel id="demo-controlled-open-select-label">
-                          Gender
-                        </InputLabel>
-                        <Select
-                          labelId="demo-controlled-open-select-label"
-                          id="demo-controlled-open-select"
-                          open={open}
-                          onClose={handleClose}
-                          onOpen={handleOpen}
-                          value={gender}
-                          onChange={handleGender}
-                        >
-                          <MenuItem value="">
-                            <em>Gender</em>
-                          </MenuItem>
-                          <MenuItem value={10}>Male</MenuItem>
-                          <MenuItem value={20}>Female</MenuItem>
-                        </Select>
-                      </FormControl>
-                    </Grid> */}
                       <Grid
                         item
                         xs={12}
@@ -440,7 +415,6 @@ function Register(props) {
           </Container>
         </div>
       </div>
-      {/* <Footer /> */}
     </div>
   );
 }
