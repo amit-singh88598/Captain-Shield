@@ -7,8 +7,9 @@ import {
   makeStyles,
   Typography,
 } from "@material-ui/core";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Gradient } from "react-gradient";
+import { getCodes } from "../actions/vendor";
 import MyChart from "./myChart";
 
 const useStyle = makeStyles((theme) => ({
@@ -100,6 +101,20 @@ const gradients = [
 // Dashboard
 
 export default function DashboardDetails(props) {
+  const [codes, setCodes] = useState([]);
+  useEffect(async () => {
+    await getCodes("605065bcc26a4d23baac1be7", (error, result) => {
+      if (error) {
+        console.log(error);
+      } else {
+        const temp = [];
+        for (let i = 0; i < 5; i++) {
+          temp.push(result[i]);
+        }
+        setCodes(temp);
+      }
+    });
+  }, []);
   const classes = useStyle();
 
   return (
@@ -289,19 +304,24 @@ export default function DashboardDetails(props) {
                       Codes
                     </Typography>
                   </CardActions>
-                  <CardActions disableSpacing>
-                    <Typography className={classes.details} variant="subtitle1">
-                      1
-                    </Typography>
-                    <Typography
-                      className={classes.expand}
-                      aria-label="show more"
-                      variant="subtitle1"
-                    >
-                      10001
-                    </Typography>
-                  </CardActions>
-                  <CardActions disableSpacing>
+                  {codes.map((item, index) => (
+                    <CardActions disableSpacing key={index}>
+                      <Typography
+                        className={classes.details}
+                        variant="subtitle1"
+                      >
+                        {index + 1}
+                      </Typography>
+                      <Typography
+                        className={classes.expand}
+                        aria-label="show more"
+                        variant="subtitle1"
+                      >
+                        {item.activationCode}
+                      </Typography>
+                    </CardActions>
+                  ))}
+                  {/* <CardActions disableSpacing>
                     <Typography className={classes.details} variant="subtitle1">
                       2
                     </Typography>
@@ -348,7 +368,7 @@ export default function DashboardDetails(props) {
                     >
                       10005
                     </Typography>
-                  </CardActions>
+                  </CardActions> */}
                 </Card>
               </Grid>
             </Grid>

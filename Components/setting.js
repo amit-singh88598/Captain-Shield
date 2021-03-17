@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import { makeStyles, Tooltip } from "@material-ui/core";
-import { AccountCircle, ExitToApp, Home, Settings } from "@material-ui/icons";
-import { Router } from "next/router";
+import { AccountCircle, ExitToApp } from "@material-ui/icons";
+import { useRouter } from "next/router";
+import jsCookies from "js-cookies";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -14,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Setting() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const router = useRouter();
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -45,7 +47,7 @@ export default function Setting() {
         onClose={handleClose}
       >
         <div>
-          <a
+          {/* <a
             href="/vendor/login"
             style={{
               textDecoration: "none",
@@ -53,19 +55,23 @@ export default function Setting() {
               justifyContent: "flex-start",
             }}
             onClick={() => Router.push("/login")}
+          > */}
+          <Button
+            style={{
+              display: "flex",
+              justifyContent: "flex-start",
+              padding: 15,
+            }}
+            fullWidth
+            onClick={() => {
+              jsCookies.removeItem("auth");
+              router.replace("/vendor/login");
+            }}
           >
-            <Button
-              style={{
-                display: "flex",
-                justifyContent: "flex-start",
-                padding: 15,
-              }}
-              fullWidth
-            >
-              <ExitToApp style={{ marginRight: 10 }} />
-              Logout
-            </Button>
-          </a>
+            <ExitToApp style={{ marginRight: 10 }} />
+            Logout
+          </Button>
+          {/* </a> */}
         </div>
       </Menu>
     </div>

@@ -3,19 +3,13 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import DashboardDetails from "../../Components/dashboardDetails";
 import SideBar from "../../Components/sideBar";
-import { useAuth } from "../../auth";
+import { UserProtectedPage } from "../../auth";
 import Header from "../../layout/header";
 
 export default function Dashboard() {
-  const { isAuthenticatedUser } = useAuth();
-  const router = useRouter();
   return (
     <div>
-      {isAuthenticatedUser == false ? (
-        <div>
-          <Button onClick={() => router.push("/login")}>Login first</Button>
-        </div>
-      ) : (
+      <UserProtectedPage>
         <div>
           <Head>
             <title>Captain Shield</title>
@@ -31,7 +25,7 @@ export default function Dashboard() {
             </Grid>
           </Grid>
         </div>
-      )}
+      </UserProtectedPage>
     </div>
   );
 }

@@ -59,13 +59,20 @@ function LogIn(props) {
       const data = { primaryNumber, password };
       try {
         const res = await axios.post(
-          "https://captionshield.herokuapp.com/api/users/login",
-          data
+          `${process.env.BASE_URL}/users/login`,
+          data,
+          {
+            headers: {
+              "Access-Control-Allow-Origin": "*",
+              "Content-Type": "application/json",
+              withCredentials: true,
+              mode: "no-cors",
+            },
+          }
         );
         if (res && res.data.isAuth) {
           //to save token in cookies
-          cookies.setItem("captionshield", res.data.token, { expires: 3 });
-          router;
+          cookies.setItem("auth", res.data.token, { expires: 3 });
           router.replace("/vendor/dashboard");
         } else {
           alert("Something went wrong");

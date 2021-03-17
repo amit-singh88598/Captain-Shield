@@ -3,7 +3,7 @@ import Head from "next/head";
 import SideBar from "../../Components/sideBar";
 import Header from "../../layout/header";
 import { useRouter } from "next/router";
-import { useAuth } from "../../auth";
+import { useAuth, UserProtectedPage } from "../../auth";
 import SaleDetails from "../../Components/saleDetails";
 
 export default function Sale() {
@@ -11,11 +11,7 @@ export default function Sale() {
   const router = useRouter();
   return (
     <div>
-      {isAuthenticatedUser == false ? (
-        <div>
-          <Button onClick={() => router.push("/login")}>Login first</Button>
-        </div>
-      ) : (
+      <UserProtectedPage>
         <div>
           <Head>
             <title>Captain Shield</title>
@@ -31,7 +27,7 @@ export default function Sale() {
             </Grid>
           </Grid>
         </div>
-      )}
+      </UserProtectedPage>
     </div>
   );
 }

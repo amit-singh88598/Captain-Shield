@@ -127,12 +127,20 @@ function VendorRegister(props) {
   const userRegister = async (data) => {
     try {
       const res = await axios.post(
-        "https://captionshield.herokuapp.com/api/users/register",
-        data
+        `${process.env.BASE_URL}/users/register`,
+        data,
+        {
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+            withCredentials: true,
+            mode: "no-cors",
+          },
+        }
       );
       if (res && res.data.isAuth) {
         // to save token in cookies
-        jsCookies.setItem("captionshield", res.data.token, { expires: 3 });
+        jsCookies.setItem("auth", res.data.token, { expires: 3 });
         router.replace("/vendor/dashboard");
         // alert("Register successful");
       } else {
