@@ -9,7 +9,6 @@ import {
 } from "@material-ui/core";
 import React from "react";
 import { Gradient } from "react-gradient";
-import MyChart from "./myChart";
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -48,9 +47,6 @@ const useStyle = makeStyles((theme) => ({
   priceTag: {
     color: theme.palette.primary.light,
   },
-
-  ////
-
   totalCodes: {
     borderStyle: "outset ",
     borderRadius: 15,
@@ -130,12 +126,10 @@ export default function Dashboard(props) {
                   angle="45deg"
                 >
                   <div style={{ display: "flex" }}>
-                    <Avatar alt="Remy Sharp" src="rupee6.jpg" />
+                    <Avatar alt="Remy Sharp" src="/rupee6.jpg" />
 
                     <Typography
-                      // variant="h5"
                       style={{
-                        // marginTop: 20,
                         float: "right",
                         marginLeft: "auto",
                         fontWeight: 530,
@@ -154,7 +148,7 @@ export default function Dashboard(props) {
                     }}
                     className={classes.priceTag}
                   >
-                    5000
+                    ₹ 15,000
                   </Typography>
                   <div style={{ display: "flex" }}>
                     <Typography
@@ -165,7 +159,7 @@ export default function Dashboard(props) {
                       }}
                       className={classes.priceTag}
                     >
-                      15,000
+                      ₹ 15,000
                     </Typography>
                     <Typography
                       variant="body2"
@@ -176,7 +170,7 @@ export default function Dashboard(props) {
                       }}
                       className={classes.priceTag}
                     >
-                      Total Sale Codes
+                      Total Sale
                     </Typography>
                   </div>
                 </Gradient>
@@ -192,7 +186,6 @@ export default function Dashboard(props) {
                   angle="45deg"
                 >
                   <Typography
-                    // variant="h5"
                     style={{ fontSize: "1.8em" }}
                     className={classes.availableCodesStyle}
                   >

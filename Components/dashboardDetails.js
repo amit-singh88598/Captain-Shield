@@ -131,12 +131,10 @@ export default function DashboardDetails(props) {
                   angle="45deg"
                 >
                   <div style={{ display: "flex" }}>
-                    <Avatar alt="Remy Sharp" src="rupee6.jpg" />
+                    <Avatar alt="Remy Sharp" src="/rupee6.jpg" />
 
                     <Typography
-                      // variant="h5"
                       style={{
-                        // marginTop: 20,
                         float: "right",
                         marginLeft: "auto",
                         fontWeight: 530,
@@ -155,7 +153,7 @@ export default function DashboardDetails(props) {
                     }}
                     className={classes.priceTag}
                   >
-                    5000
+                    ₹ 15,000
                   </Typography>
                   <div style={{ display: "flex" }}>
                     <Typography
@@ -166,7 +164,7 @@ export default function DashboardDetails(props) {
                       }}
                       className={classes.priceTag}
                     >
-                      15,000
+                      ₹ 15,000
                     </Typography>
                     <Typography
                       variant="body2"
@@ -177,7 +175,7 @@ export default function DashboardDetails(props) {
                       }}
                       className={classes.priceTag}
                     >
-                      Total Purchase Codes
+                      Total Purchase
                     </Typography>
                   </div>
                 </Gradient>
@@ -193,12 +191,10 @@ export default function DashboardDetails(props) {
                   angle="45deg"
                 >
                   <div style={{ display: "flex" }}>
-                    <Avatar alt="Remy Sharp" src="rupee6.jpg" />
+                    <Avatar alt="Remy Sharp" src="/rupee6.jpg" />
 
                     <Typography
-                      // variant="h5"
                       style={{
-                        // marginTop: 20,
                         float: "right",
                         marginLeft: "auto",
                         fontWeight: 530,
@@ -217,7 +213,7 @@ export default function DashboardDetails(props) {
                     }}
                     className={classes.priceTag}
                   >
-                    5000
+                    ₹ 15,000
                   </Typography>
                   <div style={{ display: "flex" }}>
                     <Typography
@@ -228,7 +224,7 @@ export default function DashboardDetails(props) {
                       }}
                       className={classes.priceTag}
                     >
-                      15,000
+                      ₹ 15,000
                     </Typography>
                     <Typography
                       variant="body2"
@@ -239,7 +235,7 @@ export default function DashboardDetails(props) {
                       }}
                       className={classes.priceTag}
                     >
-                      Total Sale Codes
+                      Total Sale
                     </Typography>
                   </div>
                 </Gradient>

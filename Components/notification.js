@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import { makeStyles, Tooltip } from "@material-ui/core";
 import { NotificationsActive } from "@material-ui/icons";
-import { Router } from "next/router";
+import { useRouter } from "next/router";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Notification() {
   const classes = useStyles();
+  const router = useRouter();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -30,7 +31,7 @@ export default function Notification() {
           display: "flex",
           justifyContent: "flex-start",
         }}
-        onClick={() => Router.push("/vendor/dashboard")}
+        onClick={() => router.push("/vendor/dashboard")}
       >
         <Button
           aria-controls="simple-menu"

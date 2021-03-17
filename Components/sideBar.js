@@ -46,7 +46,7 @@ function SideBar(props) {
   return (
     <div className={classes.root}>
       <div className={classes.detail}>
-        <Avatar alt="Remy Sharp" src="avatar3.png" className={classes.large} />
+        <Avatar alt="Remy Sharp" src="/avatar3.png" className={classes.large} />
       </div>
       <Typography
         style={{
@@ -112,7 +112,7 @@ function SideBar(props) {
         className={classes.detail}
       >
         {/* <Card style={{ width: 80 }}> */}
-        <Avatar alt="Remy Sharp" src="avatar3.png" className={classes.large} />
+        <Avatar alt="Remy Sharp" src="/avatar3.png" className={classes.large} />
         {/* </Card> */}
       </div>
     </div>

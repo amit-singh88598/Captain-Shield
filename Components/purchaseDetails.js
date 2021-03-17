@@ -48,9 +48,6 @@ const useStyle = makeStyles((theme) => ({
   priceTag: {
     color: theme.palette.primary.light,
   },
-
-  ////
-
   totalCodes: {
     borderStyle: "outset ",
     borderRadius: 15,
@@ -67,7 +64,6 @@ const useStyle = makeStyles((theme) => ({
     color: theme.palette.primary.light,
   },
   details: {
-    // marginLeft: 5,
     color: theme.palette.primary.light,
   },
   heading: {
@@ -124,12 +120,10 @@ export default function PurchaseDetails(props) {
                   angle="45deg"
                 >
                   <div style={{ display: "flex" }}>
-                    <Avatar alt="Remy Sharp" src="rupee6.jpg" />
+                    <Avatar alt="Remy Sharp" src="/rupee6.jpg" />
 
                     <Typography
-                      // variant="h5"
                       style={{
-                        // marginTop: 20,
                         float: "right",
                         marginLeft: "auto",
                         fontWeight: 530,
@@ -148,7 +142,7 @@ export default function PurchaseDetails(props) {
                     }}
                     className={classes.priceTag}
                   >
-                    5000
+                    ₹ 15,000
                   </Typography>
                   <div style={{ display: "flex" }}>
                     <Typography
@@ -159,7 +153,7 @@ export default function PurchaseDetails(props) {
                       }}
                       className={classes.priceTag}
                     >
-                      15,000
+                      ₹ 15,000
                     </Typography>
                     <Typography
                       variant="body2"
@@ -170,7 +164,7 @@ export default function PurchaseDetails(props) {
                       }}
                       className={classes.priceTag}
                     >
-                      Total Purchase Codes
+                      Total Purchase
                     </Typography>
                   </div>
                 </Gradient>
