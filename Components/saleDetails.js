@@ -12,12 +12,13 @@ import { Gradient } from "react-gradient";
 
 const useStyle = makeStyles((theme) => ({
   root: {
-    padding: 20,
+    paddingBottom: 45,
+    paddingRight: 10,
     backgroundColor: theme.palette.primary.main,
   },
   cardStyle: {
     borderRadius: 20,
-    height: 1000,
+    height: 650,
     backgroundColor: theme.palette.secondary.light,
   },
   purchaseCard: {
@@ -85,6 +86,13 @@ const useStyle = makeStyles((theme) => ({
     marginRight: 30,
     backgroundColor: theme.palette.secondary.main,
     color: theme.palette.primary.light,
+  },
+
+  // Scroller Style
+
+  scroll: {
+    overflowY: "scroll",
+    height: 650,
   },
 }));
 

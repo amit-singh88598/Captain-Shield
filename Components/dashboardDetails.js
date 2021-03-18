@@ -92,6 +92,9 @@ const useStyle = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
     color: theme.palette.primary.light,
   },
+
+  // Scroller Style
+
   scroll: {
     overflowY: "scroll",
     height: 650,
@@ -129,8 +132,8 @@ export default function DashboardDetails(props) {
           <div className={classes.scroll} id="scroller">
             <Typography
               style={{
-                margin: 30,
-                marginLeft: 40,
+                margin: 10,
+                marginLeft: 20,
                 color: "#ffffff",
                 fontWeight: 600,
               }}

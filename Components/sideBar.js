@@ -6,7 +6,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import { Dashboard, Description, Receipt, Settings } from "@material-ui/icons";
 import { useRouter } from "next/router";
-// import { getProfile } from "../actions/vendor";
+import { getProfile } from "../actions/vendor";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,17 +31,16 @@ const useStyles = makeStyles((theme) => ({
 function SideBar(props) {
   const classes = useStyles();
   const router = useRouter();
-  // const [profile, setProfile] = useState([]);
-  // useEffect(async () => {
-  //   await getProfile("", (error, result) => {
-  //     if (error) {
-  //       console.log(error);
-  //     } else {
-
-  //       setProfile();
-  //     }
-  //   });
-  // }, []);
+  const [profile, setProfile] = useState(null);
+  useEffect(async () => {
+    await getProfile((error, result) => {
+      if (error) {
+        console.log(error);
+      } else {
+        setProfile(result.data);
+      }
+    });
+  }, []);
 
   return (
     <div className={classes.root}>
@@ -54,7 +53,8 @@ function SideBar(props) {
         }}
         className={classes.detail}
       >
-        Kamal Singh
+        Kamal Singh bhai
+        {profile && profile.firstName}
       </Typography>
       <Typography className={classes.detail} variant="body2">
         Vendor
@@ -111,9 +111,7 @@ function SideBar(props) {
         style={{ marginTop: 100, paddingBottom: 80 }}
         className={classes.detail}
       >
-        {/* <Card style={{ width: 80 }}> */}
         <Avatar alt="Remy Sharp" src="/avatar3.png" className={classes.large} />
-        {/* </Card> */}
       </div>
     </div>
   );
