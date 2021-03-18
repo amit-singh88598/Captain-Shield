@@ -47,15 +47,6 @@ export default function Setting() {
         onClose={handleClose}
       >
         <div>
-          {/* <a
-            href="/vendor/login"
-            style={{
-              textDecoration: "none",
-              display: "flex",
-              justifyContent: "flex-start",
-            }}
-            onClick={() => Router.push("/login")}
-          > */}
           <Button
             style={{
               display: "flex",
@@ -71,7 +62,6 @@ export default function Setting() {
             <ExitToApp style={{ marginRight: 10 }} />
             Logout
           </Button>
-          {/* </a> */}
         </div>
       </Menu>
     </div>

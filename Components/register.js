@@ -127,7 +127,7 @@ function VendorRegister(props) {
   const userRegister = async (data) => {
     try {
       const res = await axios.post(
-        `${process.env.BASE_URL}/users/register`,
+        `${process.env.BASE_URL}/vendors/register`,
         data,
         {
           headers: {
@@ -187,7 +187,6 @@ function VendorRegister(props) {
                           }
                           fullWidth
                           placeholder="First Name"
-                          // autoFocus
                         />
                       </Grid>
                       <Grid

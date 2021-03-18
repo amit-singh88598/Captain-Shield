@@ -1,29 +1,17 @@
-import {
-  Avatar,
-  Button,
-  Card,
-  makeStyles,
-  Paper,
-  Typography,
-} from "@material-ui/core";
-import React from "react";
+import { Avatar, makeStyles, Typography } from "@material-ui/core";
+import React, { useEffect, useState } from "react";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import {
-  Dashboard,
-  Description,
-  Receipt,
-  Router,
-  Settings,
-} from "@material-ui/icons";
+import { Dashboard, Description, Receipt, Settings } from "@material-ui/icons";
 import { useRouter } from "next/router";
+// import { getProfile } from "../actions/vendor";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.primary.main,
-    height: 1040,
+    height: 695,
   },
   detail: {
     display: "flex",
@@ -43,6 +31,18 @@ const useStyles = makeStyles((theme) => ({
 function SideBar(props) {
   const classes = useStyles();
   const router = useRouter();
+  // const [profile, setProfile] = useState([]);
+  // useEffect(async () => {
+  //   await getProfile("", (error, result) => {
+  //     if (error) {
+  //       console.log(error);
+  //     } else {
+
+  //       setProfile();
+  //     }
+  //   });
+  // }, []);
+
   return (
     <div className={classes.root}>
       <div className={classes.detail}>

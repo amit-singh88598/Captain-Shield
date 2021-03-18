@@ -93,6 +93,29 @@ const gradients = [
   ["#363131", "#bda713"],
 ];
 
+const Users = [
+  {
+    sno: "1",
+    name: "kamal Singh",
+  },
+  {
+    sno: "2",
+    name: "Amit Singh",
+  },
+  {
+    sno: "3",
+    name: "Akash Kumar",
+  },
+  {
+    sno: "4",
+    name: "Pankaj Joshi",
+  },
+  {
+    sno: "5",
+    name: "Ayush Tripathi",
+  },
+];
+
 // Dashboard
 
 export default function Dashboard(props) {
@@ -210,73 +233,30 @@ export default function Dashboard(props) {
                     </Typography>
                   </CardContent>
                   <CardActions disableSpacing>
-                    <Typography className={classes.details} variant="subtitle1">
+                    <Typography className={classes.details} variant="h6">
                       S No.
                     </Typography>
-                    <Typography className={classes.expand} variant="subtitle1">
-                      Codes
+                    <Typography className={classes.expand} variant="h6">
+                      Name
                     </Typography>
                   </CardActions>
-                  <CardActions disableSpacing>
-                    <Typography className={classes.details} variant="subtitle1">
-                      1
-                    </Typography>
-                    <Typography
-                      className={classes.expand}
-                      aria-label="show more"
-                      variant="subtitle1"
-                    >
-                      Amit Singh
-                    </Typography>
-                  </CardActions>
-                  <CardActions disableSpacing>
-                    <Typography className={classes.details} variant="subtitle1">
-                      2
-                    </Typography>
-                    <Typography
-                      className={classes.expand}
-                      aria-label="show more"
-                      variant="subtitle1"
-                    >
-                      Kamal Singh
-                    </Typography>
-                  </CardActions>
-                  <CardActions disableSpacing>
-                    <Typography className={classes.details} variant="subtitle1">
-                      3
-                    </Typography>
-                    <Typography
-                      className={classes.expand}
-                      aria-label="show more"
-                      variant="subtitle1"
-                    >
-                      Akash Kumar
-                    </Typography>
-                  </CardActions>
-                  <CardActions disableSpacing>
-                    <Typography className={classes.details} variant="subtitle1">
-                      4
-                    </Typography>
-                    <Typography
-                      className={classes.expand}
-                      aria-label="show more"
-                      variant="subtitle1"
-                    >
-                      Satish
-                    </Typography>
-                  </CardActions>
-                  <CardActions disableSpacing>
-                    <Typography className={classes.details} variant="subtitle1">
-                      5
-                    </Typography>
-                    <Typography
-                      className={classes.expand}
-                      aria-label="show more"
-                      variant="subtitle1"
-                    >
-                      Kamlesh singh
-                    </Typography>
-                  </CardActions>
+                  {Users.map((item, index) => (
+                    <CardActions disableSpacing key={index}>
+                      <Typography
+                        className={classes.details}
+                        variant="subtitle1"
+                      >
+                        {item.sno}
+                      </Typography>
+                      <Typography
+                        className={classes.expand}
+                        aria-label="show more"
+                        variant="subtitle1"
+                      >
+                        {item.name}
+                      </Typography>
+                    </CardActions>
+                  ))}
                 </Card>
               </Grid>
             </Grid>

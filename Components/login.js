@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
   card: {
     marginTop: 150,
-    marginBottom: 200,
+    marginBottom: 170,
     borderRadius: 20,
     padding: 30,
     backgroundColor: theme.palette.secondary.light,
@@ -59,7 +59,7 @@ function LogIn(props) {
       const data = { primaryNumber, password };
       try {
         const res = await axios.post(
-          `${process.env.BASE_URL}/users/login`,
+          `${process.env.BASE_URL}/vendors/login`,
           data,
           {
             headers: {

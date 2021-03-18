@@ -14,12 +14,13 @@ import MyChart from "./myChart";
 
 const useStyle = makeStyles((theme) => ({
   root: {
-    padding: 20,
+    paddingBottom: 45,
+    paddingRight: 10,
     backgroundColor: theme.palette.primary.main,
   },
   cardStyle: {
     borderRadius: 20,
-    height: 1000,
+    height: 650,
     backgroundColor: theme.palette.secondary.light,
   },
   purchaseCard: {
@@ -91,6 +92,10 @@ const useStyle = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
     color: theme.palette.primary.light,
   },
+  scroll: {
+    overflowY: "scroll",
+    height: 650,
+  },
 }));
 
 const gradients = [
@@ -121,257 +126,211 @@ export default function DashboardDetails(props) {
     <div>
       <div className={classes.root}>
         <Card className={classes.cardStyle}>
-          <Typography
-            style={{
-              margin: 30,
-              marginLeft: 40,
-              color: "#ffffff",
-              fontWeight: 600,
-            }}
-            variant="h5"
-          >
-            Dashboard
-          </Typography>
-          <div>
-            <Grid container>
-              <Grid item xs={12} sm={4}>
-                {/*////////////////////////////////////////////////////////         Purchase Card */}
+          <div className={classes.scroll} id="scroller">
+            <Typography
+              style={{
+                margin: 30,
+                marginLeft: 40,
+                color: "#ffffff",
+                fontWeight: 600,
+              }}
+              variant="h5"
+            >
+              Dashboard
+            </Typography>
+            <div>
+              <Grid container>
+                <Grid item xs={12} sm={4}>
+                  {/*////////////////////////////////////////////////////////         Purchase Card */}
 
-                <Gradient
-                  className={classes.purchaseCard}
-                  gradients={gradients}
-                  property="background"
-                  transitionType="parallel"
-                  duration={3000}
-                  angle="45deg"
-                >
-                  <div style={{ display: "flex" }}>
-                    <Avatar alt="Remy Sharp" src="/rupee6.jpg" />
-
-                    <Typography
-                      style={{
-                        float: "right",
-                        marginLeft: "auto",
-                        fontWeight: 530,
-                        fontSize: "1.6em",
-                      }}
-                      className={classes.priceTag}
-                    >
-                      Purchase
-                    </Typography>
-                  </div>
-                  <Typography
-                    variant="h5"
-                    style={{
-                      marginTop: 20,
-                      fontWeight: 530,
-                    }}
-                    className={classes.priceTag}
+                  <Gradient
+                    className={classes.purchaseCard}
+                    gradients={gradients}
+                    property="background"
+                    transitionType="parallel"
+                    duration={3000}
+                    angle="45deg"
                   >
-                    ₹ 15,000
-                  </Typography>
-                  <div style={{ display: "flex" }}>
-                    <Typography
-                      variant="body1"
-                      style={{
-                        marginTop: 10,
-                        fontWeight: 400,
-                      }}
-                      className={classes.priceTag}
-                    >
-                      ₹ 15,000
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      style={{
-                        marginLeft: 10,
-                        marginTop: 12,
-                        fontWeight: 500,
-                      }}
-                      className={classes.priceTag}
-                    >
-                      Total Purchase
-                    </Typography>
-                  </div>
-                </Gradient>
-              </Grid>
-              <Grid item xs={12} sm={4}>
-                {/*///////////////////////////////////////////////////////////////   Sale Card */}
+                    <div style={{ display: "flex" }}>
+                      <Avatar alt="Remy Sharp" src="/rupee6.jpg" />
 
-                <Gradient
-                  className={classes.purchaseCard}
-                  gradients={gradients}
-                  property="background"
-                  duration={3000}
-                  angle="45deg"
-                >
-                  <div style={{ display: "flex" }}>
-                    <Avatar alt="Remy Sharp" src="/rupee6.jpg" />
-
-                    <Typography
-                      style={{
-                        float: "right",
-                        marginLeft: "auto",
-                        fontWeight: 530,
-                        fontSize: "1.6em",
-                      }}
-                      className={classes.priceTag}
-                    >
-                      Sale
-                    </Typography>
-                  </div>
-                  <Typography
-                    variant="h5"
-                    style={{
-                      marginTop: 20,
-                      fontWeight: 530,
-                    }}
-                    className={classes.priceTag}
-                  >
-                    ₹ 15,000
-                  </Typography>
-                  <div style={{ display: "flex" }}>
-                    <Typography
-                      variant="body1"
-                      style={{
-                        marginTop: 10,
-                        fontWeight: 400,
-                      }}
-                      className={classes.priceTag}
-                    >
-                      ₹ 15,000
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      style={{
-                        marginLeft: 10,
-                        marginTop: 12,
-                        fontWeight: 500,
-                      }}
-                      className={classes.priceTag}
-                    >
-                      Total Sale
-                    </Typography>
-                  </div>
-                </Gradient>
-              </Grid>
-              <Grid item xs={12} sm={4}>
-                {/*///////////////////////////////////////////////////////////////   Available Codes Card */}
-
-                <Gradient
-                  className={classes.purchaseCard}
-                  gradients={gradients}
-                  property="background"
-                  duration={3000}
-                  angle="45deg"
-                >
-                  <Typography
-                    style={{ fontSize: "1.8em" }}
-                    className={classes.availableCodesStyle}
-                  >
-                    Available Codes
-                  </Typography>
-                  <Typography
-                    variant="h4"
-                    style={{ marginTop: 25 }}
-                    className={classes.availableCodesStyle}
-                  >
-                    340
-                  </Typography>
-                </Gradient>
-              </Grid>
-            </Grid>
-          </div>
-
-          <div style={{ marginLeft: 20 }}>
-            <Grid container>
-              <Grid item xs={12} sm={8}>
-                <MyChart />
-              </Grid>
-              <Grid item xs={12} sm={4}>
-                {/*/////////////////////////////////////////////////////        Top 5 Codes */}
-                <Card className={classes.totalCodes} elevation={2}>
-                  <CardContent>
-                    <Typography className={classes.heading} variant="h1">
-                      Top 5 Codes
-                    </Typography>
-                  </CardContent>
-                  <CardActions disableSpacing>
-                    <Typography className={classes.details} variant="subtitle1">
-                      S No.
-                    </Typography>
-                    <Typography className={classes.expand} variant="subtitle1">
-                      Codes
-                    </Typography>
-                  </CardActions>
-                  {codes.map((item, index) => (
-                    <CardActions disableSpacing key={index}>
                       <Typography
-                        className={classes.details}
-                        variant="subtitle1"
+                        style={{
+                          float: "right",
+                          marginLeft: "auto",
+                          fontWeight: 530,
+                          fontSize: "1.6em",
+                        }}
+                        className={classes.priceTag}
                       >
-                        {index + 1}
+                        Purchase
+                      </Typography>
+                    </div>
+                    <Typography
+                      variant="h5"
+                      style={{
+                        marginTop: 20,
+                        fontWeight: 530,
+                      }}
+                      className={classes.priceTag}
+                    >
+                      ₹ 15,000
+                    </Typography>
+                    <div style={{ display: "flex" }}>
+                      <Typography
+                        variant="body1"
+                        style={{
+                          marginTop: 10,
+                          fontWeight: 400,
+                        }}
+                        className={classes.priceTag}
+                      >
+                        ₹ 15,000
                       </Typography>
                       <Typography
-                        className={classes.expand}
-                        aria-label="show more"
-                        variant="subtitle1"
+                        variant="body2"
+                        style={{
+                          marginLeft: 10,
+                          marginTop: 12,
+                          fontWeight: 500,
+                        }}
+                        className={classes.priceTag}
                       >
-                        {item.activationCode}
+                        Total Purchase
+                      </Typography>
+                    </div>
+                  </Gradient>
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                  {/*///////////////////////////////////////////////////////////////   Sale Card */}
+
+                  <Gradient
+                    className={classes.purchaseCard}
+                    gradients={gradients}
+                    property="background"
+                    duration={3000}
+                    angle="45deg"
+                  >
+                    <div style={{ display: "flex" }}>
+                      <Avatar alt="Remy Sharp" src="/rupee6.jpg" />
+
+                      <Typography
+                        style={{
+                          float: "right",
+                          marginLeft: "auto",
+                          fontWeight: 530,
+                          fontSize: "1.6em",
+                        }}
+                        className={classes.priceTag}
+                      >
+                        Sale
+                      </Typography>
+                    </div>
+                    <Typography
+                      variant="h5"
+                      style={{
+                        marginTop: 20,
+                        fontWeight: 530,
+                      }}
+                      className={classes.priceTag}
+                    >
+                      ₹ 15,000
+                    </Typography>
+                    <div style={{ display: "flex" }}>
+                      <Typography
+                        variant="body1"
+                        style={{
+                          marginTop: 10,
+                          fontWeight: 400,
+                        }}
+                        className={classes.priceTag}
+                      >
+                        ₹ 15,000
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        style={{
+                          marginLeft: 10,
+                          marginTop: 12,
+                          fontWeight: 500,
+                        }}
+                        className={classes.priceTag}
+                      >
+                        Total Sale
+                      </Typography>
+                    </div>
+                  </Gradient>
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                  {/*///////////////////////////////////////////////////////////////   Available Codes Card */}
+
+                  <Gradient
+                    className={classes.purchaseCard}
+                    gradients={gradients}
+                    property="background"
+                    duration={3000}
+                    angle="45deg"
+                  >
+                    <Typography
+                      style={{ fontSize: "1.8em" }}
+                      className={classes.availableCodesStyle}
+                    >
+                      Available Codes
+                    </Typography>
+                    <Typography
+                      variant="h4"
+                      style={{ marginTop: 25 }}
+                      className={classes.availableCodesStyle}
+                    >
+                      340
+                    </Typography>
+                  </Gradient>
+                </Grid>
+              </Grid>
+            </div>
+
+            <div style={{ marginLeft: 20 }}>
+              <Grid container>
+                <Grid item xs={12} sm={8}>
+                  <MyChart />
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                  {/*/////////////////////////////////////////////////////        Top 5 Codes */}
+                  <Card className={classes.totalCodes} elevation={2}>
+                    <CardContent>
+                      <Typography className={classes.heading} variant="h1">
+                        Top 5 Codes
+                      </Typography>
+                    </CardContent>
+                    <CardActions disableSpacing>
+                      <Typography className={classes.details} variant="h6">
+                        S No.
+                      </Typography>
+                      <Typography className={classes.expand} variant="h6">
+                        Codes
                       </Typography>
                     </CardActions>
-                  ))}
-                  {/* <CardActions disableSpacing>
-                    <Typography className={classes.details} variant="subtitle1">
-                      2
-                    </Typography>
-                    <Typography
-                      className={classes.expand}
-                      aria-label="show more"
-                      variant="subtitle1"
-                    >
-                      10002
-                    </Typography>
-                  </CardActions>
-                  <CardActions disableSpacing>
-                    <Typography className={classes.details} variant="subtitle1">
-                      3
-                    </Typography>
-                    <Typography
-                      className={classes.expand}
-                      aria-label="show more"
-                      variant="subtitle1"
-                    >
-                      10003
-                    </Typography>
-                  </CardActions>
-                  <CardActions disableSpacing>
-                    <Typography className={classes.details} variant="subtitle1">
-                      4
-                    </Typography>
-                    <Typography
-                      className={classes.expand}
-                      aria-label="show more"
-                      variant="subtitle1"
-                    >
-                      10004
-                    </Typography>
-                  </CardActions>
-                  <CardActions disableSpacing>
-                    <Typography className={classes.details} variant="subtitle1">
-                      5
-                    </Typography>
-                    <Typography
-                      className={classes.expand}
-                      aria-label="show more"
-                      variant="subtitle1"
-                    >
-                      10005
-                    </Typography>
-                  </CardActions> */}
-                </Card>
+                    {codes.map((item, index) => (
+                      <CardActions disableSpacing key={index}>
+                        <Typography
+                          className={classes.details}
+                          variant="subtitle1"
+                        >
+                          {index + 1}
+                        </Typography>
+                        <Typography
+                          className={classes.expand}
+                          aria-label="show more"
+                          variant="subtitle1"
+                        >
+                          {item.activationCode}
+                        </Typography>
+                      </CardActions>
+                    ))}
+                  </Card>
+                </Grid>
               </Grid>
-            </Grid>
+            </div>
           </div>
         </Card>
       </div>
