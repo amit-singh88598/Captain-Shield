@@ -3,12 +3,14 @@ import {
   Card,
   CardActions,
   CardContent,
+  CircularProgress,
   Grid,
   makeStyles,
   Typography,
 } from "@material-ui/core";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Gradient } from "react-gradient";
+import { getCodes } from "../actions/vendor";
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -128,6 +130,17 @@ const Users = [
 
 export default function Dashboard(props) {
   const classes = useStyle();
+  const [codesLength, setCodesLength] = useState(-1);
+  useEffect(async () => {
+    await getCodes("605065bcc26a4d23baac1be7", (error, result) => {
+      if (error) {
+        console.log(error);
+      } else {
+        const temp = [];
+        setCodesLength(result.length);
+      }
+    });
+  }, []);
 
   return (
     <div>
@@ -222,13 +235,22 @@ export default function Dashboard(props) {
                   >
                     Available Codes
                   </Typography>
-                  <Typography
-                    variant="h4"
-                    style={{ marginTop: 25 }}
-                    className={classes.availableCodesStyle}
-                  >
-                    340
-                  </Typography>
+                  {codesLength == -1 ? (
+                    <div
+                      style={{ marginTop: 25 }}
+                      className={classes.availableCodesStyle}
+                    >
+                      <CircularProgress />
+                    </div>
+                  ) : (
+                    <Typography
+                      variant="h4"
+                      style={{ marginTop: 25 }}
+                      className={classes.availableCodesStyle}
+                    >
+                      {codesLength}
+                    </Typography>
+                  )}
                 </Gradient>
               </Grid>
               <Grid item xs={12} sm={4}>

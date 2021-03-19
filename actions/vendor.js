@@ -10,7 +10,7 @@ module.exports = {
       console.log(res.data.data);
       cb(null, res.data.data);
     } else {
-      console.log(res.data.data);
+      console.log(res.data);
       cb(res.data.message, null);
     }
   },
