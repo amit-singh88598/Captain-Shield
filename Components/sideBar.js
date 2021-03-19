@@ -7,6 +7,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import { Dashboard, Description, Receipt, Settings } from "@material-ui/icons";
 import { useRouter } from "next/router";
 import { getProfile } from "../actions/vendor";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,6 +34,7 @@ function SideBar(props) {
   const router = useRouter();
   const [profile, setProfile] = useState(null);
   useEffect(async () => {
+    // axios.defaults.withCredentials = true;
     await getProfile((error, result) => {
       if (error) {
         console.log(error);
@@ -53,8 +55,7 @@ function SideBar(props) {
         }}
         className={classes.detail}
       >
-        Kamal Singh bhai
-        {profile && profile.firstName}
+        {profile && `${profile.firstName} ${profile.lastName}`}
       </Typography>
       <Typography className={classes.detail} variant="body2">
         Vendor

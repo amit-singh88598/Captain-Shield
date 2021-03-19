@@ -313,23 +313,24 @@ export default function DashboardDetails(props) {
                         Codes
                       </Typography>
                     </CardActions>
-                    {codes.map((item, index) => (
-                      <CardActions disableSpacing key={index}>
-                        <Typography
-                          className={classes.details}
-                          variant="subtitle1"
-                        >
-                          {index + 1}
-                        </Typography>
-                        <Typography
-                          className={classes.expand}
-                          aria-label="show more"
-                          variant="subtitle1"
-                        >
-                          {item.activationCode}
-                        </Typography>
-                      </CardActions>
-                    ))}
+                    {codes &&
+                      codes.map((item, index) => (
+                        <CardActions disableSpacing key={index}>
+                          <Typography
+                            className={classes.details}
+                            variant="subtitle1"
+                          >
+                            {index + 1}
+                          </Typography>
+                          <Typography
+                            className={classes.expand}
+                            aria-label="show more"
+                            variant="subtitle1"
+                          >
+                            {item.activationCode}
+                          </Typography>
+                        </CardActions>
+                      ))}
                   </Card>
                 </Grid>
               </Grid>

@@ -66,7 +66,6 @@ function LogIn(props) {
               "Access-Control-Allow-Origin": "*",
               "Content-Type": "application/json",
               withCredentials: true,
-              mode: "no-cors",
             },
           }
         );
@@ -87,7 +86,7 @@ function LogIn(props) {
     <div>
       <div className={classes.root}>
         <div>
-          <Grid spacing={2}>
+          <Grid>
             <div style={{ display: "flex", justifyContent: "center" }}>
               <Grid item xs={12} sm={7} elevation={4}>
                 <Card elevation={3} className={classes.card} elevation={2}>

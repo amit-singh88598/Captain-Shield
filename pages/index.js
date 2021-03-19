@@ -1,11 +1,19 @@
 import { Button } from "@material-ui/core";
+import axios from "axios";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 import { useAuth } from "../auth";
 
 export default function Home() {
   const { isAuthenticatedUser } = useAuth();
   const router = useRouter();
+  useEffect(async () => {
+    // axios.defaults.headers = {
+    //   "Access-Control-Allow-Origin": "*",
+    //   "Content-Type": "application/json",
+    // };
+  }, []);
   return (
     <div>
       {isAuthenticatedUser == false ? (

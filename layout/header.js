@@ -30,7 +30,6 @@ export default function Header() {
             onClick={() => router.push("/vendor/dashboard")}
             className={classes.title}
             variant="h5"
-            noWrap
           >
             Captain Shield
           </a>
