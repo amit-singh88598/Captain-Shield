@@ -8,6 +8,7 @@ import { Dashboard, Description, Receipt, Settings } from "@material-ui/icons";
 import { useRouter } from "next/router";
 import { getProfile } from "../actions/vendor";
 import axios from "axios";
+import capitalize from "../Components/capitalize";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -55,7 +56,7 @@ function SideBar(props) {
         }}
         className={classes.detail}
       >
-        {profile && `${profile.firstName} ${profile.lastName}`}
+        {capitalize(`${profile.firstName} ${profile.lastName}`)}
       </Typography>
       <Typography className={classes.detail} variant="body2">
         Vendor

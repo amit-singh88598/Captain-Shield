@@ -134,7 +134,6 @@ function VendorRegister(props) {
             "Access-Control-Allow-Origin": "*",
             "Content-Type": "application/json",
             withCredentials: true,
-            // mode: "no-cors",
           },
         }
       );
