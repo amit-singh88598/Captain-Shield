@@ -56,7 +56,7 @@ function SideBar(props) {
         }}
         className={classes.detail}
       >
-        {capitalize(`${profile.firstName} ${profile.lastName}`)}
+        {profile && `${profile.firstName} ${profile.lastName}`}
       </Typography>
       <Typography className={classes.detail} variant="body2">
         Vendor
@@ -113,7 +113,7 @@ function SideBar(props) {
         style={{ marginTop: 100, paddingBottom: 80 }}
         className={classes.detail}
       >
-        <Avatar alt="Remy Sharp" src="/avatar3.png" className={classes.large} />
+        <Avatar alt="Remy Sharp" src="/logo.jpeg" className={classes.large} />
       </div>
     </div>
   );

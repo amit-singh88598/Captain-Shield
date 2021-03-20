@@ -192,7 +192,7 @@ export default function Dashboard(props) {
                     }}
                     className={classes.priceTag}
                   >
-                    ₹ 15,000
+                    ₹ 00
                   </Typography>
                   <div style={{ display: "flex" }}>
                     <Typography
@@ -203,7 +203,7 @@ export default function Dashboard(props) {
                       }}
                       className={classes.priceTag}
                     >
-                      ₹ 15,000
+                      ₹ 00
                     </Typography>
                     <Typography
                       variant="body2"
