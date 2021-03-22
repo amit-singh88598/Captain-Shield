@@ -2,20 +2,22 @@ import {
   Box,
   Button,
   Card,
-  Container,
   Grid,
   IconButton,
   InputAdornment,
   makeStyles,
+  Snackbar,
   TextField,
   Typography,
 } from "@material-ui/core";
 import axios from "axios";
 import React, { useState } from "react";
 import { regxPrimaryNumber, regxPassword } from "../regular-Expression";
-import cookies from "js-cookies";
+import Cookies from "js-cookies";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 import { useRouter } from "next/router";
+import { useAuth } from "../auth";
+import { Alert } from "@material-ui/lab";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,8 +44,12 @@ const useStyles = makeStyles((theme) => ({
 function LogIn(props) {
   const classes = useStyles();
   const router = useRouter();
+  const [open, setOpen] = useState(false);
+  const { setAdminData, setVendorData, setTokenData } = useAuth();
   const [primaryNumber, setPrimaryNumber] = useState("");
   const [password, setPassword] = useState("");
+  const [loginError, setLoginError] = useState(null);
+
   const [error, setError] = useState({
     primaryNumberErr: false,
     passwordErr: false,
@@ -56,29 +62,100 @@ function LogIn(props) {
     } else if (!(password != "" && regxPassword.test(password))) {
       setError({ passwordErr: true });
     } else {
-      const data = { primaryNumber, password };
-      try {
-        const res = await axios.post(
+      switch (props.role) {
+        case "vendor":
+          login({
+            primaryNumber: primaryNumber,
+            userType: "vendor",
+            password,
+          });
+          break;
+
+        default:
+          login({
+            primaryNumber: primaryNumber,
+            userType: "admin",
+            password,
+          });
+          break;
+      }
+    }
+  };
+
+  const login = async ({ primaryNumber, password, userType }) => {
+    switch (userType.toLowerCase()) {
+      //if type is vendor then run this code of lines
+      case "vendor":
+        setOpen(true);
+        const userRes = await axios.post(
           `${process.env.BASE_URL}/vendors/login`,
-          data,
           {
-            headers: {
-              "Access-Control-Allow-Origin": "*",
-              "Content-Type": "application/json",
-              withCredentials: true,
-            },
+            primaryNumber: primaryNumber,
+            password,
           }
         );
-        if (res && res.data.isAuth) {
-          //to save token in cookies
-          cookies.setItem("auth", res.data.token, { expires: 3 });
-          router.replace("/vendor/dashboard");
+        if (userRes.data.token) {
+          Cookies.setItem(
+            "auth",
+            { token: userRes.data.token, userType },
+            { expires: 7 }
+          );
+
+          getProfile((error, result) => {
+            if (result.status) {
+              setVendorData(result.data);
+              setTokenData(result.data.token);
+              setOpen(false);
+              if (router.pathname === "/vendor/login") {
+                router.replace("/vendor/dashboard");
+              }
+            } else {
+              setOpen(false);
+              setLoginError(user.message);
+            }
+          });
         } else {
-          alert("Something went wrong");
+          setOpen(false);
+
+          setLoginError(userRes.data.message);
         }
-      } catch (error) {
-        console.log(error);
-      }
+        break;
+
+      //if user is admin then run this code of lines
+      case "admin":
+        setOpen(true);
+        const adminRes = await axios.post(
+          `${process.env.BASE_URL}/vendors/login`,
+          {
+            username: primaryNumber,
+            password,
+          }
+        );
+        if (adminRes.data.token && adminRes.data.token) {
+          Cookies.setItem("adminAuth", adminRes.data.token, { expires: 7 });
+
+          getProfile((error, result) => {
+            if (result.status) {
+              setOpen(false);
+              setAdminData(result.data.data);
+              setTokenData(adminRes.data.token);
+              if (router.pathname === "/partner/signin") {
+                router.push("/partner");
+              }
+            } else {
+              setOpen(false);
+              setLoginError(result.data.message);
+            }
+          });
+        } else {
+          setOpen(false);
+          console.log(adminRes);
+          setLoginError(adminRes.data.message);
+        }
+        break;
+
+      default:
+        break;
     }
   };
 
@@ -90,6 +167,14 @@ function LogIn(props) {
             <div style={{ display: "flex", justifyContent: "center" }}>
               <Grid item xs={12} sm={7} elevation={4}>
                 <Card elevation={3} className={classes.card} elevation={2}>
+                  <Snackbar
+                    open={loginError ? true : false}
+                    autoHideDuration={6000}
+                    anchorOrigin={{ vertical: "top", horizontal: "center" }}
+                    onClose={() => setLoginError(null)}
+                  >
+                    <Alert severity="error">{loginError && loginError}</Alert>
+                  </Snackbar>
                   <Typography
                     style={{
                       textAlign: "center",
@@ -237,3 +322,30 @@ function LogIn(props) {
 }
 
 export default LogIn;
+
+//   else {
+//     const data = { primaryNumber, password };
+//     try {
+//       const res = await axios.post(
+//         `${process.env.BASE_URL}/vendors/login`,
+//         data,
+//         {
+//           headers: {
+//             "Access-Control-Allow-Origin": "*",
+//             "Content-Type": "application/json",
+//             withCredentials: true,
+//           },
+//         }
+//       );
+//       if (res && res.data.isAuth) {
+//         //to save token in cookies
+//         cookies.setItem("auth", res.data.token, { expires: 3 });
+//         router.replace("/vendor/dashboard");
+//       } else {
+//         alert("Something went wrong");
+//       }
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   }
+// };

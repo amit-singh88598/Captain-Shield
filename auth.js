@@ -5,6 +5,8 @@ import Cookies from "js-cookies";
 const AuthContext = createContext({});
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null);
+  const [vendor, setVendor] = useState(null);
+  const [admin, setAdmin] = useState(null);
   useEffect(async () => {
     const userCookie = Cookies.getItem("auth");
     if (userCookie !== "" && userCookie != null) {
@@ -14,8 +16,11 @@ export const AuthProvider = ({ children }) => {
     }
   }, []);
 
-  const setUserData = async (data) => {
-    setUser(data);
+  const setVendorData = async (data) => {
+    setVendor(data);
+  };
+  const setAdminData = async (data) => {
+    setAdmin(data);
   };
 
   const setTokenData = (token) => {
@@ -27,8 +32,11 @@ export const AuthProvider = ({ children }) => {
       value={{
         isAuthenticatedUser: !!token,
         token,
+        admin,
+        vendor,
         setTokenData,
-        setUserData,
+        setVendorData,
+        setAdminData,
       }}
     >
       {children}
