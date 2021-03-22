@@ -1,10 +1,9 @@
 import React from "react";
 import SearchBar from "../Components/searchBar";
-import { AppBar, makeStyles, Toolbar, Typography } from "@material-ui/core";
-import { NotificationsActive } from "@material-ui/icons";
+import { AppBar, Avatar, makeStyles, Toolbar } from "@material-ui/core";
 import Setting from "../Components/setting";
 import Notification from "../Components/notification";
-import { Router, useRouter } from "next/router";
+import { useRouter } from "next/router";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -16,6 +15,10 @@ const useStyles = makeStyles((theme) => ({
       cursor: "pointer",
     },
   },
+  large: {
+    width: theme.spacing(6),
+    height: theme.spacing(6),
+  },
 }));
 
 export default function Header() {
@@ -26,6 +29,7 @@ export default function Header() {
     <div>
       <AppBar position="static">
         <Toolbar>
+          <Avatar alt="Remy Sharp" src="/logo.jpeg" className={classes.large} />
           <a
             onClick={() => router.push("/vendor/dashboard")}
             className={classes.title}

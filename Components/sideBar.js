@@ -7,7 +7,6 @@ import ListItemText from "@material-ui/core/ListItemText";
 import { Dashboard, Description, Receipt, Settings } from "@material-ui/icons";
 import { useRouter } from "next/router";
 import { getProfile } from "../actions/vendor";
-import axios from "axios";
 import capitalize from "../Components/capitalize";
 
 const useStyles = makeStyles((theme) => ({
@@ -109,12 +108,12 @@ function SideBar(props) {
           </ListItem>
         </List>
       </div>
-      <div
+      {/* <div
         style={{ marginTop: 100, paddingBottom: 80 }}
         className={classes.detail}
       >
         <Avatar alt="Remy Sharp" src="/logo.jpeg" className={classes.large} />
-      </div>
+      </div> */}
     </div>
   );
 }
