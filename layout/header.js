@@ -10,8 +10,8 @@ const useStyles = makeStyles((theme) => ({
     display: "none",
     [theme.breakpoints.up("sm")]: {
       display: "block",
-      marginLeft: 20,
-      fontSize: "1.8em",
+      marginLeft: 5,
+      fontSize: "1.6em",
       cursor: "pointer",
     },
   },
@@ -29,9 +29,14 @@ export default function Header() {
     <div>
       <AppBar position="static">
         <Toolbar>
-          <Avatar alt="Remy Sharp" src="/logo.jpeg" className={classes.large} />
+          <Avatar
+            onClick={() => router.push("#")}
+            alt="Remy Sharp"
+            src="/logo.jpeg"
+            className={classes.large}
+          />
           <a
-            onClick={() => router.push("/vendor/dashboard")}
+            onClick={() => router.push("#")}
             className={classes.title}
             variant="h5"
           >

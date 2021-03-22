@@ -31,7 +31,7 @@ export default function Notification() {
           display: "flex",
           justifyContent: "flex-start",
         }}
-        onClick={() => router.push("/vendor/dashboard")}
+        onClick={() => router.push("#")}
       >
         <Button
           aria-controls="simple-menu"

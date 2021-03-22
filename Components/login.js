@@ -153,7 +153,6 @@ function LogIn(props) {
           setLoginError(adminRes.data.message);
         }
         break;
-
       default:
         break;
     }
