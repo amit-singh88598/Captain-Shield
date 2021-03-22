@@ -104,26 +104,26 @@ const gradients = [
 ];
 
 const Users = [
-  {
-    name: "kamal Singh",
-    sno: "10000",
-  },
-  {
-    name: "Amit Singh",
-    sno: "10000",
-  },
-  {
-    name: "Akash Kumar",
-    sno: "10000",
-  },
-  {
-    name: "Pankaj Joshi",
-    sno: "10000",
-  },
-  {
-    name: "Ayush Tripathi",
-    sno: "10000",
-  },
+  // {
+  //   name: "kamal Singh",
+  //   sno: "10000",
+  // },
+  // {
+  //   name: "Amit Singh",
+  //   sno: "10000",
+  // },
+  // {
+  //   name: "Akash Kumar",
+  //   sno: "10000",
+  // },
+  // {
+  //   name: "Pankaj Joshi",
+  //   sno: "10000",
+  // },
+  // {
+  //   name: "Ayush Tripathi",
+  //   sno: "10000",
+  // },
 ];
 
 // Dashboard
@@ -148,12 +148,12 @@ export default function Dashboard(props) {
         <Card className={classes.cardStyle}>
           <Typography
             style={{
-              margin: 30,
-              marginLeft: 40,
+              margin: 10,
+              marginLeft: 20,
               color: "#ffffff",
               fontWeight: 600,
+              fontSize: "1.8em",
             }}
-            variant="h5"
           >
             Sale
           </Typography>

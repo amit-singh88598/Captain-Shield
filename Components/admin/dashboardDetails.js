@@ -13,6 +13,7 @@ import { Gradient } from "react-gradient";
 import { getCodes } from "../../actions/vendor";
 import MyChart from "../myChart";
 import GenerateCodes from "../admin/generateCodes";
+import VendorList from "./vendorList";
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -141,8 +142,8 @@ export default function DashboardDetails(props) {
                 marginLeft: 20,
                 color: "#ffffff",
                 fontWeight: 600,
+                fontSize: "1.8em",
               }}
-              variant="h5"
             >
               Dashboard
             </Typography>
@@ -222,16 +223,29 @@ export default function DashboardDetails(props) {
                     <GenerateCodes />
                   </Gradient>
                 </Grid>
+                <Grid item xs={12} sm={4}>
+                  {/*///////////////////////////////////////////////////////////////   Vendors List Card */}
+
+                  <Gradient
+                    className={classes.purchaseCard}
+                    gradients={gradients}
+                    property="background"
+                    duration={3000}
+                    angle="45deg"
+                  >
+                    <VendorList />
+                  </Gradient>
+                </Grid>
               </Grid>
             </div>
 
-            <div style={{ marginLeft: 20 }}>
+            {/* <div style={{ marginLeft: 20 }}>
               <Grid container>
                 <Grid item xs={12} sm={8}>
                   <MyChart />
                 </Grid>
                 <Grid item xs={12} sm={4}>
-                  {/*/////////////////////////////////////////////////////        Top 5 Codes */}
+                  /////////////////////////////////////////////////////        Top 5 Codes
                   <Card className={classes.totalCodes} elevation={2}>
                     <CardContent>
                       <Typography className={classes.heading} variant="h1">
@@ -260,14 +274,14 @@ export default function DashboardDetails(props) {
                             className={classes.details}
                             variant="subtitle1"
                           >
-                            {/* {index + 1} */}
+                            {index + 1}
                           </Typography>
                           <Typography
                             className={classes.expand}
                             aria-label="show more"
                             variant="subtitle1"
                           >
-                            {/* {item.activationCode} */}
+                            {item.activationCode}
                           </Typography>
                         </CardActions>
                       ))
@@ -275,7 +289,7 @@ export default function DashboardDetails(props) {
                   </Card>
                 </Grid>
               </Grid>
-            </div>
+            </div> */}
           </div>
         </Card>
       </div>
