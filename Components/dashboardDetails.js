@@ -11,6 +11,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { Gradient } from "react-gradient";
 import { getCodes } from "../actions/vendor";
+import { useAuth } from "../auth";
 import MyChart from "./myChart";
 
 const useStyle = makeStyles((theme) => ({
@@ -110,21 +111,30 @@ const gradients = [
 // Dashboard
 
 export default function DashboardDetails(props) {
+  const { vendor } = useAuth();
   const [codes, setCodes] = useState([]);
   const [codesLength, setCodesLength] = useState(-1);
   useEffect(async () => {
-    await getCodes("605065bcc26a4d23baac1be7", (error, result) => {
-      if (error) {
-        console.log(error);
-      } else {
-        const temp = [];
-        setCodesLength(result.length);
-        for (let i = 0; i < 5; i++) {
-          temp.push(result[i]);
+    if (vendor) {
+      await getCodes(vendor._id, (error, result) => {
+        if (error) {
+          console.log(error);
+        } else {
+          const temp = [];
+          setCodesLength(result.length);
+          if (result.length > 0) {
+            if (result.length >= 5) {
+              for (let i = 0; i < 5; i++) {
+                temp.push(result[i]);
+              }
+            } else {
+              temp.push(result);
+            }
+          }
+          setCodes(temp);
         }
-        setCodes(temp);
-      }
-    });
+      });
+    }
   }, []);
   const classes = useStyle();
 

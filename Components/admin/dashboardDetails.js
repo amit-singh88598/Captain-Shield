@@ -238,58 +238,6 @@ export default function DashboardDetails(props) {
                 </Grid>
               </Grid>
             </div>
-
-            {/* <div style={{ marginLeft: 20 }}>
-              <Grid container>
-                <Grid item xs={12} sm={8}>
-                  <MyChart />
-                </Grid>
-                <Grid item xs={12} sm={4}>
-                  /////////////////////////////////////////////////////        Top 5 Codes
-                  <Card className={classes.totalCodes} elevation={2}>
-                    <CardContent>
-                      <Typography className={classes.heading} variant="h1">
-                        Top 5 Codes
-                      </Typography>
-                    </CardContent>
-                    <CardActions disableSpacing>
-                      <Typography className={classes.details} variant="h6">
-                        S No.
-                      </Typography>
-                      <Typography className={classes.expand} variant="h6">
-                        Codes
-                      </Typography>
-                    </CardActions>
-                    {codesLength == -1 ? (
-                      <div
-                        style={{ marginTop: 25 }}
-                        className={classes.availableCodesStyle}
-                      >
-                        <CircularProgress />
-                      </div>
-                    ) : (
-                      codes.map((item, index) => (
-                        <CardActions disableSpacing key={index}>
-                          <Typography
-                            className={classes.details}
-                            variant="subtitle1"
-                          >
-                            {index + 1}
-                          </Typography>
-                          <Typography
-                            className={classes.expand}
-                            aria-label="show more"
-                            variant="subtitle1"
-                          >
-                            {item.activationCode}
-                          </Typography>
-                        </CardActions>
-                      ))
-                    )}
-                  </Card>
-                </Grid>
-              </Grid>
-            </div> */}
           </div>
         </Card>
       </div>

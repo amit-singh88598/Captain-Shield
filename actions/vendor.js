@@ -3,15 +3,22 @@ import jsCookies from "js-cookies";
 
 module.exports = {
   getCodes: async (vendorId, cb) => {
-    const res = await axios.get(
-      `${process.env.BASE_URL}/keys/vendor/remaining/${vendorId}`
-    );
-    if (res && res.status == 200) {
-      console.log(res.data.data);
-      cb(null, res.data.data);
-    } else {
-      console.log(res.data);
-      cb(res.data.message, null);
+    try {
+      const res = await axios.get(
+        `${process.env.BASE_URL}/keys/vendor/remaining/${vendorId}`,
+        {
+          headers: {
+            auth: jsCookies.getItem("auth"),
+          },
+        }
+      );
+      if (res && res.status == 200) {
+        cb(null, res.data.data);
+      } else {
+        cb(res.data.message, null);
+      }
+    } catch (error) {
+      console.log(error);
     }
   },
   getProfile: async (cb) => {
@@ -21,7 +28,7 @@ module.exports = {
       },
     });
     if (res && res.status == 200) {
-      console.log(res.data);
+      console.log(jsCookies.getItem("auth"));
       cb(null, res.data);
     } else {
       console.log(res.data);
