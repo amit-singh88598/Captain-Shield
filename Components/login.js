@@ -18,6 +18,7 @@ import { Visibility, VisibilityOff } from "@material-ui/icons";
 import { useRouter } from "next/router";
 import { useAuth } from "../auth";
 import { Alert } from "@material-ui/lab";
+import { getProfile } from "../actions/vendor";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -62,99 +63,47 @@ function LogIn(props) {
     } else if (!(password != "" && regxPassword.test(password))) {
       setError({ passwordErr: true });
     } else {
-      switch (props.role) {
-        case "vendor":
-          login({
-            primaryNumber: primaryNumber,
-            userType: "vendor",
-            password,
-          });
-          break;
-
-        default:
-          login({
-            primaryNumber: primaryNumber,
-            userType: "admin",
-            password,
-          });
-          break;
-      }
+      login({
+        primaryNumber: primaryNumber,
+        password,
+      });
     }
   };
 
-  const login = async ({ primaryNumber, password, userType }) => {
-    switch (userType.toLowerCase()) {
-      //if type is vendor then run this code of lines
-      case "vendor":
-        setOpen(true);
-        const userRes = await axios.post(
-          `${process.env.BASE_URL}/vendors/login`,
-          {
-            primaryNumber: primaryNumber,
-            password,
-          }
-        );
-        if (userRes.data.token) {
-          Cookies.setItem(
-            "auth",
-            { token: userRes.data.token, userType },
-            { expires: 7 }
-          );
+  const login = async ({ primaryNumber, password }) => {
+    setOpen(true);
+    const userRes = await axios.post(`${process.env.BASE_URL}/vendors/login`, {
+      primaryNumber: primaryNumber,
+      password,
+    });
+    const { user } = userRes.data.data;
+    if (userRes != null) {
+      Cookies.setItem("auth", user.token, { expires: 7 });
+      setTokenData(user.token);
 
-          getProfile((error, result) => {
-            if (result.status) {
-              setVendorData(result.data);
-              setTokenData(result.data.token);
-              setOpen(false);
-              if (router.pathname === "/vendor/login") {
-                router.replace("/vendor/dashboard");
-              }
-            } else {
-              setOpen(false);
-              setLoginError(user.message);
+      getProfile((error, result) => {
+        if (result.status) {
+          setOpen(false);
+          if (user.isAdmin) {
+            setAdminData(result.data.user);
+            if (router.pathname === "/vendor/login") {
+              router.replace("/admin/dashboard");
             }
-          });
+          } else {
+            setVendorData(result.data.user);
+            if (router.pathname === "/vendor/login") {
+              router.replace("/vendor/dashboard");
+            }
+          }
         } else {
           setOpen(false);
-
-          setLoginError(userRes.data.message);
+          setLoginError(error);
         }
-        break;
+      });
+    } else {
+      setOpen(false);
 
-      //if user is admin then run this code of lines
-      case "admin":
-        setOpen(true);
-        const adminRes = await axios.post(
-          `${process.env.BASE_URL}/vendors/login`,
-          {
-            username: primaryNumber,
-            password,
-          }
-        );
-        if (adminRes.data.token && adminRes.data.token) {
-          Cookies.setItem("adminAuth", adminRes.data.token, { expires: 7 });
-
-          getProfile((error, result) => {
-            if (result.status) {
-              setOpen(false);
-              setAdminData(result.data.data);
-              setTokenData(adminRes.data.token);
-              if (router.pathname === "/partner/signin") {
-                router.push("/partner");
-              }
-            } else {
-              setOpen(false);
-              setLoginError(result.data.message);
-            }
-          });
-        } else {
-          setOpen(false);
-          console.log(adminRes);
-          setLoginError(adminRes.data.message);
-        }
-        break;
-      default:
-        break;
+      setLoginError(userRes.data.message);
     }
   };
 

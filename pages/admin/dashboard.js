@@ -1,6 +1,7 @@
 import { Button, Grid } from "@material-ui/core";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import { AdminProtectedPage } from "../../auth";
 import DashboardDetails from "../../Components/admin/dashboardDetails";
 import SideBar from "../../Components/admin/sideBar";
 // import { UserProtectedPage } from "../../auth";
@@ -8,8 +9,7 @@ import Header from "../../layout/header";
 
 export default function Dashboard() {
   return (
-    <div>
-      {/* <UserProtectedPage> */}
+    <AdminProtectedPage>
       <div>
         <Head>
           <title>Captain Shield</title>
@@ -25,7 +25,6 @@ export default function Dashboard() {
           </Grid>
         </Grid>
       </div>
-      {/* </UserProtectedPage> */}
-    </div>
+    </AdminProtectedPage>
   );
 }

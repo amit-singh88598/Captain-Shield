@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import Login from "./pages/vendor/login";
 import Cookies from "js-cookies";
+import { getProfile } from "./actions/vendor";
 
 const AuthContext = createContext({});
 export const AuthProvider = ({ children }) => {
@@ -12,6 +13,15 @@ export const AuthProvider = ({ children }) => {
     if (userCookie !== "" && userCookie != null) {
       if (userCookie) {
         setToken(userCookie);
+        getProfile((error, result) => {
+          if (result.status) {
+            if (result.data.isAdmin) {
+              setAdmin(result.data);
+            } else {
+              setVendor(result.data);
+            }
+          }
+        });
       }
     }
   }, []);
@@ -30,7 +40,7 @@ export const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider
       value={{
-        isAuthenticatedUser: !!token,
+        isAuthenticatedUser: !!vendor,
         token,
         admin,
         vendor,
@@ -49,6 +59,14 @@ export const useAuth = () => useContext(AuthContext);
 export const UserProtectedPage = ({ children }) => {
   const { isAuthenticatedUser } = useAuth();
   if (!isAuthenticatedUser) {
+    return <Login />;
+  } else {
+    return children;
+  }
+};
+export const AdminProtectedPage = ({ children }) => {
+  const { admin } = useAuth();
+  if (!admin) {
     return <Login />;
   } else {
     return children;
