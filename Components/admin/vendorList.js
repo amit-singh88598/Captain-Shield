@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Slide from "@material-ui/core/Slide";
 import {
@@ -8,6 +8,7 @@ import {
   Grid,
   Typography,
 } from "@material-ui/core";
+import { getVendors } from "../../actions/vendor";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,51 +51,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Users = [
-  {
-    name: "kamal Singh",
-    sno: "10000",
-  },
-  {
-    name: "Amit Singh",
-    sno: "10000",
-  },
-  {
-    name: "Akash Kumar",
-    sno: "10000",
-  },
-  {
-    name: "Pankaj Joshi",
-    sno: "10000",
-  },
-  {
-    name: "Ayush Tripathi",
-    sno: "10000",
-  },
-  {
-    name: "Amit Singh",
-    sno: "10000",
-  },
-  {
-    name: "Akash Kumar",
-    sno: "10000",
-  },
-  {
-    name: "Pankaj Joshi",
-    sno: "10000",
-  },
-  {
-    name: "Ayush Tripathi",
-    sno: "10000",
-  },
-];
-
-const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
-
 export default function GenerateCode() {
   const classes = useStyles();
+  const [profile, setProfile] = useState(null);
+  useEffect(async () => {
+    await getVendors((error, result) => {
+      if (error) {
+        console.log(error);
+      } else {
+        setProfile(result.data);
+      }
+    });
+  }, []);
 
   return (
     <div className={classes.root}>
@@ -115,20 +83,21 @@ export default function GenerateCode() {
                   Codes
                 </Typography>
               </CardActions>
-              {Users.map((item, index) => (
-                <CardActions disableSpacing key={index}>
-                  <Typography
-                    className={classes.details}
-                    aria-label="show more"
-                    variant="subtitle1"
-                  >
-                    {item.name}
-                  </Typography>
-                  <Typography className={classes.expand} variant="subtitle1">
-                    {item.sno}
-                  </Typography>
-                </CardActions>
-              ))}
+              {profile &&
+                profile.map((item, index) => (
+                  <CardActions disableSpacing key={index}>
+                    <Typography
+                      className={classes.details}
+                      aria-label="show more"
+                      variant="subtitle1"
+                    >
+                      {item._id}
+                    </Typography>
+                    <Typography className={classes.expand} variant="subtitle1">
+                      {item.keys.length}
+                    </Typography>
+                  </CardActions>
+                ))}
             </Card>
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -146,20 +115,21 @@ export default function GenerateCode() {
                   Codes
                 </Typography>
               </CardActions>
-              {Users.map((item, index) => (
-                <CardActions disableSpacing key={index}>
-                  <Typography
-                    className={classes.details}
-                    aria-label="show more"
-                    variant="subtitle1"
-                  >
-                    {item.name}
-                  </Typography>
-                  <Typography className={classes.expand} variant="subtitle1">
-                    {item.sno}
-                  </Typography>
-                </CardActions>
-              ))}
+              {profile &&
+                profile.map((item, index) => (
+                  <CardActions disableSpacing key={index}>
+                    <Typography
+                      className={classes.details}
+                      aria-label="show more"
+                      variant="subtitle1"
+                    >
+                      {item._id}
+                    </Typography>
+                    <Typography className={classes.expand} variant="subtitle1">
+                      {item.keys.length}
+                    </Typography>
+                  </CardActions>
+                ))}
             </Card>
           </Grid>
         </Grid>

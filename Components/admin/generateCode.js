@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Slide from "@material-ui/core/Slide";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -6,6 +6,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import { Button, Card, Grid } from "@material-ui/core";
+import { getVendors } from "../../actions/vendor";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,6 +32,16 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function GenerateCode() {
   const classes = useStyles();
+  const [profile, setProfile] = useState(null);
+  useEffect(async () => {
+    await getVendors((error, result) => {
+      if (error) {
+        console.log(error);
+      } else {
+        setProfile(result.data);
+      }
+    });
+  }, []);
 
   return (
     <div className={classes.root}>
@@ -45,16 +56,12 @@ export default function GenerateCode() {
                 <MenuItem value="">
                   <em>None</em>
                 </MenuItem>
-                <MenuItem value={1}>kamal Singh</MenuItem>
-                <MenuItem value={2}>Amit Singh</MenuItem>
-                <MenuItem value={3}>Akash Kumar</MenuItem>
-                <MenuItem value={4}>Pankaj Joshi</MenuItem>
-                <MenuItem value={1}>Ayush Tripathi</MenuItem>
-                <MenuItem value={1}>kamal Singh</MenuItem>
-                <MenuItem value={2}>Amit Singh</MenuItem>
-                <MenuItem value={3}>Akash Kumar</MenuItem>
-                <MenuItem value={4}>Pankaj Joshi</MenuItem>
-                <MenuItem value={1}>Ayush Tripathi</MenuItem>
+                {profile &&
+                  profile.map((item, index) => (
+                    <div key={index}>
+                      <MenuItem value={1}>{item._id}</MenuItem>
+                    </div>
+                  ))}
               </Select>
             </FormControl>
           </Grid>
@@ -67,15 +74,10 @@ export default function GenerateCode() {
                 <MenuItem value="">
                   <em>None</em>
                 </MenuItem>
-                <MenuItem value={4}>10000</MenuItem>
-                <MenuItem value={4}>10000</MenuItem>
-                <MenuItem value={4}>10000</MenuItem>
-                <MenuItem value={4}>10000</MenuItem>
-                <MenuItem value={4}>10000</MenuItem>
-                <MenuItem value={4}>10000</MenuItem>
-                <MenuItem value={4}>10000</MenuItem>
-                <MenuItem value={4}>10000</MenuItem>
-                <MenuItem value={4}>10000</MenuItem>
+                <MenuItem value={4}>100</MenuItem>
+                <MenuItem value={4}>200</MenuItem>
+                <MenuItem value={4}>500</MenuItem>
+                <MenuItem value={4}>1000</MenuItem>
                 <MenuItem value={4}>10000</MenuItem>
               </Select>
             </FormControl>

@@ -35,4 +35,18 @@ module.exports = {
       cb(res.data.message, null);
     }
   },
+  getVendors: async (cb) => {
+    const res = await axios.get(`${process.env.BASE_URL}/vendors`, {
+      headers: {
+        auth: jsCookies.getItem("auth"),
+      },
+    });
+    if (res && res.status == 200) {
+      console.log(jsCookies.getItem("auth"));
+      cb(null, res.data);
+    } else {
+      console.log(res.data);
+      cb(res.data.message, null);
+    }
+  },
 };
