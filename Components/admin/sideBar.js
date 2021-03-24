@@ -4,9 +4,9 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import { Dashboard, Description, Receipt, Settings } from "@material-ui/icons";
+import { Dashboard, Receipt, Settings } from "@material-ui/icons";
 import { useRouter } from "next/router";
-// import { getProfile } from "../actions/vendor";
+import { getProfile } from "../../actions/vendor";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,16 +32,16 @@ function SideBar(props) {
   const classes = useStyles();
   const router = useRouter();
   const [profile, setProfile] = useState(null);
-  // useEffect(async () => {
-  //   // axios.defaults.withCredentials = true;
-  //   await getProfile((error, result) => {
-  //     if (error) {
-  //       console.log(error);
-  //     } else {
-  //       setProfile(result.data);
-  //     }
-  //   });
-  // }, []);
+  useEffect(async () => {
+    // axios.defaults.withCredentials = true;
+    await getProfile((error, result) => {
+      if (error) {
+        console.log(error);
+      } else {
+        setProfile(result.data);
+      }
+    });
+  }, []);
 
   return (
     <div className={classes.root}>
@@ -54,8 +54,8 @@ function SideBar(props) {
         }}
         className={classes.detail}
       >
-        Ayush Tyagi
-        {/* {profile && `${profile.firstName} ${profile.lastName}`} */}
+        {/* Ayush Tyagi */}
+        {profile && `${profile.firstName} ${profile.lastName}`}
       </Typography>
       <Typography className={classes.detail} variant="body2">
         Admin

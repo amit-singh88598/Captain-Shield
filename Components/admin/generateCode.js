@@ -38,7 +38,7 @@ export default function GenerateCode() {
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6}>
             <FormControl className={classes.formControl}>
-              <InputLabel fullWidth htmlFor="grouped-select">
+              <InputLabel htmlFor="grouped-select">
                 Select Vendor Name
               </InputLabel>
               <Select defaultValue="" id="grouped-select">
