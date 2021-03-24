@@ -1,8 +1,7 @@
-import { Button, Grid } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import Head from "next/head";
-import { useRouter } from "next/router";
 import { AdminProtectedPage } from "../../auth";
-import DashboardDetails from "../../Components/admin/dashboardDetails";
+import GenerateCode from "../../Components/admin/generateCode";
 import SideBar from "../../Components/admin/sideBar";
 import Header from "../../layout/header";
 
@@ -21,7 +20,7 @@ export default function Dashboard() {
             <SideBar />
           </Grid>
           <Grid item xs={10} sm={10}>
-            <DashboardDetails />
+            <GenerateCode />
           </Grid>
         </Grid>
       </div>

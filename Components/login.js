@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: 170,
     borderRadius: 20,
     padding: 30,
-    backgroundColor: theme.palette.secondary.light,
+    backgroundColor: theme.palette.primary.light,
   },
   btnStyle: {
     fontSize: "1.2em",

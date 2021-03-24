@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: 60,
     padding: 30,
     borderRadius: 30,
-    backgroundColor: theme.palette.secondary.light,
+    backgroundColor: theme.palette.primary.light,
   },
   title: {
     textAlign: "center",

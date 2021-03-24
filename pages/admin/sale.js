@@ -2,16 +2,15 @@ import { Button, Grid } from "@material-ui/core";
 import Head from "next/head";
 import Header from "../../layout/header";
 import { useRouter } from "next/router";
-import { useAuth, UserProtectedPage } from "../../auth";
+import { AdminProtectedPage } from "../../auth";
 import SideBar from "../../Components/admin/sideBar";
 import SaleDetails from "../../Components/admin/saleDetails";
 
 export default function Sale() {
-  const { isAuthenticatedUser } = useAuth();
   const router = useRouter();
   return (
     <div>
-      {/* <UserProtectedPage> */}
+      {/* <AdminProtectedPage> */}
       <div>
         <Head>
           <title>Captain Shield</title>
@@ -27,7 +26,7 @@ export default function Sale() {
           </Grid>
         </Grid>
       </div>
-      {/* </UserProtectedPage> */}
+      {/* </AdminProtectedPage> */}
     </div>
   );
 }

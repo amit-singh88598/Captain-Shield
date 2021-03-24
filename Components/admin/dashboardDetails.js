@@ -1,19 +1,9 @@
-import {
-  Avatar,
-  Card,
-  CardActions,
-  CardContent,
-  CircularProgress,
-  Grid,
-  makeStyles,
-  Typography,
-} from "@material-ui/core";
+import { Avatar, Card, Grid, makeStyles, Typography } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { Gradient } from "react-gradient";
 import { getCodes } from "../../actions/vendor";
-import MyChart from "../myChart";
-import GenerateCodes from "../admin/generateCodes";
 import VendorList from "./vendorList";
+import { useRouter } from "next/router";
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -113,6 +103,7 @@ const gradients = [
 // Dashboard
 
 export default function DashboardDetails(props) {
+  const router = useRouter();
   const [codes, setCodes] = useState([]);
   const [codesLength, setCodesLength] = useState(-1);
   useEffect(async () => {
@@ -216,11 +207,18 @@ export default function DashboardDetails(props) {
                   <Gradient
                     className={classes.purchaseCard}
                     gradients={gradients}
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      fontSize: "1.8em",
+                      color: "#ffffff",
+                    }}
                     property="background"
                     duration={3000}
                     angle="45deg"
+                    onClick={() => router.push("/admin/generateCodes")}
                   >
-                    <GenerateCodes />
+                    Generate Codes
                   </Gradient>
                 </Grid>
                 <Grid item xs={12} sm={4}>
@@ -232,8 +230,15 @@ export default function DashboardDetails(props) {
                     property="background"
                     duration={3000}
                     angle="45deg"
+                    onClick={() => router.push("/admin/vendors")}
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      fontSize: "1.8em",
+                      color: "#ffffff",
+                    }}
                   >
-                    <VendorList />
+                    Vendors List
                   </Gradient>
                 </Grid>
               </Grid>

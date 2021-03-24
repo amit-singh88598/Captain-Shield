@@ -1,12 +1,11 @@
-import { Button, Grid } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import Head from "next/head";
-import { useRouter } from "next/router";
 import { AdminProtectedPage } from "../../auth";
-import DashboardDetails from "../../Components/admin/dashboardDetails";
 import SideBar from "../../Components/admin/sideBar";
 import Header from "../../layout/header";
+import VendorsList from "../../Components/admin/vendorList";
 
-export default function Dashboard() {
+export default function Vendors() {
   return (
     <div>
       {/* <AdminProtectedPage> */}
@@ -21,7 +20,7 @@ export default function Dashboard() {
             <SideBar />
           </Grid>
           <Grid item xs={10} sm={10}>
-            <DashboardDetails />
+            <VendorsList />
           </Grid>
         </Grid>
       </div>
