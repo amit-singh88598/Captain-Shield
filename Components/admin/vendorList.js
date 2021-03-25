@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     height: 675,
   },
   details: {
-    marginLeft: 10,
+    // marginLeft: 10,
     color: theme.palette.primary.light,
   },
   heading: {
@@ -46,6 +46,7 @@ const useStyles = makeStyles((theme) => ({
     borderLeft: 0,
     padding: 5,
     height: 600,
+    width: 500,
     margin: 20,
     backgroundColor: theme.palette.secondary.main,
   },
@@ -67,72 +68,69 @@ export default function GenerateCode() {
   return (
     <div className={classes.root}>
       <Card className={classes.cardStyle}>
-        <Grid container spacing={3}>
-          <Grid item xs={12} sm={6}>
-            <Card className={classes.totalCodes} elevation={2}>
-              <CardContent>
-                <Typography className={classes.heading} variant="h1">
-                  Vendors
-                </Typography>
-              </CardContent>
-              <CardActions disableSpacing>
-                <Typography className={classes.details} variant="h6">
-                  Name
-                </Typography>
-                <Typography className={classes.expand} variant="h6">
-                  Codes
-                </Typography>
-              </CardActions>
-              {profile &&
-                profile.map((item, index) => (
-                  <CardActions disableSpacing key={index}>
-                    <Typography
-                      className={classes.details}
-                      aria-label="show more"
-                      variant="subtitle1"
-                    >
-                      {item._id}
-                    </Typography>
-                    <Typography className={classes.expand} variant="subtitle1">
-                      {item.keys.length}
-                    </Typography>
-                  </CardActions>
-                ))}
-            </Card>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <Card className={classes.totalCodes} elevation={2}>
-              <CardContent>
-                <Typography className={classes.heading} variant="h1">
-                  Vendors
-                </Typography>
-              </CardContent>
-              <CardActions disableSpacing>
-                <Typography className={classes.details} variant="h6">
-                  Name
-                </Typography>
-                <Typography className={classes.expand} variant="h6">
-                  Codes
-                </Typography>
-              </CardActions>
-              {profile &&
-                profile.map((item, index) => (
-                  <CardActions disableSpacing key={index}>
-                    <Typography
-                      className={classes.details}
-                      aria-label="show more"
-                      variant="subtitle1"
-                    >
-                      {item._id}
-                    </Typography>
-                    <Typography className={classes.expand} variant="subtitle1">
-                      {item.keys.length}
-                    </Typography>
-                  </CardActions>
-                ))}
-            </Card>
-          </Grid>
-        </Grid>
+        {/* <Grid container spacing={3}>
+          <Grid item xs={12} sm={6}> */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <Card className={classes.totalCodes} elevation={2}>
+            <CardContent>
+              <Typography className={classes.heading} variant="h1">
+                Vendors
+              </Typography>
+            </CardContent>
+            <CardActions disableSpacing>
+              <Typography
+                style={{ color: "#ffffff", marginLeft: 10 }}
+                variant="h6"
+              >
+                Name
+              </Typography>
+              <Typography
+                style={{ marginLeft: 140 }}
+                className={classes.details}
+                variant="h6"
+              >
+                Number
+              </Typography>
+              <Typography className={classes.expand} variant="h6">
+                Codes
+              </Typography>
+            </CardActions>
+            {profile &&
+              profile.map((item, index) => (
+                <CardActions disableSpacing key={index}>
+                  <Typography
+                    className={classes.details}
+                    aria-label="show more"
+                    variant="subtitle1"
+                  >
+                    {`${item.firstName} ${item.lastName}`}
+                  </Typography>
+                  <Typography
+                    className={classes.details}
+                    aria-label="show more"
+                    variant="subtitle1"
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      marginLeft: "auto",
+                    }}
+                  >
+                    {item.primaryNumber}
+                  </Typography>
+                  <Typography className={classes.expand} variant="subtitle1">
+                    {item.keys.length}
+                  </Typography>
+                </CardActions>
+              ))}
+          </Card>
+        </div>
+        {/* </Grid>
+        </Grid> */}
       </Card>
     </div>
   );

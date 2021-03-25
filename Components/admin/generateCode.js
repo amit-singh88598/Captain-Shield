@@ -5,8 +5,9 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import { Button, Card, Grid } from "@material-ui/core";
+import { Button, Card, Grid, TextField } from "@material-ui/core";
 import { getVendors } from "../../actions/vendor";
+// import Autocomplete from "@material-ui/lab/Autocomplete";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -59,7 +60,7 @@ export default function GenerateCode() {
                 {profile &&
                   profile.map((item, index) => (
                     <div key={index}>
-                      <MenuItem value={1}>{item._id}</MenuItem>
+                      <MenuItem value={1}>{item.primaryNumber}</MenuItem>
                     </div>
                   ))}
               </Select>
@@ -67,7 +68,7 @@ export default function GenerateCode() {
           </Grid>
           <Grid item xs={12} sm={6}>
             <FormControl className={classes.formControl}>
-              <InputLabel fullWidth htmlFor="grouped-select">
+              <InputLabel fullwidth="true" htmlFor="grouped-select">
                 Select Total No.'s Of Codes
               </InputLabel>
               <Select defaultValue="" id="grouped-select">
@@ -80,6 +81,26 @@ export default function GenerateCode() {
                 <MenuItem value={4}>1000</MenuItem>
                 <MenuItem value={4}>10000</MenuItem>
               </Select>
+              {/* <Autocomplete
+                freeSolo
+                id="free-solo-2-demo"
+                disableClearable
+                options={
+                  profile &&
+                  profile.map((item) => {
+                    item.primaryNumber;
+                  })
+                }
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    label="Search input"
+                    margin="normal"
+                    variant="outlined"
+                    InputProps={{ ...params.InputProps, type: "search" }}
+                  />
+                )}
+              /> */}
             </FormControl>
           </Grid>
         </Grid>
