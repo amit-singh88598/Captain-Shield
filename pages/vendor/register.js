@@ -7,7 +7,7 @@ function UserSignup(props) {
     <div>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>User Sign-up | Doorest</title>
+        <title>User Sign-up | Captain Shield</title>
       </Head>
       <div>
         <VendorRegister />

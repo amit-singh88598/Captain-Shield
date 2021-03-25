@@ -7,7 +7,7 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import { Button, Card, Grid, TextField } from "@material-ui/core";
 import { getVendors } from "../../actions/vendor";
-// import Autocomplete from "@material-ui/lab/Autocomplete";
+import Autocomplete from "@material-ui/lab/Autocomplete";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,6 +31,17 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
+const top100Films = [
+  { title: "10", year: 1994 },
+  { title: "20", year: 1972 },
+  { title: "50", year: 1974 },
+  { title: "100", year: 2008 },
+  { title: "200", year: 1957 },
+  { title: "500", year: 1993 },
+  { title: "1000", year: 1994 },
+  { title: "10000", year: 2003 },
+];
+
 export default function GenerateCode() {
   const classes = useStyles();
   const [profile, setProfile] = useState(null);
@@ -49,7 +60,25 @@ export default function GenerateCode() {
       <Card className={classes.cardStyle}>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6}>
-            <FormControl className={classes.formControl}>
+            <div style={{ float: "right" }}>
+              <Autocomplete
+                id="combo-box-demo"
+                options={profile}
+                getOptionLabel={(item) =>
+                  `${item.firstName} ${item.lastName} : ${item.primaryNumber}`
+                }
+                style={{ width: 300 }}
+                renderInput={(params) => (
+                  <TextField
+                    fullWidth
+                    {...params}
+                    label="Combo box"
+                    variant="outlined"
+                  />
+                )}
+              />
+            </div>
+            {/* <FormControl className={classes.formControl}>
               <InputLabel htmlFor="grouped-select">
                 Select Vendor Name
               </InputLabel>
@@ -64,10 +93,19 @@ export default function GenerateCode() {
                     </div>
                   ))}
               </Select>
-            </FormControl>
+            </FormControl> */}
           </Grid>
           <Grid item xs={12} sm={6}>
-            <FormControl className={classes.formControl}>
+            <Autocomplete
+              id="combo-box-demo"
+              options={top100Films}
+              getOptionLabel={(option) => option.title}
+              style={{ width: 300 }}
+              renderInput={(params) => (
+                <TextField {...params} label="Combo box" variant="outlined" />
+              )}
+            />
+            {/* <FormControl className={classes.formControl}>
               <InputLabel fullwidth="true" htmlFor="grouped-select">
                 Select Total No.'s Of Codes
               </InputLabel>
@@ -81,27 +119,7 @@ export default function GenerateCode() {
                 <MenuItem value={4}>1000</MenuItem>
                 <MenuItem value={4}>10000</MenuItem>
               </Select>
-              {/* <Autocomplete
-                freeSolo
-                id="free-solo-2-demo"
-                disableClearable
-                options={
-                  profile &&
-                  profile.map((item) => {
-                    item.primaryNumber;
-                  })
-                }
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    label="Search input"
-                    margin="normal"
-                    variant="outlined"
-                    InputProps={{ ...params.InputProps, type: "search" }}
-                  />
-                )}
-              /> */}
-            </FormControl>
+            </FormControl> */}
           </Grid>
         </Grid>
         <div

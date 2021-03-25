@@ -1,4 +1,5 @@
 import {
+  Avatar,
   Box,
   Button,
   Card,
@@ -25,8 +26,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.primary.main,
   },
   card: {
-    marginTop: 150,
-    marginBottom: 170,
+    marginTop: 140,
+    marginBottom: 97,
     borderRadius: 20,
     padding: 30,
     backgroundColor: theme.palette.primary.light,
@@ -39,6 +40,14 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     textAlign: "center",
     padding: 20,
+  },
+  logo: {
+    width: theme.spacing(10),
+    height: theme.spacing(10),
+  },
+  contentCenter: {
+    display: "flex",
+    justifyContent: "center",
   },
 }));
 
@@ -112,7 +121,7 @@ function LogIn(props) {
       <div className={classes.root}>
         <div>
           <Grid>
-            <div style={{ display: "flex", justifyContent: "center" }}>
+            <div className={classes.contentCenter}>
               <Grid item xs={12} sm={7} elevation={4}>
                 <Card elevation={3} className={classes.card} elevation={2}>
                   <Snackbar
@@ -123,6 +132,18 @@ function LogIn(props) {
                   >
                     <Alert severity="error">{loginError && loginError}</Alert>
                   </Snackbar>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <Avatar
+                      alt="Remy Sharp"
+                      src="/logo.jpeg"
+                      className={classes.logo}
+                    />
+                  </div>
                   <Typography
                     style={{
                       textAlign: "center",
@@ -140,7 +161,7 @@ function LogIn(props) {
                       item
                       xs={12}
                       sm={12}
-                      style={{ display: "flex", justifyContent: "center" }}
+                      className={classes.contentCenter}
                     >
                       <TextField
                         id="outlined-basic"
@@ -164,7 +185,7 @@ function LogIn(props) {
                       item
                       xs={12}
                       sm={12}
-                      style={{ display: "flex", justifyContent: "center" }}
+                      className={classes.contentCenter}
                     >
                       <TextField
                         id="password"
@@ -215,7 +236,7 @@ function LogIn(props) {
                       item
                       xs={12}
                       sm={12}
-                      style={{ display: "flex", justifyContent: "center" }}
+                      className={classes.contentCenter}
                     >
                       <Button
                         variant="contained"
@@ -242,7 +263,7 @@ function LogIn(props) {
                       item
                       xs={12}
                       sm={12}
-                      style={{ display: "flex", justifyContent: "center" }}
+                      className={classes.contentCenter}
                     >
                       <Box
                         display="flex"
