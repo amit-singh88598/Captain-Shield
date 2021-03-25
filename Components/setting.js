@@ -56,7 +56,7 @@ export default function Setting() {
             fullWidth
             onClick={() => {
               jsCookies.removeItem("auth");
-              router.replace("/vendor/login");
+              router.replace("/login");
             }}
           >
             <ExitToApp style={{ marginRight: 10 }} />

@@ -3,6 +3,7 @@ import {
   Box,
   Button,
   Card,
+  Container,
   Grid,
   IconButton,
   InputAdornment,
@@ -26,8 +27,11 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.primary.main,
   },
   card: {
-    marginTop: 140,
-    marginBottom: 97,
+    borderStyle: "outset ",
+    borderTop: 0,
+    borderLeft: 0,
+    marginTop: 118,
+    marginBottom: 100,
     borderRadius: 20,
     padding: 30,
     backgroundColor: theme.palette.primary.light,
@@ -42,8 +46,8 @@ const useStyles = makeStyles((theme) => ({
     padding: 20,
   },
   logo: {
-    width: theme.spacing(10),
-    height: theme.spacing(10),
+    width: theme.spacing(12),
+    height: theme.spacing(12),
   },
   contentCenter: {
     display: "flex",
@@ -95,12 +99,12 @@ function LogIn(props) {
           setOpen(false);
           if (user.isAdmin) {
             setAdminData(result.data.user);
-            if (router.pathname === "/vendor/login") {
+            if (router.pathname === "/login") {
               router.replace("/admin/dashboard");
             }
           } else {
             setVendorData(result.data.user);
-            if (router.pathname === "/vendor/login") {
+            if (router.pathname === "/login") {
               router.replace("/vendor/dashboard");
             }
           }
@@ -119,202 +123,148 @@ function LogIn(props) {
   return (
     <div>
       <div className={classes.root}>
-        <div>
-          <Grid>
-            <div className={classes.contentCenter}>
-              <Grid item xs={12} sm={7} elevation={4}>
-                <Card elevation={3} className={classes.card} elevation={2}>
-                  <Snackbar
-                    open={loginError ? true : false}
-                    autoHideDuration={6000}
-                    anchorOrigin={{ vertical: "top", horizontal: "center" }}
-                    onClose={() => setLoginError(null)}
-                  >
-                    <Alert severity="error">{loginError && loginError}</Alert>
-                  </Snackbar>
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <Avatar
-                      alt="Remy Sharp"
-                      src="/logo.jpeg"
-                      className={classes.logo}
-                    />
-                  </div>
-                  <Typography
-                    style={{
-                      textAlign: "center",
-                      fontSize: "2.5em",
-                      display: "flex",
-                      marginTop: 20,
-                      justifyContent: "center",
-                    }}
-                    variant="h1"
-                  >
-                    Welcome back !
-                  </Typography>
-                  <Grid container spacing={2} style={{ marginTop: 20 }}>
-                    <Grid
-                      item
-                      xs={12}
-                      sm={12}
-                      className={classes.contentCenter}
-                    >
-                      <TextField
-                        id="outlined-basic"
-                        variant="outlined"
-                        label="Phone No."
-                        onChange={(event) => {
-                          setError({ primaryNumberErr: false });
-                          setPrimaryNumber(event.target.value);
-                        }}
-                        error={error.primaryNumberErr}
-                        helperText={
-                          error.primaryNumberErr
-                            ? "please enter valid Phone no."
-                            : ""
-                        }
-                        fullWidth
-                        placeholder="Phone No."
-                      />
-                    </Grid>
-                    <Grid
-                      item
-                      xs={12}
-                      sm={12}
-                      className={classes.contentCenter}
-                    >
-                      <TextField
-                        id="password"
-                        variant="outlined"
-                        required
-                        label="Password"
-                        InputProps={{
-                          className: classes.input,
-                        }}
-                        onChange={(event) => {
-                          setError({ passwordErr: false });
-                          setPassword(event.target.value);
-                        }}
-                        error={error.passwordErr}
-                        helperText={
-                          error.PasswordErr == true
-                            ? "please enter valid Password"
-                            : ""
-                        }
-                        fullWidth
-                        InputProps={{
-                          endAdornment: (
-                            <InputAdornment position="end">
-                              <IconButton
-                                aria-label="toggle password visibility"
-                                onClick={() => {
-                                  isPassVisible
-                                    ? setIsPassVisible(false)
-                                    : setIsPassVisible(true);
-                                }}
-                              >
-                                {isPassVisible ? (
-                                  <Visibility fontSize="small" />
-                                ) : (
-                                  <VisibilityOff fontSize="small" />
-                                )}
-                              </IconButton>
-                            </InputAdornment>
-                          ),
-                        }}
-                        type={isPassVisible ? "text" : "password"}
-                        value={password}
-                        placeholder="Password"
-                      />
-                    </Grid>
-
-                    <Grid
-                      item
-                      xs={12}
-                      sm={12}
-                      className={classes.contentCenter}
-                    >
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        className={classes.btnStyle}
-                        size="medium"
-                        fullWidth
-                        onClick={handleChange}
-                      >
-                        Log in
-                      </Button>
-                    </Grid>
-                    <a
-                      onClick={() => router.push("/forgetPassword")}
-                      style={{
-                        fontWeight: "bold",
-                        marginLeft: 10,
-                        cursor: "pointer",
+        <Container>
+          <div className={classes.contentCenter}>
+            <Grid item xs={12} sm={12} elevation={4}>
+              <Card elevation={3} className={classes.card} elevation={2}>
+                <Snackbar
+                  open={loginError ? true : false}
+                  autoHideDuration={6000}
+                  anchorOrigin={{ vertical: "top", horizontal: "center" }}
+                  onClose={() => setLoginError(null)}
+                >
+                  <Alert severity="error">{loginError && loginError}</Alert>
+                </Snackbar>
+                <div className={classes.contentCenter}>
+                  <Avatar
+                    alt="Remy Sharp"
+                    src="/logo.jpeg"
+                    className={classes.logo}
+                  />
+                </div>
+                <Typography
+                  style={{
+                    textAlign: "center",
+                    fontSize: "2.5em",
+                    display: "flex",
+                    marginTop: 20,
+                    justifyContent: "center",
+                  }}
+                  variant="h1"
+                >
+                  Welcome back !
+                </Typography>
+                <Grid container spacing={2} style={{ marginTop: 20 }}>
+                  <Grid item xs={12} sm={12} className={classes.contentCenter}>
+                    <TextField
+                      id="outlined-basic"
+                      variant="outlined"
+                      label="Phone No."
+                      onChange={(event) => {
+                        setError({ primaryNumberErr: false });
+                        setPrimaryNumber(event.target.value);
                       }}
-                    >
-                      Forgot your password?
-                    </a>
-                    <Grid
-                      item
-                      xs={12}
-                      sm={12}
-                      className={classes.contentCenter}
-                    >
-                      <Box
-                        display="flex"
-                        flexWrap="wrap"
-                        alignContent="flex-start"
-                        className={classes.textStyle}
-                      >
-                        <a
-                          onClick={() => router.push("/vendor/register")}
-                          style={{ fontWeight: "bold", cursor: "pointer" }}
-                        >
-                          New Here ? Register !
-                        </a>
-                      </Box>
-                    </Grid>
+                      error={error.primaryNumberErr}
+                      helperText={
+                        error.primaryNumberErr
+                          ? "please enter valid Phone no."
+                          : ""
+                      }
+                      fullWidth
+                      placeholder="Phone No."
+                    />
                   </Grid>
-                </Card>
-              </Grid>
-            </div>
-          </Grid>
-        </div>
+                  <Grid item xs={12} sm={12} className={classes.contentCenter}>
+                    <TextField
+                      id="password"
+                      variant="outlined"
+                      required
+                      label="Password"
+                      InputProps={{
+                        className: classes.input,
+                      }}
+                      onChange={(event) => {
+                        setError({ passwordErr: false });
+                        setPassword(event.target.value);
+                      }}
+                      error={error.passwordErr}
+                      helperText={
+                        error.PasswordErr == true
+                          ? "please enter valid Password"
+                          : ""
+                      }
+                      fullWidth
+                      InputProps={{
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <IconButton
+                              aria-label="toggle password visibility"
+                              onClick={() => {
+                                isPassVisible
+                                  ? setIsPassVisible(false)
+                                  : setIsPassVisible(true);
+                              }}
+                            >
+                              {isPassVisible ? (
+                                <Visibility fontSize="small" />
+                              ) : (
+                                <VisibilityOff fontSize="small" />
+                              )}
+                            </IconButton>
+                          </InputAdornment>
+                        ),
+                      }}
+                      type={isPassVisible ? "text" : "password"}
+                      value={password}
+                      placeholder="Password"
+                    />
+                  </Grid>
+
+                  <Grid item xs={12} sm={12} className={classes.contentCenter}>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      className={classes.btnStyle}
+                      size="medium"
+                      fullWidth
+                      onClick={handleChange}
+                    >
+                      Log in
+                    </Button>
+                  </Grid>
+                  <a
+                    onClick={() => router.push("/forgetPassword")}
+                    style={{
+                      fontWeight: "bold",
+                      marginLeft: 10,
+                      cursor: "pointer",
+                    }}
+                  >
+                    Forgot your password?
+                  </a>
+                  <Grid item xs={12} sm={12} className={classes.contentCenter}>
+                    <Box
+                      display="flex"
+                      flexWrap="wrap"
+                      alignContent="flex-start"
+                      className={classes.textStyle}
+                    >
+                      <a
+                        onClick={() => router.push("/vendor/register")}
+                        style={{ fontWeight: "bold", cursor: "pointer" }}
+                      >
+                        New Here ? Register !
+                      </a>
+                    </Box>
+                  </Grid>
+                </Grid>
+              </Card>
+            </Grid>
+          </div>
+        </Container>
       </div>
     </div>
   );
 }
 
 export default LogIn;
-
-//   else {
-//     const data = { primaryNumber, password };
-//     try {
-//       const res = await axios.post(
-//         `${process.env.BASE_URL}/vendors/login`,
-//         data,
-//         {
-//           headers: {
-//             "Access-Control-Allow-Origin": "*",
-//             "Content-Type": "application/json",
-//             withCredentials: true,
-//           },
-//         }
-//       );
-//       if (res && res.data.isAuth) {
-//         //to save token in cookies
-//         cookies.setItem("auth", res.data.token, { expires: 3 });
-//         router.replace("/vendor/dashboard");
-//       } else {
-//         alert("Something went wrong");
-//       }
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   }
-// };

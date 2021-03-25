@@ -1,4 +1,5 @@
 import {
+  Avatar,
   Box,
   Button,
   Card,
@@ -29,9 +30,12 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.primary.main,
   },
   card: {
-    marginTop: 60,
-    marginBottom: 60,
-    padding: 30,
+    borderStyle: "outset ",
+    borderTop: 0,
+    borderLeft: 0,
+    marginTop: 10,
+    marginBottom: 10,
+    padding: 20,
     borderRadius: 30,
     backgroundColor: theme.palette.primary.light,
   },
@@ -40,25 +44,20 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "2.5em",
     display: "flex",
     justifyContent: "center",
-    marginTop: 20,
-  },
-  button: {
-    display: "block",
-    marginTop: theme.spacing(2),
-  },
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
+    marginTop: 15,
   },
   btnStyle: {
+    marginTop: 8,
     fontSize: "1.2em",
   },
 
-  textStyle: {
+  logo: {
+    width: theme.spacing(10),
+    height: theme.spacing(10),
+  },
+  contentCenter: {
     display: "flex",
     justifyContent: "center",
-    textAlign: "center",
-    padding: 20,
   },
 }));
 
@@ -151,275 +150,225 @@ function VendorRegister(props) {
   };
 
   return (
-    <div>
-      <div className={classes.root}>
-        <div>
-          <Container component="main">
-            <Grid container spacing={2}>
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <Grid item xs={12} sm={7}>
-                  <Card className={classes.card} elevation={2}>
-                    <Typography className={classes.title} variant="h1">
-                      Let's get started !
-                    </Typography>
-                    <Grid container spacing={2} style={{ marginTop: 20 }}>
-                      <Grid
-                        item
-                        xs={12}
-                        sm={12}
-                        style={{ display: "flex", justifyContent: "center" }}
-                      >
-                        <TextField
-                          id="outlined-basic"
-                          variant="outlined"
-                          className={classes.textFieldStyle}
-                          style={{ marginTop: 10 }}
-                          onChange={(event) => {
-                            setError({ firstNameErr: false });
-                            setFirstName(event.target.value);
-                          }}
-                          error={error.firstNameErr}
-                          helperText={
-                            error.firstNameErr
-                              ? "Please enter valid First Name"
-                              : ""
-                          }
-                          fullWidth
-                          placeholder="First Name"
-                        />
-                      </Grid>
-                      <Grid
-                        item
-                        xs={12}
-                        sm={12}
-                        style={{ display: "flex", justifyContent: "center" }}
-                      >
-                        <TextField
-                          id="outlined-basic"
-                          variant="outlined"
-                          className={classes.textFieldStyle}
-                          style={{ marginTop: 10 }}
-                          onChange={(event) => {
-                            setError({ lastNameErr: false });
-                            setLastName(event.target.value);
-                          }}
-                          error={error.lastNameErr}
-                          helperText={
-                            error.lastNameErr
-                              ? "Please enter valid Last Name"
-                              : ""
-                          }
-                          fullWidth
-                          placeholder="Last Name"
-                        />
-                      </Grid>
-
-                      <Grid
-                        item
-                        xs={12}
-                        sm={12}
-                        style={{ display: "flex", justifyContent: "center" }}
-                      >
-                        <TextField
-                          id="outlined-basic"
-                          variant="outlined"
-                          color="primary"
-                          onChange={(event) => {
-                            setError({ emailErr: false });
-                            setEmail(event.target.value);
-                          }}
-                          error={error.emailErr}
-                          helperText={
-                            error.emailErr ? "Please enter valid email" : ""
-                          }
-                          fullWidth
-                          type="text"
-                          placeholder="Email"
-                        />
-                      </Grid>
-                      <Grid
-                        item
-                        xs={12}
-                        sm={12}
-                        style={{ display: "flex", justifyContent: "center" }}
-                      >
-                        <TextField
-                          id="outlined-basic"
-                          variant="outlined"
-                          onChange={(event) => {
-                            setError({ primaryNumberErr: false });
-                            setPrimaryNumber(event.target.value);
-                          }}
-                          error={error.primaryNumberErr}
-                          helperText={
-                            error.primaryNumberErr
-                              ? "please enter valid Phone no."
-                              : ""
-                          }
-                          fullWidth
-                          placeholder="Phone no."
-                        />
-                      </Grid>
-                      <Grid
-                        item
-                        xs={12}
-                        sm={12}
-                        style={{ display: "flex", justifyContent: "center" }}
-                      >
-                        <TextField
-                          id="outlined-basic"
-                          variant="outlined"
-                          onChange={(event) => {
-                            setError({ secondaryNumberErr: false });
-                            setSecondaryNumber(event.target.value);
-                          }}
-                          error={error.secondaryNumberErr}
-                          helperText={
-                            error.secondaryNumberErr
-                              ? "please enter valid Phone no."
-                              : ""
-                          }
-                          fullWidth
-                          placeholder="Phone no."
-                        />
-                      </Grid>
-                      <Grid
-                        item
-                        xs={12}
-                        sm={12}
-                        style={{ display: "flex", justifyContent: "center" }}
-                      >
-                        <TextField
-                          variant="outlined"
-                          onChange={(event) => {
-                            setError({ passwordErr: false });
-                            setPassword(event.target.value);
-                          }}
-                          error={error.passwordErr}
-                          helperText={
-                            error.passwordErr == true
-                              ? " Password Contains Minimum Six Characters, At Least One Letter And One Number:"
-                              : ""
-                          }
-                          fullWidth
-                          InputProps={{
-                            endAdornment: (
-                              <InputAdornment position="end">
-                                <IconButton
-                                  aria-label="toggle password visibility"
-                                  onClick={() => {
-                                    isPassVisible
-                                      ? setIsPassVisible(false)
-                                      : setIsPassVisible(true);
-                                  }}
-                                >
-                                  {isPassVisible ? (
-                                    <Visibility fontSize="small" />
-                                  ) : (
-                                    <VisibilityOff fontSize="small" />
-                                  )}
-                                </IconButton>
-                              </InputAdornment>
-                            ),
-                          }}
-                          type={isPassVisible ? "text" : "password"}
-                          value={password}
-                          id="password"
-                          placeholder="Password"
-                        />
-                      </Grid>
-                      <Grid
-                        item
-                        xs={12}
-                        sm={12}
-                        style={{ display: "flex", justifyContent: "center" }}
-                      >
-                        <TextField
-                          id="outlined-basic"
-                          variant="outlined"
-                          onChange={(event) => {
-                            setError({ confirmPasswordErr: false });
-                            setConfirmPassword(event.target.value);
-                          }}
-                          error={error.confirmPasswordErr}
-                          helperText={
-                            error.confirmPasswordErr == true
-                              ? "Please Match your Password"
-                              : ""
-                          }
-                          fullWidth
-                          value={confirmPassword}
-                          InputProps={{
-                            endAdornment: (
-                              <InputAdornment position="end">
-                                <IconButton
-                                  aria-label="toggle password visibility"
-                                  onClick={() => {
-                                    isConfirmPassVisible
-                                      ? setIsConfirmPassVisible(false)
-                                      : setIsConfirmPassVisible(true);
-                                  }}
-                                >
-                                  {isConfirmPassVisible ? (
-                                    <Visibility fontSize="small" />
-                                  ) : (
-                                    <VisibilityOff fontSize="small" />
-                                  )}
-                                </IconButton>
-                              </InputAdornment>
-                            ),
-                          }}
-                          type={isConfirmPassVisible ? "text" : "password"}
-                          placeholder="Confirm Password"
-                        />
-                      </Grid>
-                      <Grid
-                        item
-                        xs={12}
-                        sm={12}
-                        style={{ display: "flex", justifyContent: "center" }}
-                      >
-                        <Button
-                          variant="contained"
-                          className={classes.btnStyle}
-                          size="large"
-                          fullWidth
-                          color="primary"
-                          onClick={handleChange}
-                        >
-                          Sign Up
-                        </Button>
-                      </Grid>
-                      <Grid
-                        item
-                        xs={12}
-                        sm={12}
-                        style={{ display: "flex", justifyContent: "center" }}
-                      >
-                        <Box
-                          display="flex"
-                          flexWrap="wrap"
-                          alignContent="flex-start"
-                          className={classes.textStyle}
-                        >
-                          <div>
-                            <a
-                              onClick={() => router.push("/vendor/login")}
-                              style={{ fontWeight: "bold", cursor: "pointer" }}
-                            >
-                              Already have account ?
-                            </a>
-                          </div>
-                        </Box>
-                      </Grid>
-                    </Grid>
-                  </Card>
-                </Grid>
+    <div className={classes.root}>
+      <Container component="main">
+        <div className={classes.contentCenter}>
+          <Grid item xs={12} sm={12}>
+            <Card className={classes.card} elevation={2}>
+              <div className={classes.contentCenter}>
+                <Avatar
+                  alt="Remy Sharp"
+                  src="/logo.jpeg"
+                  className={classes.logo}
+                />
               </div>
-            </Grid>
-          </Container>
+              <Typography className={classes.title} variant="h1">
+                Let's get started !
+              </Typography>
+              <Grid container spacing={1} style={{ marginTop: 20 }}>
+                <Grid item xs={12} sm={12} className={classes.contentCenter}>
+                  <TextField
+                    id="outlined-basic"
+                    variant="outlined"
+                    className={classes.textFieldStyle}
+                    onChange={(event) => {
+                      setError({ firstNameErr: false });
+                      setFirstName(event.target.value);
+                    }}
+                    error={error.firstNameErr}
+                    helperText={
+                      error.firstNameErr ? "Please enter valid First Name" : ""
+                    }
+                    fullWidth
+                    placeholder="First Name"
+                  />
+                </Grid>
+                <Grid item xs={12} sm={12} className={classes.contentCenter}>
+                  <TextField
+                    id="outlined-basic"
+                    variant="outlined"
+                    className={classes.textFieldStyle}
+                    onChange={(event) => {
+                      setError({ lastNameErr: false });
+                      setLastName(event.target.value);
+                    }}
+                    error={error.lastNameErr}
+                    helperText={
+                      error.lastNameErr ? "Please enter valid Last Name" : ""
+                    }
+                    fullWidth
+                    placeholder="Last Name"
+                  />
+                </Grid>
+
+                <Grid item xs={12} sm={12} className={classes.contentCenter}>
+                  <TextField
+                    id="outlined-basic"
+                    variant="outlined"
+                    color="primary"
+                    onChange={(event) => {
+                      setError({ emailErr: false });
+                      setEmail(event.target.value);
+                    }}
+                    error={error.emailErr}
+                    helperText={
+                      error.emailErr ? "Please enter valid email" : ""
+                    }
+                    fullWidth
+                    type="text"
+                    placeholder="Email"
+                  />
+                </Grid>
+                <Grid item xs={12} sm={12} className={classes.contentCenter}>
+                  <TextField
+                    id="outlined-basic"
+                    variant="outlined"
+                    onChange={(event) => {
+                      setError({ primaryNumberErr: false });
+                      setPrimaryNumber(event.target.value);
+                    }}
+                    error={error.primaryNumberErr}
+                    helperText={
+                      error.primaryNumberErr
+                        ? "please enter valid Phone no."
+                        : ""
+                    }
+                    fullWidth
+                    placeholder="Phone no."
+                  />
+                </Grid>
+                <Grid item xs={12} sm={12} className={classes.contentCenter}>
+                  <TextField
+                    id="outlined-basic"
+                    variant="outlined"
+                    onChange={(event) => {
+                      setError({ secondaryNumberErr: false });
+                      setSecondaryNumber(event.target.value);
+                    }}
+                    error={error.secondaryNumberErr}
+                    helperText={
+                      error.secondaryNumberErr
+                        ? "please enter valid Phone no."
+                        : ""
+                    }
+                    fullWidth
+                    placeholder="Phone no."
+                  />
+                </Grid>
+                <Grid item xs={12} sm={12} className={classes.contentCenter}>
+                  <TextField
+                    variant="outlined"
+                    onChange={(event) => {
+                      setError({ passwordErr: false });
+                      setPassword(event.target.value);
+                    }}
+                    error={error.passwordErr}
+                    helperText={
+                      error.passwordErr == true
+                        ? " Password Contains Minimum Six Characters, At Least One Letter And One Number:"
+                        : ""
+                    }
+                    fullWidth
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={() => {
+                              isPassVisible
+                                ? setIsPassVisible(false)
+                                : setIsPassVisible(true);
+                            }}
+                          >
+                            {isPassVisible ? (
+                              <Visibility fontSize="small" />
+                            ) : (
+                              <VisibilityOff fontSize="small" />
+                            )}
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
+                    type={isPassVisible ? "text" : "password"}
+                    value={password}
+                    id="password"
+                    placeholder="Password"
+                  />
+                </Grid>
+                <Grid item xs={12} sm={12} className={classes.contentCenter}>
+                  <TextField
+                    id="outlined-basic"
+                    variant="outlined"
+                    onChange={(event) => {
+                      setError({ confirmPasswordErr: false });
+                      setConfirmPassword(event.target.value);
+                    }}
+                    error={error.confirmPasswordErr}
+                    helperText={
+                      error.confirmPasswordErr == true
+                        ? "Please Match your Password"
+                        : ""
+                    }
+                    fullWidth
+                    value={confirmPassword}
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={() => {
+                              isConfirmPassVisible
+                                ? setIsConfirmPassVisible(false)
+                                : setIsConfirmPassVisible(true);
+                            }}
+                          >
+                            {isConfirmPassVisible ? (
+                              <Visibility fontSize="small" />
+                            ) : (
+                              <VisibilityOff fontSize="small" />
+                            )}
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
+                    type={isConfirmPassVisible ? "text" : "password"}
+                    placeholder="Confirm Password"
+                  />
+                </Grid>
+                <Grid item xs={12} sm={12} className={classes.contentCenter}>
+                  <Button
+                    variant="contained"
+                    className={classes.btnStyle}
+                    size="large"
+                    fullWidth
+                    color="primary"
+                    onClick={handleChange}
+                  >
+                    Sign Up
+                  </Button>
+                </Grid>
+                <Grid item xs={12} sm={12} className={classes.contentCenter}>
+                  <Box
+                    display="flex"
+                    flexWrap="wrap"
+                    alignContent="flex-start"
+                    className={classes.contentCenter}
+                  >
+                    <div>
+                      <a
+                        onClick={() => router.push("/login")}
+                        style={{ fontWeight: "bold", cursor: "pointer" }}
+                      >
+                        Already have account ?
+                      </a>
+                    </div>
+                  </Box>
+                </Grid>
+              </Grid>
+            </Card>
+          </Grid>
         </div>
-      </div>
+      </Container>
     </div>
   );
 }

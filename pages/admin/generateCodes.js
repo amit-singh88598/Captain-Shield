@@ -8,23 +8,23 @@ import Header from "../../layout/header";
 export default function Dashboard() {
   return (
     <div>
-      {/* <AdminProtectedPage> */}
-      <div>
-        <Head>
-          <title>Captain Shield</title>
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
-        <Header />
-        <Grid container>
-          <Grid item xs={2} sm={2}>
-            <SideBar />
+      <AdminProtectedPage>
+        <div>
+          <Head>
+            <title>Captain Shield</title>
+            <link rel="icon" href="/favicon.ico" />
+          </Head>
+          <Header />
+          <Grid container>
+            <Grid item xs={2} sm={2}>
+              <SideBar />
+            </Grid>
+            <Grid item xs={10} sm={10}>
+              <GenerateCode />
+            </Grid>
           </Grid>
-          <Grid item xs={10} sm={10}>
-            <GenerateCode />
-          </Grid>
-        </Grid>
-      </div>
-      {/* </AdminProtectedPage> */}
+        </div>
+      </AdminProtectedPage>
     </div>
   );
 }

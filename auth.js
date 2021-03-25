@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import Login from "./pages/vendor/login";
 import Cookies from "js-cookies";
 import { getProfile } from "./actions/vendor";
+import Login from "./pages/login";
 
 const AuthContext = createContext({});
 export const AuthProvider = ({ children }) => {
