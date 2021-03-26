@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Slide from "@material-ui/core/Slide";
 import {
   Card,
   CardActions,
@@ -23,7 +22,6 @@ const useStyles = makeStyles((theme) => ({
     height: 675,
   },
   details: {
-    // marginLeft: 10,
     color: theme.palette.primary.light,
   },
   heading: {
@@ -45,8 +43,9 @@ const useStyles = makeStyles((theme) => ({
     borderTop: 0,
     borderLeft: 0,
     padding: 5,
-    height: 600,
-    width: 500,
+    paddingBottom: 40,
+    // height: 600,
+    width: 700,
     margin: 20,
     backgroundColor: theme.palette.secondary.main,
   },
@@ -68,8 +67,6 @@ export default function GenerateCode() {
   return (
     <div className={classes.root}>
       <Card className={classes.cardStyle}>
-        {/* <Grid container spacing={3}>
-          <Grid item xs={12} sm={6}> */}
         <div
           style={{
             display: "flex",
@@ -83,14 +80,11 @@ export default function GenerateCode() {
               </Typography>
             </CardContent>
             <CardActions disableSpacing>
-              <Typography
-                style={{ color: "#ffffff", marginLeft: 10 }}
-                variant="h6"
-              >
+              <Typography style={{ color: "#ffffff" }} variant="h6">
                 Name
               </Typography>
               <Typography
-                style={{ marginLeft: 140 }}
+                style={{ marginLeft: 250 }}
                 className={classes.details}
                 variant="h6"
               >
@@ -103,34 +97,47 @@ export default function GenerateCode() {
             {profile &&
               profile.map((item, index) => (
                 <CardActions disableSpacing key={index}>
-                  <Typography
-                    className={classes.details}
-                    aria-label="show more"
-                    variant="subtitle1"
-                  >
-                    {`${item.firstName} ${item.lastName}`}
-                  </Typography>
-                  <Typography
-                    className={classes.details}
-                    aria-label="show more"
-                    variant="subtitle1"
-                    style={{
-                      display: "flex",
-                      justifyContent: "center",
-                      marginLeft: "auto",
-                    }}
-                  >
-                    {item.primaryNumber}
-                  </Typography>
-                  <Typography className={classes.expand} variant="subtitle1">
-                    {item.keys.length}
-                  </Typography>
+                  <Grid container spacing={3}>
+                    <Grid item xs={12} sm={4}>
+                      <Typography
+                        className={classes.details}
+                        aria-label="show more"
+                        variant="subtitle1"
+                      >
+                        {`${item.firstName} ${item.lastName}`}
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={12} sm={4}>
+                      <Typography
+                        className={classes.details}
+                        aria-label="show more"
+                        variant="subtitle1"
+                        style={{
+                          marginLeft: "auto",
+                          display: "flex",
+                          justifyContent: "center",
+                        }}
+                      >
+                        {item.primaryNumber}
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={12} sm={4}>
+                      <Typography
+                        className={classes.expand}
+                        variant="subtitle1"
+                        style={{
+                          float: "right",
+                          marginRight: 20,
+                        }}
+                      >
+                        {item.keys.length}
+                      </Typography>
+                    </Grid>
+                  </Grid>
                 </CardActions>
               ))}
           </Card>
         </div>
-        {/* </Grid>
-        </Grid> */}
       </Card>
     </div>
   );

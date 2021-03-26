@@ -10,8 +10,8 @@ import {
 } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { Gradient } from "react-gradient";
-import { getCodes } from "../actions/vendor";
-import { useAuth } from "../auth";
+import { getCodes } from "../../actions/vendor";
+import { useAuth } from "../../auth";
 import MyChart from "./myChart";
 
 const useStyle = makeStyles((theme) => ({
@@ -112,6 +112,7 @@ const gradients = [
 
 export default function DashboardDetails(props) {
   const { vendor } = useAuth();
+  const classes = useStyle();
   const [codes, setCodes] = useState([]);
   const [codesLength, setCodesLength] = useState(-1);
   useEffect(async () => {
@@ -136,7 +137,6 @@ export default function DashboardDetails(props) {
       });
     }
   }, []);
-  const classes = useStyle();
 
   return (
     <div>

@@ -1,10 +1,10 @@
 import { Button, Grid } from "@material-ui/core";
 import Head from "next/head";
-import SideBar from "../../Components/sideBar";
 import Header from "../../layout/header";
 import { useRouter } from "next/router";
 import { useAuth, UserProtectedPage } from "../../auth";
-import SaleDetails from "../../Components/saleDetails";
+import SaleDetails from "../../Components/vendors/saleDetails";
+import SideBar from "../../Components/vendors/sideBar";
 
 export default function Sale() {
   const { isAuthenticatedUser } = useAuth();

@@ -10,7 +10,8 @@ import {
 } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { Gradient } from "react-gradient";
-import { getCodes } from "../actions/vendor";
+import { getCodes } from "../../actions/vendor";
+import { useAuth } from "../../auth";
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -65,7 +66,15 @@ const useStyle = makeStyles((theme) => ({
     justifyContent: "center",
     color: theme.palette.primary.light,
   },
+  listStyle: {
+    marginTop: 10,
+    marginRight: 30,
+    marginLeft: 30,
+    backgroundColor: theme.palette.secondary.main,
+    color: theme.palette.primary.light,
+  },
   details: {
+    marginLeft: 30,
     color: theme.palette.primary.light,
   },
   heading: {
@@ -77,6 +86,7 @@ const useStyle = makeStyles((theme) => ({
   expand: {
     transform: "rotate(0deg)",
     marginLeft: "auto",
+    marginRight: 30,
     backgroundColor: theme.palette.secondary.main,
     color: theme.palette.primary.light,
   },
@@ -94,20 +104,45 @@ const gradients = [
   ["#363131", "#bda713"],
 ];
 
+const Users = [
+  {
+    sno: "1",
+    name: "kamal Singh",
+  },
+  {
+    sno: "2",
+    name: "Amit Singh",
+  },
+  {
+    sno: "3",
+    name: "Akash Kumar",
+  },
+  {
+    sno: "4",
+    name: "Pankaj Joshi",
+  },
+  {
+    sno: "5",
+    name: "Ayush Tripathi",
+  },
+];
+
 // Dashboard
 
-export default function PurchaseDetails(props) {
+export default function Dashboard(props) {
   const classes = useStyle();
+  const { vendor } = useAuth();
   const [codesLength, setCodesLength] = useState(-1);
   useEffect(async () => {
-    await getCodes("605065bcc26a4d23baac1be7", (error, result) => {
-      if (error) {
-        console.log(error);
-      } else {
-        const temp = [];
-        setCodesLength(result.length);
-      }
-    });
+    if (vendor) {
+      await getCodes(vendor._id, (error, result) => {
+        if (error) {
+          console.log(error);
+        } else {
+          setCodesLength(result.length);
+        }
+      });
+    }
   }, []);
 
   return (
@@ -123,18 +158,17 @@ export default function PurchaseDetails(props) {
             }}
             variant="h5"
           >
-            Purchase
+            Sale
           </Typography>
           <div>
             <Grid container>
               <Grid item xs={12} sm={4}>
-                {/*////////////////////////////////////////////////////////         Purchase Card */}
+                {/*///////////////////////////////////////////////////////////////   Sale Card */}
 
                 <Gradient
                   className={classes.purchaseCard}
                   gradients={gradients}
                   property="background"
-                  transitionType="parallel"
                   duration={3000}
                   angle="45deg"
                 >
@@ -150,7 +184,7 @@ export default function PurchaseDetails(props) {
                       }}
                       className={classes.priceTag}
                     >
-                      Purchase
+                      Sale
                     </Typography>
                   </div>
                   <Typography
@@ -183,7 +217,7 @@ export default function PurchaseDetails(props) {
                       }}
                       className={classes.priceTag}
                     >
-                      Total Purchase
+                      Total Sale
                     </Typography>
                   </div>
                 </Gradient>
@@ -199,7 +233,6 @@ export default function PurchaseDetails(props) {
                   angle="45deg"
                 >
                   <Typography
-                    // variant="h5"
                     style={{ fontSize: "1.8em" }}
                     className={classes.availableCodesStyle}
                   >
@@ -224,82 +257,39 @@ export default function PurchaseDetails(props) {
                 </Gradient>
               </Grid>
               <Grid item xs={12} sm={4}>
-                {/*///////////////////////////////////////////////////////////////   Details of purchase Codes */}
+                {/*///////////////////////////////////////////////////////////////   User List */}
 
                 <Card className={classes.totalCodes} elevation={2}>
                   <CardContent>
                     <Typography className={classes.heading} variant="h1">
-                      Purchase Details
+                      User List
                     </Typography>
                   </CardContent>
                   <CardActions disableSpacing>
-                    <Typography className={classes.details} variant="subtitle1">
-                      Date
+                    <Typography className={classes.details} variant="h6">
+                      S No.
                     </Typography>
-                    <Typography className={classes.expand} variant="subtitle1">
-                      Codes
-                    </Typography>
-                  </CardActions>
-                  <CardActions disableSpacing>
-                    <Typography className={classes.details} variant="subtitle1">
-                      1/04/2020
-                    </Typography>
-                    <Typography
-                      className={classes.expand}
-                      aria-label="show more"
-                      variant="subtitle1"
-                    >
-                      500
+                    <Typography className={classes.expand} variant="h6">
+                      Name
                     </Typography>
                   </CardActions>
-                  <CardActions disableSpacing>
-                    <Typography className={classes.details} variant="subtitle1">
-                      12/07/2020
-                    </Typography>
-                    <Typography
-                      className={classes.expand}
-                      aria-label="show more"
-                      variant="subtitle1"
-                    >
-                      1000
-                    </Typography>
-                  </CardActions>
-                  <CardActions disableSpacing>
-                    <Typography className={classes.details} variant="subtitle1">
-                      14/10/2020
-                    </Typography>
-                    <Typography
-                      className={classes.expand}
-                      aria-label="show more"
-                      variant="subtitle1"
-                    >
-                      1000
-                    </Typography>
-                  </CardActions>
-                  <CardActions disableSpacing>
-                    <Typography className={classes.details} variant="subtitle1">
-                      29/12/2020
-                    </Typography>
-                    <Typography
-                      className={classes.expand}
-                      aria-label="show more"
-                      variant="subtitle1"
-                    >
-                      1200
-                    </Typography>
-                  </CardActions>
-                  <CardActions disableSpacing>
-                    <Typography className={classes.details} variant="subtitle1">
-                      5/02/2021
-                    </Typography>
-                    <Typography
-                      className={classes.expand}
-                      aria-label="show more"
-                      variant="subtitle1"
-                    >
-                      1500
-                    </Typography>
-                  </CardActions>
+                  {Users.map((item, index) => (
+                    <CardActions disableSpacing key={index}>
+                      <Typography
+                        className={classes.details}
+                        variant="subtitle1"
+                      >
+                        {item.sno}
+                      </Typography>
+                      <Typography
+                        className={classes.expand}
+                        aria-label="show more"
+                        variant="subtitle1"
+                      >
+                        {item.name}
+                      </Typography>
+                    </CardActions>
+                  ))}
                 </Card>
               </Grid>
             </Grid>

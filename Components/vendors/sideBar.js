@@ -6,7 +6,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import { Dashboard, Description, Receipt, Settings } from "@material-ui/icons";
 import { useRouter } from "next/router";
-import { getProfile } from "../actions/vendor";
+import { getProfile } from "../../actions/vendor";
 
 const useStyles = makeStyles((theme) => ({
   root: {

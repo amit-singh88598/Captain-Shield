@@ -27,17 +27,24 @@ import { useRouter } from "next/router";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: theme.palette.primary.main,
+    marginLeft: 1020,
+    // backgroundColor: theme.palette.primary.main,
+    // height: 650,
   },
   card: {
     borderStyle: "outset ",
+    borderWidth: 10,
+    borderBlockStartColor: "black",
+    borderLeftColor: "black",
+    width: 440,
+    height: "100%",
     borderTop: 0,
     borderLeft: 0,
-    marginTop: 10,
-    marginBottom: 10,
-    padding: 20,
+    marginTop: 20,
     borderRadius: 30,
-    backgroundColor: theme.palette.primary.light,
+    padding: 15,
+    backgroundColor: "#bbbdbf",
+    // backgroundColor: theme.palette.primary.grey,
   },
   title: {
     textAlign: "center",
@@ -354,10 +361,13 @@ function VendorRegister(props) {
                     alignContent="flex-start"
                     className={classes.contentCenter}
                   >
-                    <div>
+                    <div style={{ marginTop: 10 }}>
                       <a
                         onClick={() => router.push("/login")}
-                        style={{ fontWeight: "bold", cursor: "pointer" }}
+                        style={{
+                          fontWeight: "bold",
+                          cursor: "pointer",
+                        }}
                       >
                         Already have account ?
                       </a>

@@ -32,7 +32,7 @@ export default function Header() {
           <Avatar
             onClick={() => router.push("#")}
             alt="Remy Sharp"
-            src="/logo.jpeg"
+            src="/logo1.png"
             className={classes.large}
           />
           <a

@@ -1,10 +1,9 @@
 import { Button, Grid } from "@material-ui/core";
 import Head from "next/head";
-import { useRouter } from "next/router";
-import DashboardDetails from "../../Components/dashboardDetails";
-import SideBar from "../../Components/sideBar";
+import SideBar from "../../Components/vendors/sideBar";
 import { UserProtectedPage } from "../../auth";
 import Header from "../../layout/header";
+import DashboardDetails from "../../Components/vendors/dashboardDetails";
 
 export default function Dashboard() {
   return (

@@ -7,6 +7,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import { Dashboard, Receipt, Settings } from "@material-ui/icons";
 import { useRouter } from "next/router";
 import { getProfile } from "../../actions/vendor";
+import capitalize from "../capitalize";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -55,6 +56,7 @@ function SideBar(props) {
         className={classes.detail}
       >
         {/* Ayush Tyagi */}
+        {/* {capitalize(profile && `${profile.firstName} ${profile.lastName}`)} */}
         {profile && `${profile.firstName} ${profile.lastName}`}
       </Typography>
       <Typography className={classes.detail} variant="body2">
@@ -88,7 +90,7 @@ function SideBar(props) {
           <ListItem button>
             <a
               style={{ display: "flex" }}
-              onClick={() => router.push("/vendor/dashboard")}
+              onClick={() => router.push("/admin/dashboard")}
             >
               <ListItemIcon>
                 <Settings className={classes.listItem} />

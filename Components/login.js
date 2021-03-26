@@ -24,17 +24,25 @@ import { getProfile } from "../actions/vendor";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: theme.palette.primary.main,
+    [theme.breakpoints.up("md")]: {
+      marginLeft: 1000,
+    },
   },
   card: {
     borderStyle: "outset ",
+    borderWidth: 10,
+    borderBlockStartColor: "black",
+    borderLeftColor: "black",
+    width: 340,
+    height: 520,
     borderTop: 0,
     borderLeft: 0,
     marginTop: 118,
     marginBottom: 100,
-    borderRadius: 20,
-    padding: 30,
-    backgroundColor: theme.palette.primary.light,
+    borderRadius: 30,
+    padding: 15,
+    backgroundColor: "#bbbdbf",
+    // backgroundColor: theme.palette.primary.grey,
   },
   btnStyle: {
     fontSize: "1.2em",
@@ -43,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
     textAlign: "center",
-    padding: 20,
+    // padding: 20,
   },
   logo: {
     width: theme.spacing(12),
@@ -124,7 +132,7 @@ function LogIn(props) {
     <div>
       <div className={classes.root}>
         <Container>
-          <div className={classes.contentCenter}>
+          <div>
             <Grid item xs={12} sm={12} elevation={4}>
               <Card elevation={3} className={classes.card} elevation={2}>
                 <Snackbar
@@ -235,7 +243,7 @@ function LogIn(props) {
                   <a
                     onClick={() => router.push("/forgetPassword")}
                     style={{
-                      fontWeight: "bold",
+                      // fontWeight: "bold",
                       marginLeft: 10,
                       cursor: "pointer",
                     }}
@@ -251,7 +259,11 @@ function LogIn(props) {
                     >
                       <a
                         onClick={() => router.push("/vendor/register")}
-                        style={{ fontWeight: "bold", cursor: "pointer" }}
+                        style={{
+                          fontWeight: "bold",
+                          cursor: "pointer",
+                          marginTop: 20,
+                        }}
                       >
                         New Here ? Register !
                       </a>
