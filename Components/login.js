@@ -24,8 +24,20 @@ import { getProfile } from "../actions/vendor";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    [theme.breakpoints.up("md")]: {
-      marginLeft: 1000,
+    height: "105vh",
+    backgroundImage: 'url("/login.jpg")',
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    [theme.breakpoints.down("sm")]: {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "120vh",
+      backgroundImage: 'url("/login1.jpg")',
+      backgroundPosition: "center",
+      backgroundSize: "cover",
+      backgroundRepeat: "no-repeat",
     },
   },
   card: {
@@ -33,16 +45,19 @@ const useStyles = makeStyles((theme) => ({
     borderWidth: 10,
     borderBlockStartColor: "black",
     borderLeftColor: "black",
-    width: 340,
+    width: 330,
     height: 420,
     borderTop: 0,
     borderLeft: 0,
-    marginTop: 285,
-    marginBottom: 70,
+
+    // marginBottom: 70,
     borderRadius: 30,
     padding: 15,
     backgroundColor: "#bbbdbf",
     [theme.breakpoints.up("md")]: {
+      position: "absolute",
+      top: 100,
+      right: 100,
       borderStyle: "outset ",
       borderWidth: 10,
       borderBlockStartColor: "black",
@@ -51,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
       height: 410,
       borderTop: 0,
       borderLeft: 0,
-      marginTop: 120,
+      // marginTop: 120,
       borderRadius: 30,
       padding: 15,
       backgroundColor: "#bbbdbf",
@@ -159,7 +174,7 @@ function LogIn(props) {
                 <Typography
                   style={{
                     textAlign: "center",
-                    fontSize: "2.5em",
+                    fontSize: "2.2em",
                     display: "flex",
                     fontWeight: 500,
                     justifyContent: "center",
