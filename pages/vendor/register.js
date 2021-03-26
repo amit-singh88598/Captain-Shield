@@ -9,14 +9,29 @@ const useStyle = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
     backgroundImage: 'url("/login.jpg")',
-    backgroundSize: "1600px 850px",
+    backgroundSize: "100%",
     backgroundRepeat: "no-repeat",
     [theme.breakpoints.down("sm")]: {
-      backgroundImage: 'url("/login.jpg")',
-      // backgroundSize: "750px 1334px",
+      height: 1030,
+      backgroundImage: 'url("/login1.jpg")',
+      backgroundSize: "100%",
       backgroundRepeat: "no-repeat",
     },
   },
+  // root: {
+  //   height: 850,
+  //   display: "flex",
+  //   justifyContent: "center",
+  //   backgroundImage: 'url("/login.jpg")',
+  //   backgroundSize: "1600px 850px",
+  //   backgroundRepeat: "no-repeat",
+  //   [theme.breakpoints.down("sm")]: {
+  //     height: 1030,
+  //     backgroundImage: 'url("/login1.jpg")',
+  //     backgroundSize: "414px 1030px",
+  //     backgroundRepeat: "no-repeat",
+  //   },
+  // },
 }));
 
 function UserSignup(props) {

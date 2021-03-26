@@ -55,7 +55,6 @@ function SideBar(props) {
         }}
         className={classes.detail}
       >
-        {/* Ayush Tyagi */}
         {/* {capitalize(profile && `${profile.firstName} ${profile.lastName}`)} */}
         {profile && `${profile.firstName} ${profile.lastName}`}
       </Typography>

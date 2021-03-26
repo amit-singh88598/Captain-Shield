@@ -27,31 +27,44 @@ import { useRouter } from "next/router";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginLeft: 1020,
-    // backgroundColor: theme.palette.primary.main,
-    // height: 650,
+    [theme.breakpoints.up("md")]: {
+      marginLeft: 1000,
+    },
   },
   card: {
     borderStyle: "outset ",
     borderWidth: 10,
     borderBlockStartColor: "black",
     borderLeftColor: "black",
-    width: 440,
-    height: "100%",
+    width: 380,
+    height: 700,
     borderTop: 0,
     borderLeft: 0,
-    marginTop: 20,
+    marginTop: 280,
     borderRadius: 30,
     padding: 15,
     backgroundColor: "#bbbdbf",
-    // backgroundColor: theme.palette.primary.grey,
+    [theme.breakpoints.up("md")]: {
+      borderStyle: "outset ",
+      borderWidth: 10,
+      borderBlockStartColor: "black",
+      borderLeftColor: "black",
+      width: 440,
+      height: "100%",
+      borderTop: 0,
+      borderLeft: 0,
+      marginTop: 20,
+      borderRadius: 30,
+      padding: 15,
+      backgroundColor: "#bbbdbf",
+    },
   },
   title: {
     textAlign: "center",
     fontSize: "2.5em",
+    fontWeight: 500,
     display: "flex",
     justifyContent: "center",
-    marginTop: 15,
   },
   btnStyle: {
     marginTop: 8,
@@ -59,8 +72,8 @@ const useStyles = makeStyles((theme) => ({
   },
 
   logo: {
-    width: theme.spacing(10),
-    height: theme.spacing(10),
+    width: theme.spacing(15),
+    height: theme.spacing(15),
   },
   contentCenter: {
     display: "flex",
@@ -162,14 +175,7 @@ function VendorRegister(props) {
         <div className={classes.contentCenter}>
           <Grid item xs={12} sm={12}>
             <Card className={classes.card} elevation={2}>
-              <div className={classes.contentCenter}>
-                <Avatar
-                  alt="Remy Sharp"
-                  src="/logo.jpeg"
-                  className={classes.logo}
-                />
-              </div>
-              <Typography className={classes.title} variant="h1">
+              <Typography className={classes.title}>
                 Let's get started !
               </Typography>
               <Grid container spacing={1} style={{ marginTop: 20 }}>
