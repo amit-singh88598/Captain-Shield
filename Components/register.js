@@ -27,7 +27,7 @@ import { useRouter } from "next/router";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: "100vh",
+    height: "120vh",
     backgroundImage: 'url("/login.jpg")',
     backgroundPosition: "center",
     backgroundSize: "cover",
@@ -44,9 +44,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   card: {
-    position: "absolute",
-    top: 10,
-    right: 60,
     borderStyle: "outset ",
     borderWidth: 10,
     borderBlockStartColor: "black",
@@ -60,6 +57,9 @@ const useStyles = makeStyles((theme) => ({
     padding: 15,
     backgroundColor: "#bbbdbf",
     [theme.breakpoints.up("md")]: {
+      position: "absolute",
+      top: 100,
+      right: 100,
       borderStyle: "outset ",
       borderWidth: 10,
       borderBlockStartColor: "black",
