@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Slide from "@material-ui/core/Slide";
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
 import { Button, Card, Grid, TextField } from "@material-ui/core";
 import { getVendors } from "../../actions/vendor";
 import Autocomplete from "@material-ui/lab/Autocomplete";
@@ -13,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.primary.main,
     paddingBottom: 20,
-    paddingRight: 20,
+    padding: 10,
   },
   cardStyle: {
     borderRadius: 20,
@@ -27,11 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
-
-const top100Films = [
+const codes = [
   { title: "10" },
   { title: "20" },
   { title: "50" },
@@ -59,7 +51,63 @@ export default function GenerateCode() {
       <Card className={classes.cardStyle}>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6}>
-            <div style={{ float: "right" }}>
+            <Grid container spacing={3}>
+              <Grid item xs={12} sm={6}>
+                <div style={{ display: "flex", justifyContent: "center" }}>
+                  <Autocomplete
+                    id="combo-box-demo"
+                    options={profile}
+                    getOptionLabel={(item) =>
+                      `${item.firstName} ${item.lastName} : ${item.primaryNumber}`
+                    }
+                    style={{ width: 300 }}
+                    renderInput={(params) => (
+                      <TextField
+                        fullWidth
+                        {...params}
+                        label="Select Vendor Name"
+                        variant="outlined"
+                      />
+                    )}
+                  />
+                </div>
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <div style={{ display: "flex", justifyContent: "center" }}>
+                  <Autocomplete
+                    id="combo-box-demo"
+                    options={codes}
+                    getOptionLabel={(option) => option.title}
+                    style={{ width: 300 }}
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        label="Select Total No's. Of Codes"
+                        variant="outlined"
+                      />
+                    )}
+                  />
+                </div>
+              </Grid>
+            </Grid>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                marginTop: 20,
+              }}
+            >
+              <Button variant="contained" color="secondary">
+                Generate
+              </Button>
+            </div>
+          </Grid>
+        </Grid>
+      </Card>
+      {/* <Card className={classes.cardStyle}>
+        <Grid container spacing={3}>
+          <Grid item xs={12} sm={6}>
+            <div style={{ display: "flex", justifyContent: "center" }}>
               <Autocomplete
                 id="combo-box-demo"
                 options={profile}
@@ -79,19 +127,21 @@ export default function GenerateCode() {
             </div>
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Autocomplete
-              id="combo-box-demo"
-              options={top100Films}
-              getOptionLabel={(option) => option.title}
-              style={{ width: 300 }}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label="Select Total No's. Of Codes"
-                  variant="outlined"
-                />
-              )}
-            />
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <Autocomplete
+                id="combo-box-demo"
+                options={codes}
+                getOptionLabel={(option) => option.title}
+                style={{ width: 300 }}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    label="Select Total No's. Of Codes"
+                    variant="outlined"
+                  />
+                )}
+              />
+            </div>
           </Grid>
         </Grid>
         <div
@@ -101,7 +151,7 @@ export default function GenerateCode() {
             Generate
           </Button>
         </div>
-      </Card>
+      </Card> */}
     </div>
   );
 }

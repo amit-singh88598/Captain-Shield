@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Card, CardActions, Grid, Typography } from "@material-ui/core";
-import { getVendors } from "../../actions/vendor";
+import {
+  Card,
+  CardActions,
+  CardContent,
+  Grid,
+  Typography,
+} from "@material-ui/core";
+import { getUsersProfile } from "../../actions/vendor";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -11,11 +17,16 @@ const useStyles = makeStyles((theme) => ({
   },
   cardStyle: {
     borderRadius: 20,
+    paddingBottom: 20,
+    marginBottom: 20,
+    // padding: 40,
     backgroundColor: theme.palette.secondary.light,
-    height: 675,
+    height: 670,
+    // height: "100%",
   },
   details: {
     color: theme.palette.primary.light,
+    fontWeight: 500,
   },
   heading: {
     fontSize: "1.5em",
@@ -26,7 +37,8 @@ const useStyles = makeStyles((theme) => ({
   expand: {
     transform: "rotate(0deg)",
     marginLeft: "auto",
-    marginRight: 10,
+    marginRight: 50,
+    fontWeight: 500,
     backgroundColor: theme.palette.secondary.main,
     color: theme.palette.primary.light,
   },
@@ -36,9 +48,8 @@ const useStyles = makeStyles((theme) => ({
     borderTop: 0,
     borderLeft: 0,
     padding: 5,
-    paddingBottom: 40,
-    // height: 600,
-    width: 700,
+    paddingBottom: 20,
+    width: 800,
     margin: 20,
     backgroundColor: theme.palette.secondary.main,
   },
@@ -48,11 +59,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function GenerateCode() {
+export default function UsersRecords() {
   const classes = useStyles();
   const [profile, setProfile] = useState(null);
   useEffect(async () => {
-    await getVendors((error, result) => {
+    await getUsersProfile((error, result) => {
       if (error) {
         console.log(error);
       } else {
@@ -73,7 +84,7 @@ export default function GenerateCode() {
             fontSize: "1.8em",
           }}
         >
-          Vendor List
+          Users Record
         </Typography>
         <div
           style={{
@@ -84,18 +95,18 @@ export default function GenerateCode() {
           <Card className={classes.totalCodes} elevation={2}>
             <div className={classes.scroll} id="scroller">
               <CardActions disableSpacing>
-                <Typography style={{ color: "#ffffff" }} variant="h6">
+                <Typography className={classes.details} variant="h5">
                   Name
                 </Typography>
                 <Typography
-                  style={{ marginLeft: 250 }}
+                  style={{ marginLeft: 280 }}
                   className={classes.details}
-                  variant="h6"
+                  variant="h5"
                 >
                   Number
                 </Typography>
-                <Typography className={classes.expand} variant="h6">
-                  Codes
+                <Typography className={classes.expand} variant="h5">
+                  Expiry Date
                 </Typography>
               </CardActions>
               {profile &&
@@ -108,7 +119,7 @@ export default function GenerateCode() {
                           aria-label="show more"
                           variant="subtitle1"
                         >
-                          {`${item.firstName} ${item.lastName}`}
+                          {`${item._user.name}`}
                         </Typography>
                       </Grid>
                       <Grid item xs={12} sm={4}>
@@ -122,7 +133,7 @@ export default function GenerateCode() {
                             justifyContent: "center",
                           }}
                         >
-                          {item.primaryNumber}
+                          {item._user.primaryNumber}
                         </Typography>
                       </Grid>
                       <Grid item xs={12} sm={4}>
@@ -134,7 +145,7 @@ export default function GenerateCode() {
                             marginRight: 20,
                           }}
                         >
-                          {item.keys.length}
+                          {item.expiryDate}
                         </Typography>
                       </Grid>
                     </Grid>

@@ -1,9 +1,9 @@
 import { Grid, makeStyles } from "@material-ui/core";
 import Head from "next/head";
-import Header from "../../layout/header";
 import { AdminProtectedPage } from "../../auth";
 import SideBar from "../../Components/admin/sideBar";
-import SaleDetails from "../../Components/admin/saleDetails";
+import UsersRecords from "../../Components/admin/usersRecords";
+import Header from "../../layout/header";
 
 const useStyle = makeStyles((theme) => ({
   desktopStyle: {
@@ -18,7 +18,7 @@ const useStyle = makeStyles((theme) => ({
   },
 }));
 
-export default function Sale() {
+export default function userRecord() {
   const classes = useStyle();
   return (
     <div>
@@ -37,7 +37,7 @@ export default function Sale() {
                 <SideBar />
               </Grid>
               <Grid item xs={10} sm={10}>
-                <SaleDetails />
+                <UsersRecords />
               </Grid>
             </Grid>
           </div>
@@ -45,14 +45,14 @@ export default function Sale() {
           {/*//////////////////////////////////////////////////      Mobile View  */}
 
           <div className={classes.mobStyle}>
-            <SaleDetails />
+            <UsersRecords />
           </div>
           {/* <Grid container>
             <Grid item xs={2} sm={2}>
               <SideBar />
             </Grid>
             <Grid item xs={10} sm={10}>
-              <SaleDetails />
+              <UsersRecords />
             </Grid>
           </Grid> */}
         </div>

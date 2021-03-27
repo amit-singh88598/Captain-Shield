@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import { makeStyles, Tooltip } from "@material-ui/core";
-import { AccountCircle, ExitToApp } from "@material-ui/icons";
+import { ExitToApp } from "@material-ui/icons";
 import { useRouter } from "next/router";
 import jsCookies from "js-cookies";
 
@@ -35,7 +35,7 @@ export default function Setting() {
         style={{ marginTop: 5 }}
       >
         <Tooltip disableFocusListener disableTouchListener title="Settings">
-          <AccountCircle className={classes.root} size="large" />
+          <ExitToApp className={classes.root} size="large" />
         </Tooltip>
       </Button>
       <Menu

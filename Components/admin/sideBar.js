@@ -4,15 +4,17 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import { Dashboard, Receipt, Settings } from "@material-ui/icons";
+import { Dashboard, ListAlt, Receipt, Settings } from "@material-ui/icons";
 import { useRouter } from "next/router";
 import { getProfile } from "../../actions/vendor";
-import capitalize from "../capitalize";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.primary.main,
-    height: 695,
+    height: "100%",
+    // [theme.breakpoints.down("sm")]: {
+    //   display: "none",
+    // },
   },
   detail: {
     display: "flex",
@@ -89,6 +91,17 @@ function SideBar(props) {
           <ListItem button>
             <a
               style={{ display: "flex" }}
+              onClick={() => router.push("/admin/userRecord")}
+            >
+              <ListItemIcon>
+                <ListAlt className={classes.listItem} />
+              </ListItemIcon>
+              <ListItemText primary="User Record" />
+            </a>
+          </ListItem>
+          {/* <ListItem button>
+            <a
+              style={{ display: "flex" }}
               onClick={() => router.push("/admin/dashboard")}
             >
               <ListItemIcon>
@@ -96,7 +109,7 @@ function SideBar(props) {
               </ListItemIcon>
               <ListItemText primary="Setting" />
             </a>
-          </ListItem>
+          </ListItem> */}
         </List>
       </div>
     </div>

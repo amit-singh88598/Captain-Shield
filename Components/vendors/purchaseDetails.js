@@ -81,13 +81,6 @@ const useStyle = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
     color: theme.palette.primary.light,
   },
-
-  // Scroller Style
-
-  scroll: {
-    overflowY: "scroll",
-    height: 650,
-  },
 }));
 
 const gradients = [

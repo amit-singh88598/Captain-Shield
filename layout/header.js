@@ -1,9 +1,18 @@
 import React from "react";
 import SearchBar from "../Components/searchBar";
-import { AppBar, Avatar, makeStyles, Toolbar } from "@material-ui/core";
+import {
+  AppBar,
+  Avatar,
+  IconButton,
+  makeStyles,
+  Menu,
+  MenuItem,
+  Toolbar,
+} from "@material-ui/core";
 import Setting from "../Components/setting";
 import Notification from "../Components/notification";
 import { useRouter } from "next/router";
+import { AccountCircle, Dashboard, ListAlt, Receipt } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -19,11 +28,34 @@ const useStyles = makeStyles((theme) => ({
     width: theme.spacing(7),
     height: theme.spacing(7),
   },
+  mobStyle: {
+    [theme.breakpoints.up("md")]: {
+      display: "none",
+    },
+  },
 }));
 
 export default function Header() {
   const classes = useStyles();
   const router = useRouter();
+
+  ////
+
+  const [auth, setAuth] = React.useState(true);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleChange = (event) => {
+    setAuth(event.target.checked);
+  };
+
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
     <div>
@@ -44,8 +76,51 @@ export default function Header() {
           </a>
           <SearchBar />
           <div style={{ display: "flex" }}>
-            <Notification style={{ margin: 5 }} />
+            <Notification />
             <Setting />
+            <div>
+              {auth && (
+                <div className={classes.mobStyle}>
+                  <IconButton
+                    aria-label="account of current user"
+                    aria-controls="menu-appbar"
+                    aria-haspopup="true"
+                    onClick={handleMenu}
+                    color="inherit"
+                  >
+                    <AccountCircle />
+                  </IconButton>
+                  <Menu
+                    id="menu-appbar"
+                    anchorEl={anchorEl}
+                    anchorOrigin={{
+                      vertical: "top",
+                      horizontal: "right",
+                    }}
+                    keepMounted
+                    transformOrigin={{
+                      vertical: "top",
+                      horizontal: "right",
+                    }}
+                    open={open}
+                    onClose={handleClose}
+                  >
+                    <MenuItem onClick={() => router.push("/admin/dashboard")}>
+                      <Dashboard style={{ marginRight: 10 }} />
+                      Dashboard
+                    </MenuItem>
+                    <MenuItem onClick={() => router.push("/admin/sale")}>
+                      <Receipt style={{ marginRight: 10 }} />
+                      Sale
+                    </MenuItem>
+                    <MenuItem onClick={() => router.push("/admin/userRecord")}>
+                      <ListAlt style={{ marginRight: 10 }} />
+                      user Record
+                    </MenuItem>
+                  </Menu>
+                </div>
+              )}
+            </div>
           </div>
         </Toolbar>
       </AppBar>

@@ -15,11 +15,13 @@ import { Gradient } from "react-gradient";
 const useStyle = makeStyles((theme) => ({
   root: {
     paddingBottom: 45,
-    paddingRight: 10,
+    padding: 10,
+    // paddingRight: 10,
     backgroundColor: theme.palette.primary.main,
   },
   cardStyle: {
     borderRadius: 20,
+    // height: "100%",
     height: 650,
     backgroundColor: theme.palette.secondary.light,
   },
@@ -40,13 +42,6 @@ const useStyle = makeStyles((theme) => ({
     margin: 20,
     backgroundColor: theme.palette.secondary.main,
   },
-  availableCodesCard: {
-    borderRadius: 15,
-    padding: 20,
-    height: 180,
-    margin: 20,
-    backgroundColor: theme.palette.secondary.main,
-  },
   priceTag: {
     color: theme.palette.primary.light,
   },
@@ -56,7 +51,7 @@ const useStyle = makeStyles((theme) => ({
     borderTop: 0,
     borderLeft: 0,
     padding: 20,
-    height: 370,
+    height: "100%",
     margin: 20,
     backgroundColor: theme.palette.secondary.main,
   },

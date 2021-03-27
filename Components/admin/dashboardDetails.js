@@ -8,12 +8,12 @@ import { useRouter } from "next/router";
 const useStyle = makeStyles((theme) => ({
   root: {
     paddingBottom: 45,
-    paddingRight: 10,
+    padding: 10,
     backgroundColor: theme.palette.primary.main,
   },
   cardStyle: {
     borderRadius: 20,
-    height: 650,
+    height: "100%",
     backgroundColor: theme.palette.secondary.light,
   },
   purchaseCard: {
@@ -53,7 +53,7 @@ const useStyle = makeStyles((theme) => ({
     borderTop: 0,
     borderLeft: 0,
     padding: 20,
-    height: 370,
+    height: "100%",
     margin: 20,
     backgroundColor: theme.palette.secondary.main,
   },
