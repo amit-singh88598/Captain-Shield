@@ -32,14 +32,13 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const top100Films = [
-  { title: "10", year: 1994 },
-  { title: "20", year: 1972 },
-  { title: "50", year: 1974 },
-  { title: "100", year: 2008 },
-  { title: "200", year: 1957 },
-  { title: "500", year: 1993 },
-  { title: "1000", year: 1994 },
-  { title: "10000", year: 2003 },
+  { title: "10" },
+  { title: "20" },
+  { title: "50" },
+  { title: "100" },
+  { title: "200" },
+  { title: "500" },
+  { title: "1000" },
 ];
 
 export default function GenerateCode() {
@@ -72,28 +71,12 @@ export default function GenerateCode() {
                   <TextField
                     fullWidth
                     {...params}
-                    label="Combo box"
+                    label="Select Vendor Name"
                     variant="outlined"
                   />
                 )}
               />
             </div>
-            {/* <FormControl className={classes.formControl}>
-              <InputLabel htmlFor="grouped-select">
-                Select Vendor Name
-              </InputLabel>
-              <Select defaultValue="" id="grouped-select">
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                {profile &&
-                  profile.map((item, index) => (
-                    <div key={index}>
-                      <MenuItem value={1}>{item.primaryNumber}</MenuItem>
-                    </div>
-                  ))}
-              </Select>
-            </FormControl> */}
           </Grid>
           <Grid item xs={12} sm={6}>
             <Autocomplete
@@ -102,24 +85,13 @@ export default function GenerateCode() {
               getOptionLabel={(option) => option.title}
               style={{ width: 300 }}
               renderInput={(params) => (
-                <TextField {...params} label="Combo box" variant="outlined" />
+                <TextField
+                  {...params}
+                  label="Select Total No's. Of Codes"
+                  variant="outlined"
+                />
               )}
             />
-            {/* <FormControl className={classes.formControl}>
-              <InputLabel fullwidth="true" htmlFor="grouped-select">
-                Select Total No.'s Of Codes
-              </InputLabel>
-              <Select defaultValue="" id="grouped-select">
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                <MenuItem value={4}>100</MenuItem>
-                <MenuItem value={4}>200</MenuItem>
-                <MenuItem value={4}>500</MenuItem>
-                <MenuItem value={4}>1000</MenuItem>
-                <MenuItem value={4}>10000</MenuItem>
-              </Select>
-            </FormControl> */}
           </Grid>
         </Grid>
         <div
