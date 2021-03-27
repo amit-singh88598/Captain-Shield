@@ -21,6 +21,18 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     width: "100%",
   },
+  totalCodes: {
+    borderStyle: "outset ",
+    borderRadius: 15,
+    borderTop: 0,
+    borderLeft: 0,
+    // padding: 5,
+    // paddingBottom: 40,
+    height: 400,
+    // width: "50%",
+    // margin: 20,
+    backgroundColor: theme.palette.secondary.main,
+  },
 }));
 
 const codes = [
@@ -50,57 +62,74 @@ export default function GenerateCode() {
     <div className={classes.root}>
       <Card className={classes.cardStyle}>
         <Grid container spacing={3}>
-          <Grid item xs={12} sm={6}>
-            <Grid container spacing={3}>
-              <Grid item xs={12} sm={6}>
-                <div style={{ display: "flex", justifyContent: "center" }}>
-                  <Autocomplete
-                    id="combo-box-demo"
-                    options={profile}
-                    getOptionLabel={(item) =>
-                      `${item.firstName} ${item.lastName} : ${item.primaryNumber}`
-                    }
-                    style={{ width: 300 }}
-                    renderInput={(params) => (
-                      <TextField
-                        fullWidth
-                        {...params}
-                        label="Select Vendor Name"
-                        variant="outlined"
-                      />
-                    )}
-                  />
-                </div>
+          <Grid item xs={12} sm={8}>
+            <Card className={classes.totalCodes} elevation={2}>
+              <Grid container>
+                <Grid item xs={12} sm={6}>
+                  <div
+                    style={{
+                      margin: 20,
+                      // marginTop: 20,
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <Autocomplete
+                      id="combo-box-demo"
+                      options={profile}
+                      getOptionLabel={(item) =>
+                        `${item.firstName} ${item.lastName} : ${item.primaryNumber}`
+                      }
+                      style={{ width: 300 }}
+                      renderInput={(params) => (
+                        <TextField
+                          fullWidth
+                          {...params}
+                          label="Select Vendor Name"
+                          variant="outlined"
+                        />
+                      )}
+                    />
+                  </div>
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      margin: 20,
+                      // marginTop: 20,
+                    }}
+                  >
+                    <Autocomplete
+                      id="combo-box-demo"
+                      options={codes}
+                      getOptionLabel={(option) => option.title}
+                      style={{ width: 300 }}
+                      renderInput={(params) => (
+                        <TextField
+                          fullWidth
+                          {...params}
+                          label="Select Total No's. Of Codes"
+                          variant="outlined"
+                        />
+                      )}
+                    />
+                  </div>
+                </Grid>
               </Grid>
-              <Grid item xs={12} sm={6}>
-                <div style={{ display: "flex", justifyContent: "center" }}>
-                  <Autocomplete
-                    id="combo-box-demo"
-                    options={codes}
-                    getOptionLabel={(option) => option.title}
-                    style={{ width: 300 }}
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        label="Select Total No's. Of Codes"
-                        variant="outlined"
-                      />
-                    )}
-                  />
-                </div>
-              </Grid>
-            </Grid>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                marginTop: 20,
-              }}
-            >
-              <Button variant="contained" color="secondary">
-                Generate
-              </Button>
-            </div>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  marginTop: 20,
+                }}
+              >
+                <Button variant="contained" color="secondary">
+                  Generate
+                </Button>
+              </div>
+            </Card>
           </Grid>
         </Grid>
       </Card>
