@@ -7,14 +7,12 @@ import ListItemText from "@material-ui/core/ListItemText";
 import { Dashboard, ListAlt, Receipt, Settings } from "@material-ui/icons";
 import { useRouter } from "next/router";
 import { getProfile } from "../../actions/vendor";
+import capitalize from "../capitalize";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.primary.main,
     height: "100%",
-    // [theme.breakpoints.down("sm")]: {
-    //   display: "none",
-    // },
   },
   detail: {
     display: "flex",
@@ -58,7 +56,7 @@ function SideBar(props) {
         className={classes.detail}
       >
         {/* {capitalize(profile && `${profile.firstName} ${profile.lastName}`)} */}
-        {profile && `${profile.firstName} ${profile.lastName}`}
+        {profile && capitalize(`${profile.firstName} ${profile.lastName}`)}
       </Typography>
       <Typography className={classes.detail} variant="body2">
         Admin

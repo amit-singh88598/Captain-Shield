@@ -8,29 +8,21 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.primary.main,
-    paddingBottom: 20,
+    paddingBottom: 50,
     padding: 10,
   },
   cardStyle: {
     borderRadius: 20,
-    padding: 40,
+    padding: 20,
     backgroundColor: theme.palette.secondary.light,
-    height: 675,
-  },
-  formControl: {
-    margin: theme.spacing(1),
-    width: "100%",
+    height: 700,
   },
   totalCodes: {
     borderStyle: "outset ",
     borderRadius: 15,
     borderTop: 0,
     borderLeft: 0,
-    // padding: 5,
-    // paddingBottom: 40,
     height: 400,
-    // width: "50%",
-    // margin: 20,
     backgroundColor: theme.palette.secondary.main,
   },
 }));
@@ -133,54 +125,6 @@ export default function GenerateCode() {
           </Grid>
         </Grid>
       </Card>
-      {/* <Card className={classes.cardStyle}>
-        <Grid container spacing={3}>
-          <Grid item xs={12} sm={6}>
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              <Autocomplete
-                id="combo-box-demo"
-                options={profile}
-                getOptionLabel={(item) =>
-                  `${item.firstName} ${item.lastName} : ${item.primaryNumber}`
-                }
-                style={{ width: 300 }}
-                renderInput={(params) => (
-                  <TextField
-                    fullWidth
-                    {...params}
-                    label="Select Vendor Name"
-                    variant="outlined"
-                  />
-                )}
-              />
-            </div>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              <Autocomplete
-                id="combo-box-demo"
-                options={codes}
-                getOptionLabel={(option) => option.title}
-                style={{ width: 300 }}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    label="Select Total No's. Of Codes"
-                    variant="outlined"
-                  />
-                )}
-              />
-            </div>
-          </Grid>
-        </Grid>
-        <div
-          style={{ display: "flex", justifyContent: "center", marginTop: 20 }}
-        >
-          <Button variant="contained" color="secondary">
-            Generate
-          </Button>
-        </div>
-      </Card> */}
     </div>
   );
 }

@@ -7,6 +7,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import { Dashboard, Description, Receipt, Settings } from "@material-ui/icons";
 import { useRouter } from "next/router";
 import { getProfile } from "../../actions/vendor";
+import capitalize from "../capitalize";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -54,7 +55,7 @@ function SideBar(props) {
         }}
         className={classes.detail}
       >
-        {profile && `${profile.firstName} ${profile.lastName}`}
+        {profile && capitalize(`${profile.firstName} ${profile.lastName}`)}
       </Typography>
       <Typography className={classes.detail} variant="body2">
         Vendor

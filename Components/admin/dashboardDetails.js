@@ -2,12 +2,11 @@ import { Avatar, Card, Grid, makeStyles, Typography } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { Gradient } from "react-gradient";
 import { getCodes } from "../../actions/vendor";
-import VendorList from "./vendorList";
 import { useRouter } from "next/router";
 
 const useStyle = makeStyles((theme) => ({
   root: {
-    paddingBottom: 45,
+    paddingBottom: 85,
     padding: 10,
     backgroundColor: theme.palette.primary.main,
   },
@@ -27,63 +26,7 @@ const useStyle = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
     cursor: "pointer",
   },
-  saleCard: {
-    borderRadius: 15,
-    padding: 20,
-    height: 180,
-    margin: 20,
-    backgroundColor: theme.palette.secondary.main,
-  },
-  availableCodesCard: {
-    borderRadius: 15,
-    padding: 20,
-    height: 180,
-    margin: 20,
-    backgroundColor: theme.palette.secondary.main,
-  },
   priceTag: {
-    color: theme.palette.primary.light,
-  },
-
-  ////
-
-  totalCodes: {
-    borderStyle: "outset ",
-    borderRadius: 15,
-    borderTop: 0,
-    borderLeft: 0,
-    padding: 20,
-    height: "100%",
-    margin: 20,
-    backgroundColor: theme.palette.secondary.main,
-  },
-  availableCodesStyle: {
-    display: "flex",
-    justifyContent: "center",
-    color: theme.palette.primary.light,
-  },
-  listStyle: {
-    marginTop: 10,
-    marginRight: 30,
-    marginLeft: 30,
-    backgroundColor: theme.palette.secondary.main,
-    color: theme.palette.primary.light,
-  },
-  details: {
-    marginLeft: 30,
-    color: theme.palette.primary.light,
-  },
-  heading: {
-    fontSize: "1.5em",
-    display: "flex",
-    justifyContent: "center",
-    color: theme.palette.primary.light,
-  },
-  expand: {
-    transform: "rotate(0deg)",
-    marginLeft: "auto",
-    marginRight: 30,
-    backgroundColor: theme.palette.secondary.main,
     color: theme.palette.primary.light,
   },
 

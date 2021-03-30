@@ -2,10 +2,12 @@ import { createContext, useContext, useEffect, useState } from "react";
 import Cookies from "js-cookies";
 import { getProfile } from "./actions/vendor";
 import Login from "./pages/login";
+import { CircularProgress } from "@material-ui/core";
 
 const AuthContext = createContext({});
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [vendor, setVendor] = useState(null);
   const [admin, setAdmin] = useState(null);
   useEffect(async () => {
@@ -16,8 +18,10 @@ export const AuthProvider = ({ children }) => {
         getProfile((error, result) => {
           if (result.status) {
             if (result.data.isAdmin) {
+              setLoading(false);
               setAdmin(result.data);
             } else {
+              setLoading(false);
               setVendor(result.data);
             }
           }
@@ -47,6 +51,7 @@ export const AuthProvider = ({ children }) => {
         setTokenData,
         setVendorData,
         setAdminData,
+        loading,
       }}
     >
       {children}
@@ -57,18 +62,26 @@ export const AuthProvider = ({ children }) => {
 export const useAuth = () => useContext(AuthContext);
 
 export const UserProtectedPage = ({ children }) => {
-  const { isAuthenticatedUser } = useAuth();
-  if (!isAuthenticatedUser) {
-    return <Login />;
+  const { isAuthenticatedUser, loading } = useAuth();
+  if (loading) {
+    return <CircularProgress color="secondary" />;
   } else {
-    return children;
+    if (!isAuthenticatedUser) {
+      return <Login />;
+    } else {
+      return children;
+    }
   }
 };
 export const AdminProtectedPage = ({ children }) => {
-  const { admin } = useAuth();
-  if (!admin) {
-    return <Login />;
+  const { admin, loading } = useAuth();
+  if (loading) {
+    return <CircularProgress color="secondary" />;
   } else {
-    return children;
+    if (!admin) {
+      return <Login />;
+    } else {
+      return children;
+    }
   }
 };
