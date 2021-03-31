@@ -93,7 +93,7 @@ function LogIn(props) {
   const classes = useStyles();
   const router = useRouter();
   const [open, setOpen] = useState(false);
-  const { setAdminData, setVendorData, setTokenData } = useAuth();
+  const { setAdminData, setVendorData, setTokenData, setLoading } = useAuth();
   const [primaryNumber, setPrimaryNumber] = useState("");
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState(null);
@@ -133,12 +133,14 @@ function LogIn(props) {
           setOpen(false);
           if (user.isAdmin) {
             setAdminData(result.data.user);
-            if (router.pathname === "/login") {
+            setLoading(false);
+            if (router.pathname === "/login" || router.pathname === "/") {
               router.replace("/admin/dashboard");
             }
           } else {
             setVendorData(result.data.user);
-            if (router.pathname === "/login") {
+            setLoading(false);
+            if (router.pathname === "/login" || router.pathname === "/") {
               router.replace("/vendor/dashboard");
             }
           }

@@ -16,7 +16,10 @@ export const AuthProvider = ({ children }) => {
       if (userCookie) {
         setToken(userCookie);
         getProfile((error, result) => {
-          if (result.status) {
+          if (error) {
+            setLoading(false);
+          }
+          if (result && result.status) {
             if (result.data.isAdmin) {
               setLoading(false);
               setAdmin(result.data);
@@ -51,6 +54,8 @@ export const AuthProvider = ({ children }) => {
         setTokenData,
         setVendorData,
         setAdminData,
+        loading,
+        setLoading,
       }}
     >
       {children}
@@ -61,19 +66,35 @@ export const AuthProvider = ({ children }) => {
 export const useAuth = () => useContext(AuthContext);
 
 export const UserProtectedPage = ({ children }) => {
-  const { isAuthenticatedUser } = useAuth();
-  if (!isAuthenticatedUser) {
-    return <Login />;
+  const { isAuthenticatedUser, loading } = useAuth();
+  if (loading) {
+    return (
+      <div style={{ display: "flex", justifyContent: "center", margin: 20 }}>
+        <CircularProgress color="primary" />
+      </div>
+    );
   } else {
-    return children;
+    if (!isAuthenticatedUser) {
+      return <Login />;
+    } else {
+      return children;
+    }
   }
 };
 
 export const AdminProtectedPage = ({ children }) => {
-  const { admin } = useAuth();
-  if (!admin) {
-    return <Login />;
+  const { admin, loading } = useAuth();
+  if (loading) {
+    return (
+      <div style={{ display: "flex", justifyContent: "center", margin: 20 }}>
+        <CircularProgress color="primary" />
+      </div>
+    );
   } else {
-    return children;
+    if (!admin) {
+      return <Login />;
+    } else {
+      return children;
+    }
   }
 };

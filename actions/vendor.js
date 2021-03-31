@@ -22,17 +22,21 @@ module.exports = {
     }
   },
   getProfile: async (cb) => {
-    const res = await axios.get(`${process.env.BASE_URL}/vendors/profile`, {
-      headers: {
-        auth: jsCookies.getItem("auth"),
-      },
-    });
-    if (res && res.status == 200) {
-      console.log(jsCookies.getItem("auth"));
-      cb(null, res.data);
-    } else {
-      console.log(res.data);
-      cb(res.data.message, null);
+    try {
+      const res = await axios.get(`${process.env.BASE_URL}/vendors/profile`, {
+        headers: {
+          auth: jsCookies.getItem("auth"),
+        },
+      });
+      if (res && res.status == 200) {
+        console.log(jsCookies.getItem("auth"));
+        cb(null, res.data);
+      } else {
+        console.log(res.data);
+        cb(res.data.message, null);
+      }
+    } catch (error) {
+      cb(error, null);
     }
   },
   getUsersProfile: async (cb) => {
