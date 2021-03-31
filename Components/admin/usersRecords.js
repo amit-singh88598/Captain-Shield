@@ -4,10 +4,12 @@ import {
   Card,
   CardActions,
   CardContent,
+  Chip,
   Grid,
   Typography,
 } from "@material-ui/core";
 import { getUsersProfile } from "../../actions/vendor";
+import capitalize from "../capitalize";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -53,6 +55,32 @@ const useStyles = makeStyles((theme) => ({
     margin: 20,
     backgroundColor: theme.palette.secondary.main,
   },
+
+  // Desktop Style
+
+  desktopStyle: {
+    [theme.breakpoints.down("sm")]: {
+      display: "none",
+    },
+  },
+
+  // Mobile Style
+
+  mobStyle: {
+    [theme.breakpoints.up("md")]: {
+      display: "none",
+    },
+  },
+  mobCardStyle: {
+    padding: 10,
+    margin: 10,
+    borderRadius: 20,
+    backgroundColor: theme.palette.secondary.main,
+    // width: "100%",
+  },
+
+  //  Scroll bar
+
   scroll: {
     overflowY: "scroll",
     height: 540,
@@ -86,73 +114,108 @@ export default function UsersRecords() {
         >
           Users Record
         </Typography>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
-          <Card className={classes.totalCodes} elevation={2}>
-            <div className={classes.scroll} id="scroller">
-              <CardActions disableSpacing>
-                <Typography className={classes.details} variant="h5">
-                  Name
-                </Typography>
-                <Typography
-                  style={{ marginLeft: 280 }}
-                  className={classes.details}
-                  variant="h5"
-                >
-                  Number
-                </Typography>
-                <Typography className={classes.expand} variant="h5">
-                  Expiry Date
-                </Typography>
-              </CardActions>
-              {profile &&
-                profile.map((item, index) => (
-                  <CardActions disableSpacing key={index}>
-                    <Grid container spacing={3}>
-                      <Grid item xs={12} sm={4}>
-                        <Typography
-                          className={classes.details}
-                          aria-label="show more"
-                          variant="subtitle1"
-                        >
-                          {`${item._user.name}`}
-                        </Typography>
+        {/* //////////////////////////////////////////////////////////         Desktop Card  */}
+
+        <div className={classes.desktopStyle}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <Card className={classes.totalCodes} elevation={2}>
+              <div className={classes.scroll} id="scroller">
+                <CardActions disableSpacing>
+                  <Typography className={classes.details} variant="h5">
+                    Name
+                  </Typography>
+                  <Typography
+                    style={{ marginLeft: 280 }}
+                    className={classes.details}
+                    variant="h5"
+                  >
+                    Number
+                  </Typography>
+                  <Typography className={classes.expand} variant="h5">
+                    Expiry Date
+                  </Typography>
+                </CardActions>
+                {profile &&
+                  profile.map((item, index) => (
+                    <CardActions disableSpacing key={index}>
+                      <Grid container spacing={3}>
+                        <Grid item xs={12} sm={4}>
+                          <Typography
+                            className={classes.details}
+                            aria-label="show more"
+                            variant="subtitle1"
+                          >
+                            {`${item._user.name}`}
+                          </Typography>
+                        </Grid>
+                        <Grid item xs={12} sm={4}>
+                          <Typography
+                            className={classes.details}
+                            aria-label="show more"
+                            variant="subtitle1"
+                            style={{
+                              marginLeft: "auto",
+                              display: "flex",
+                              justifyContent: "center",
+                            }}
+                          >
+                            {item._user.primaryNumber}
+                          </Typography>
+                        </Grid>
+                        <Grid item xs={12} sm={4}>
+                          <Typography
+                            className={classes.expand}
+                            variant="subtitle1"
+                            style={{
+                              float: "right",
+                              marginRight: 20,
+                            }}
+                          >
+                            {item.expiryDate}
+                          </Typography>
+                        </Grid>
                       </Grid>
-                      <Grid item xs={12} sm={4}>
-                        <Typography
-                          className={classes.details}
-                          aria-label="show more"
-                          variant="subtitle1"
-                          style={{
-                            marginLeft: "auto",
-                            display: "flex",
-                            justifyContent: "center",
-                          }}
-                        >
-                          {item._user.primaryNumber}
-                        </Typography>
-                      </Grid>
-                      <Grid item xs={12} sm={4}>
-                        <Typography
-                          className={classes.expand}
-                          variant="subtitle1"
-                          style={{
-                            float: "right",
-                            marginRight: 20,
-                          }}
-                        >
-                          {item.expiryDate}
-                        </Typography>
-                      </Grid>
-                    </Grid>
-                  </CardActions>
-                ))}
-            </div>
-          </Card>
+                    </CardActions>
+                  ))}
+              </div>
+            </Card>
+          </div>
+        </div>
+
+        {/* ///////////////////////////////////////////////////////           Mobile Card */}
+
+        <div className={classes.mobStyle}>
+          {profile &&
+            profile.map((item, index) => (
+              <Card key={index} className={classes.mobCardStyle}>
+                <div style={{ display: "flex" }}>
+                  <Typography style={{ marginRight: 10, color: "#ffffff" }}>
+                    {capitalize(`${item._user.name}`)}
+                  </Typography>
+                  <Chip
+                    variant="outlined"
+                    color="primary"
+                    style={{
+                      cursor: "pointer",
+                      marginLeft: "auto",
+                      paddingLeft: 10,
+                      paddingRight: 10,
+                      color: "#ffffff",
+                    }}
+                    size="small"
+                    label={item._user.primaryNumber}
+                  />
+                </div>
+                <Typography style={{ color: "#ffffff" }} variant="subtitle1">
+                  {item.expiryDate}
+                </Typography>
+              </Card>
+            ))}
         </div>
       </Card>
     </div>

@@ -12,7 +12,7 @@ import capitalize from "../capitalize";
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.primary.main,
-    height: 695,
+    height: "100%",
   },
   detail: {
     display: "flex",

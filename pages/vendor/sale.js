@@ -1,14 +1,25 @@
-import { Button, Grid } from "@material-ui/core";
+import { Grid, makeStyles } from "@material-ui/core";
 import Head from "next/head";
-import Header from "../../layout/header";
-import { useRouter } from "next/router";
-import { useAuth, UserProtectedPage } from "../../auth";
+import { UserProtectedPage } from "../../auth";
 import SaleDetails from "../../Components/vendors/saleDetails";
 import SideBar from "../../Components/vendors/sideBar";
+import VendorHeader from "../../layout/vendorHeader";
+
+const useStyle = makeStyles((theme) => ({
+  desktopStyle: {
+    [theme.breakpoints.down("sm")]: {
+      display: "none",
+    },
+  },
+  mobStyle: {
+    [theme.breakpoints.up("md")]: {
+      display: "none",
+    },
+  },
+}));
 
 export default function Sale() {
-  const { isAuthenticatedUser } = useAuth();
-  const router = useRouter();
+  const classes = useStyle();
   return (
     <div>
       <UserProtectedPage>
@@ -17,15 +28,26 @@ export default function Sale() {
             <title>Captain Shield</title>
             <link rel="icon" href="/favicon.ico" />
           </Head>
-          <Header />
-          <Grid container>
-            <Grid item xs={2} sm={2}>
-              <SideBar />
+          <VendorHeader />
+
+          {/*//////////////////////////////////////////////////// desktop View */}
+
+          <div className={classes.desktopStyle}>
+            <Grid container>
+              <Grid item xs={2} sm={2}>
+                <SideBar />
+              </Grid>
+              <Grid item xs={10} sm={10}>
+                <SaleDetails />
+              </Grid>
             </Grid>
-            <Grid item xs={10} sm={10}>
-              <SaleDetails />
-            </Grid>
-          </Grid>
+          </div>
+
+          {/*//////////////////////////////////////////////////      Mobile View  */}
+
+          <div className={classes.mobStyle}>
+            <SaleDetails />
+          </div>
         </div>
       </UserProtectedPage>
     </div>

@@ -102,6 +102,9 @@ export default function GenerateCode() {
         >
           Vendor List
         </Typography>
+
+        {/* //////////////////////////////////////////////////////////         Desktop Card  */}
+
         <div className={classes.desktopStyle}>
           <div
             style={{
@@ -109,8 +112,6 @@ export default function GenerateCode() {
               justifyContent: "center",
             }}
           >
-            {/* //////////////////////////////////////////////////////////         Desktop Card  */}
-
             <Card className={classes.totalCodes} elevation={2}>
               <div className={classes.scroll} id="scroller">
                 <CardActions disableSpacing>

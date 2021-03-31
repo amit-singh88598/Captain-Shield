@@ -64,7 +64,11 @@ export const useAuth = () => useContext(AuthContext);
 export const UserProtectedPage = ({ children }) => {
   const { isAuthenticatedUser, loading } = useAuth();
   if (loading) {
-    return <CircularProgress color="secondary" />;
+    return (
+      <div style={{ display: "flex", justifyContent: "center", margin: 50 }}>
+        <CircularProgress color="secondary" />
+      </div>
+    );
   } else {
     if (!isAuthenticatedUser) {
       return <Login />;
@@ -76,7 +80,17 @@ export const UserProtectedPage = ({ children }) => {
 export const AdminProtectedPage = ({ children }) => {
   const { admin, loading } = useAuth();
   if (loading) {
-    return <CircularProgress color="secondary" />;
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          margin: 50,
+        }}
+      >
+        <CircularProgress color="secondary" />
+      </div>
+    );
   } else {
     if (!admin) {
       return <Login />;

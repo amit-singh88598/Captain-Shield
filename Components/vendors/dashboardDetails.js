@@ -17,7 +17,7 @@ import MyChart from "./myChart";
 const useStyle = makeStyles((theme) => ({
   root: {
     paddingBottom: 45,
-    paddingRight: 10,
+    padding: 10,
     backgroundColor: theme.palette.primary.main,
   },
   cardStyle: {
@@ -315,10 +315,10 @@ export default function DashboardDetails(props) {
               </Grid>
             </div>
 
-            <div style={{ marginLeft: 20 }}>
+            <div>
               <Grid container>
                 <Grid item xs={12} sm={8}>
-                  <MyChart />
+                  {/* <MyChart /> */}
                 </Grid>
                 <Grid item xs={12} sm={4}>
                   {/*/////////////////////////////////////////////////////        Top 5 Codes */}
