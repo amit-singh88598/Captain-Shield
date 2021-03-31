@@ -74,7 +74,6 @@ const useStyle = makeStyles((theme) => ({
     color: theme.palette.primary.light,
   },
   details: {
-    marginLeft: 30,
     color: theme.palette.primary.light,
   },
   heading: {
@@ -86,7 +85,6 @@ const useStyle = makeStyles((theme) => ({
   expand: {
     transform: "rotate(0deg)",
     marginLeft: "auto",
-    marginRight: 30,
     backgroundColor: theme.palette.secondary.main,
     color: theme.palette.primary.light,
   },
