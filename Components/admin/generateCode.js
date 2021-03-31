@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Button, Card, Grid, TextField } from "@material-ui/core";
 import { getVendors } from "../../actions/vendor";
 import Autocomplete from "@material-ui/lab/Autocomplete";
+import { getGenerateCode } from "../../actions/vendor";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,12 +33,12 @@ const codes = [
   { title: "50" },
   { title: "100" },
   { title: "200" },
-  { title: "500" },
-  { title: "1000" },
 ];
 
 export default function GenerateCode() {
   const classes = useStyles();
+  const [primaryNumber, setPrimaryNumber] = useState("");
+  const [codes, setCodes] = useState(null);
   const [profile, setProfile] = useState(null);
   useEffect(async () => {
     await getVendors((error, result) => {
@@ -48,6 +49,17 @@ export default function GenerateCode() {
       }
     });
   }, []);
+
+  const generateCode = async () => {
+    // console.log(primaryNumber);
+    await getGenerateCode(primaryNumber, codes, (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(result);
+      }
+    });
+  };
 
   return (
     <div className={classes.root}>
@@ -66,6 +78,9 @@ export default function GenerateCode() {
                   >
                     <Autocomplete
                       id="combo-box-demo"
+                      onChange={(event, value) => {
+                        setPrimaryNumber(value.primaryNumber);
+                      }}
                       options={profile}
                       getOptionLabel={(item) =>
                         `${item.firstName} ${item.lastName} : ${item.primaryNumber}`
@@ -92,22 +107,28 @@ export default function GenerateCode() {
                       margin: 20,
                     }}
                   >
-                    <Autocomplete
+                    {/* <Autocomplete
                       id="combo-box-demo"
+                      onChange={(event) => {
+                        setCodes(event.target.value);
+                      }}
                       options={codes}
                       getOptionLabel={(option) => option.title}
                       style={{ width: 400 }}
-                      renderInput={(params) => (
-                        <TextField
-                          fullWidth
-                          {...params}
-                          style={{ backgroundColor: "#656565" }}
-                          placeholder="Select Total No's. Of Codes"
-                          // label="Select Total No's. Of Codes"
-                          variant="outlined"
-                        />
-                      )}
+                      renderInput={(params) => ( */}
+                    <TextField
+                      fullWidth
+                      onChange={(event) => {
+                        setCodes(event.target.value);
+                      }}
+                      // {...params}
+                      style={{ backgroundColor: "#656565" }}
+                      placeholder="Select Total No's. Of Codes"
+                      // label="Select Total No's. Of Codes"
+                      variant="outlined"
                     />
+                    {/* )}
+                    /> */}
                   </div>
                 </Grid>
               </Grid>
@@ -118,7 +139,11 @@ export default function GenerateCode() {
                   marginTop: 20,
                 }}
               >
-                <Button variant="contained" color="secondary">
+                <Button
+                  onClick={() => generateCode()}
+                  variant="contained"
+                  color="secondary"
+                >
                   Generate
                 </Button>
               </div>

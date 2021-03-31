@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }) => {
         });
       }
     }
-  });
+  }, []);
 
   const setVendorData = async (data) => {
     setVendor(data);

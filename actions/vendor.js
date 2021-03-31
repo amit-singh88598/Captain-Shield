@@ -63,4 +63,20 @@ module.exports = {
       cb(res.data.message, null);
     }
   },
+  getGenerateCode: async (primaryNumber, code, cb) => {
+    const res = await axios.get(
+      `${process.env.BASE_URL}/keys/generate/${primaryNumber}/${code}`,
+      {
+        headers: {
+          auth: jsCookies.getItem("auth"),
+        },
+      }
+    );
+    if (res && res.status == 200) {
+      cb(null, res.data);
+    } else {
+      console.log(res.data);
+      cb(res.data.message, null);
+    }
+  },
 };
