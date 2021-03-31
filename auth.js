@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }) => {
         });
       }
     }
-  }, []);
+  });
 
   const setVendorData = async (data) => {
     setVendor(data);
@@ -51,7 +51,6 @@ export const AuthProvider = ({ children }) => {
         setTokenData,
         setVendorData,
         setAdminData,
-        loading,
       }}
     >
       {children}
@@ -62,40 +61,19 @@ export const AuthProvider = ({ children }) => {
 export const useAuth = () => useContext(AuthContext);
 
 export const UserProtectedPage = ({ children }) => {
-  const { isAuthenticatedUser, loading } = useAuth();
-  if (loading) {
-    return (
-      <div style={{ display: "flex", justifyContent: "center", margin: 50 }}>
-        <CircularProgress color="secondary" />
-      </div>
-    );
+  const { isAuthenticatedUser } = useAuth();
+  if (!isAuthenticatedUser) {
+    return <Login />;
   } else {
-    if (!isAuthenticatedUser) {
-      return <Login />;
-    } else {
-      return children;
-    }
+    return children;
   }
 };
+
 export const AdminProtectedPage = ({ children }) => {
-  const { admin, loading } = useAuth();
-  if (loading) {
-    return (
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          margin: 50,
-        }}
-      >
-        <CircularProgress color="secondary" />
-      </div>
-    );
+  const { admin } = useAuth();
+  if (!admin) {
+    return <Login />;
   } else {
-    if (!admin) {
-      return <Login />;
-    } else {
-      return children;
-    }
+    return children;
   }
 };

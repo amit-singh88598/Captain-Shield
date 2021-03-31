@@ -10,6 +10,7 @@ import {
 } from "@material-ui/core";
 import { getUsersProfile } from "../../actions/vendor";
 import capitalize from "../capitalize";
+import moment from "moment";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
   expand: {
     transform: "rotate(0deg)",
     marginLeft: "auto",
-    marginRight: 50,
+    // marginRight: 10,
     fontWeight: 500,
     backgroundColor: theme.palette.secondary.main,
     color: theme.palette.primary.light,
@@ -176,7 +177,7 @@ export default function UsersRecords() {
                               marginRight: 20,
                             }}
                           >
-                            {item.expiryDate}
+                            {moment(item.expiryDate).format("DD-MM-YYYY")}
                           </Typography>
                         </Grid>
                       </Grid>
@@ -212,7 +213,7 @@ export default function UsersRecords() {
                   />
                 </div>
                 <Typography style={{ color: "#ffffff" }} variant="subtitle1">
-                  {item.expiryDate}
+                  {moment(item.expiryDate).format("DD-MM-YYYY")}
                 </Typography>
               </Card>
             ))}

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Slide from "@material-ui/core/Slide";
 import { Button, Card, Grid, TextField } from "@material-ui/core";
 import { getVendors } from "../../actions/vendor";
 import Autocomplete from "@material-ui/lab/Autocomplete";
@@ -61,7 +60,6 @@ export default function GenerateCode() {
                   <div
                     style={{
                       margin: 20,
-                      // marginTop: 20,
                       display: "flex",
                       justifyContent: "center",
                     }}
@@ -72,13 +70,15 @@ export default function GenerateCode() {
                       getOptionLabel={(item) =>
                         `${item.firstName} ${item.lastName} : ${item.primaryNumber}`
                       }
-                      style={{ width: 300 }}
+                      style={{ width: 400 }}
                       renderInput={(params) => (
                         <TextField
                           fullWidth
                           {...params}
-                          label="Select Vendor Name"
+                          // label="Select Vendor Name"
+                          placeholder="Select Vendor Name"
                           variant="outlined"
+                          style={{ backgroundColor: "#656565" }}
                         />
                       )}
                     />
@@ -90,19 +90,20 @@ export default function GenerateCode() {
                       display: "flex",
                       justifyContent: "center",
                       margin: 20,
-                      // marginTop: 20,
                     }}
                   >
                     <Autocomplete
                       id="combo-box-demo"
                       options={codes}
                       getOptionLabel={(option) => option.title}
-                      style={{ width: 300 }}
+                      style={{ width: 400 }}
                       renderInput={(params) => (
                         <TextField
                           fullWidth
                           {...params}
-                          label="Select Total No's. Of Codes"
+                          style={{ backgroundColor: "#656565" }}
+                          placeholder="Select Total No's. Of Codes"
+                          // label="Select Total No's. Of Codes"
                           variant="outlined"
                         />
                       )}

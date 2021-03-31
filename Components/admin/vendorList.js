@@ -15,6 +15,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.light,
     height: 675,
   },
+
+  // Desktop Style
+
   details: {
     color: theme.palette.primary.light,
   },
@@ -44,8 +47,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
   },
 
-  // Desktop Style
-
   desktopStyle: {
     [theme.breakpoints.down("sm")]: {
       display: "none",
@@ -64,7 +65,6 @@ const useStyles = makeStyles((theme) => ({
     margin: 10,
     borderRadius: 20,
     backgroundColor: theme.palette.secondary.main,
-    // width: "100%",
   },
 
   //  Scroll bar
