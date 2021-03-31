@@ -28,7 +28,7 @@ import { useRouter } from "next/router";
 const useStyles = makeStyles((theme) => ({
   root: {
     height: "125vh",
-    backgroundImage: 'url("/login.jpg")',
+    backgroundImage: 'url("/desktop.jpg")',
     backgroundPosition: "center",
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
       justifyContent: "center",
       alignItems: "center",
       height: "145vh",
-      backgroundImage: 'url("/login1.jpg")',
+      backgroundImage: 'url("/mobile.jpg")',
       backgroundPosition: "center",
       backgroundSize: "cover",
       backgroundRepeat: "no-repeat",

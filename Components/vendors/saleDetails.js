@@ -274,7 +274,7 @@ export default function Dashboard(props) {
                     </CardActions>
                     {Users.map((item, index) => (
                       <CardActions disableSpacing key={index}>
-                        <Typography
+                        {/* <Typography
                           className={classes.details}
                           variant="subtitle1"
                         >
@@ -286,7 +286,7 @@ export default function Dashboard(props) {
                           variant="subtitle1"
                         >
                           {item.name}
-                        </Typography>
+                        </Typography> */}
                       </CardActions>
                     ))}
                   </Card>

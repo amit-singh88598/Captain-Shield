@@ -250,7 +250,7 @@ export default function PurchaseDetails(props) {
                         Codes
                       </Typography>
                     </CardActions>
-                    <CardActions disableSpacing>
+                    {/* <CardActions disableSpacing>
                       <Typography
                         className={classes.details}
                         variant="subtitle1"
@@ -262,69 +262,9 @@ export default function PurchaseDetails(props) {
                         aria-label="show more"
                         variant="subtitle1"
                       >
-                        500
+                        00
                       </Typography>
-                    </CardActions>
-                    <CardActions disableSpacing>
-                      <Typography
-                        className={classes.details}
-                        variant="subtitle1"
-                      >
-                        12/07/2020
-                      </Typography>
-                      <Typography
-                        className={classes.expand}
-                        aria-label="show more"
-                        variant="subtitle1"
-                      >
-                        1000
-                      </Typography>
-                    </CardActions>
-                    <CardActions disableSpacing>
-                      <Typography
-                        className={classes.details}
-                        variant="subtitle1"
-                      >
-                        14/10/2020
-                      </Typography>
-                      <Typography
-                        className={classes.expand}
-                        aria-label="show more"
-                        variant="subtitle1"
-                      >
-                        1000
-                      </Typography>
-                    </CardActions>
-                    <CardActions disableSpacing>
-                      <Typography
-                        className={classes.details}
-                        variant="subtitle1"
-                      >
-                        29/12/2020
-                      </Typography>
-                      <Typography
-                        className={classes.expand}
-                        aria-label="show more"
-                        variant="subtitle1"
-                      >
-                        1200
-                      </Typography>
-                    </CardActions>
-                    <CardActions disableSpacing>
-                      <Typography
-                        className={classes.details}
-                        variant="subtitle1"
-                      >
-                        5/02/2021
-                      </Typography>
-                      <Typography
-                        className={classes.expand}
-                        aria-label="show more"
-                        variant="subtitle1"
-                      >
-                        1500
-                      </Typography>
-                    </CardActions>
+                    </CardActions> */}
                   </Card>
                 </Grid>
               </Grid>

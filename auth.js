@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }) => {
         });
       }
     }
-  }, []);
+  });
 
   const setVendorData = async (data) => {
     setVendor(data);
@@ -77,3 +77,5 @@ export const AdminProtectedPage = ({ children }) => {
     return children;
   }
 };
+
+// BASE_URL=https://captionshield.herokuapp.com/api

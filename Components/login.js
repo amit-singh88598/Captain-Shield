@@ -25,7 +25,7 @@ import { getProfile } from "../actions/vendor";
 const useStyles = makeStyles((theme) => ({
   root: {
     height: "105vh",
-    backgroundImage: 'url("/login.jpg")',
+    backgroundImage: 'url("/desktop.jpg")',
     backgroundPosition: "center",
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
       justifyContent: "center",
       alignItems: "center",
       height: "120vh",
-      backgroundImage: 'url("/login0.jpg")',
+      backgroundImage: 'url("/mobile.jpg")',
       backgroundPosition: "center",
       backgroundSize: "cover",
       backgroundRepeat: "no-repeat",
