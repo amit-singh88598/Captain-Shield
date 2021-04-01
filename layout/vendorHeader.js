@@ -12,7 +12,13 @@ import {
 import Setting from "../Components/setting";
 import Notification from "../Components/notification";
 import { useRouter } from "next/router";
-import { AccountCircle, Dashboard, ListAlt, Receipt } from "@material-ui/icons";
+import {
+  AccountCircle,
+  Dashboard,
+  ListAlt,
+  PeopleAlt,
+  Receipt,
+} from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -115,10 +121,10 @@ export default function VendorHeader() {
                       <ListAlt style={{ marginRight: 10 }} />
                       Sale
                     </MenuItem>
-                    {/* <MenuItem onClick={() => router.push("/admin/userRecord")}>
-                      <ListAlt style={{ marginRight: 10 }} />
-                      user Record
-                    </MenuItem> */}
+                    <MenuItem onClick={() => router.push("/vendor/userList")}>
+                      <PeopleAlt style={{ marginRight: 10 }} />
+                      Users List
+                    </MenuItem>
                   </Menu>
                 </div>
               )}

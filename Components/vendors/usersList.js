@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Card, CardActions, Chip, Grid, Typography } from "@material-ui/core";
-import { getVendors } from "../../actions/vendor";
+import { getUsersList } from "../../actions/vendor";
 import capitalize from "../capitalize";
+import moment from "moment";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,7 +31,6 @@ const useStyles = makeStyles((theme) => ({
   expand: {
     transform: "rotate(0deg)",
     marginLeft: "auto",
-    marginRight: 10,
     backgroundColor: theme.palette.secondary.main,
     color: theme.palette.primary.light,
   },
@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
     padding: 5,
     paddingBottom: 40,
     // height: 600,
-    width: 700,
+    width: 900,
     margin: 20,
     backgroundColor: theme.palette.secondary.main,
   },
@@ -75,15 +75,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function VendorsList() {
+export default function UsersList() {
   const classes = useStyles();
-  const [profile, setProfile] = useState(null);
+  const [profile, setUsersList] = useState(null);
   useEffect(async () => {
-    await getVendors((error, result) => {
+    await getUsersList((error, result) => {
       if (error) {
         console.log(error);
       } else {
-        setProfile(result.data);
+        setUsersList(result.data);
       }
     });
   }, []);
@@ -100,7 +100,7 @@ export default function VendorsList() {
             fontSize: "1.8em",
           }}
         >
-          Vendor List
+          Users List
         </Typography>
 
         {/* //////////////////////////////////////////////////////////         Desktop Card  */}
@@ -119,7 +119,7 @@ export default function VendorsList() {
                     Name
                   </Typography>
                   <Typography
-                    style={{ marginLeft: 250 }}
+                    style={{ marginLeft: 235 }}
                     className={classes.details}
                     variant="h6"
                   >
@@ -128,22 +128,29 @@ export default function VendorsList() {
                   <Typography className={classes.expand} variant="h6">
                     Codes
                   </Typography>
+                  <Typography
+                    style={{ marginRight: 10 }}
+                    className={classes.expand}
+                    variant="h6"
+                  >
+                    Expire
+                  </Typography>
                 </CardActions>
                 {profile &&
                   profile.map((item, index) => (
                     <CardActions disableSpacing key={index}>
                       <Grid container spacing={3}>
-                        <Grid item xs={12} sm={4}>
+                        <Grid item xs={12} sm={3}>
                           <Typography
                             className={classes.details}
                             aria-label="show more"
                             variant="subtitle1"
                             color="primary"
                           >
-                            {capitalize(`${item.firstName} ${item.lastName}`)}
+                            {capitalize(`${item._user.name}`)}
                           </Typography>
                         </Grid>
-                        <Grid item xs={12} sm={4}>
+                        <Grid item xs={12} sm={3}>
                           <Typography
                             className={classes.details}
                             aria-label="show more"
@@ -154,10 +161,10 @@ export default function VendorsList() {
                               justifyContent: "center",
                             }}
                           >
-                            {item.primaryNumber}
+                            {item._user.primaryNumber}
                           </Typography>
                         </Grid>
-                        <Grid item xs={12} sm={4}>
+                        <Grid item xs={12} sm={3}>
                           <Typography
                             className={classes.expand}
                             variant="subtitle1"
@@ -166,7 +173,19 @@ export default function VendorsList() {
                               marginRight: 20,
                             }}
                           >
-                            {item.keys.length}
+                            {item.activationCode}
+                          </Typography>
+                        </Grid>
+                        <Grid item xs={12} sm={3}>
+                          <Typography
+                            className={classes.expand}
+                            variant="subtitle1"
+                            style={{
+                              float: "right",
+                            }}
+                          >
+                            {moment(item.expiryDate).format("DD-MM-YYYY")}
+                            {/* {item.expiryDate} */}
                           </Typography>
                         </Grid>
                       </Grid>
@@ -185,7 +204,7 @@ export default function VendorsList() {
               <Card key={index} className={classes.mobCardStyle}>
                 <div style={{ display: "flex" }}>
                   <Typography style={{ marginRight: 10, color: "#ffffff" }}>
-                    {capitalize(`${item.firstName} ${item.lastName}`)}
+                    {capitalize(`${item._user.name}`)}
                   </Typography>
                   <Chip
                     variant="outlined"
@@ -194,15 +213,19 @@ export default function VendorsList() {
                       cursor: "pointer",
                       marginLeft: "auto",
                       paddingLeft: 10,
+                      borderColor: "#ffffff",
                       paddingRight: 10,
                       color: "#ffffff",
                     }}
                     size="small"
-                    label={item.keys.length}
+                    label={item.activationCode}
                   />
                 </div>
                 <Typography style={{ color: "#ffffff" }} variant="subtitle1">
-                  {item.primaryNumber}
+                  {item._user.primaryNumber}
+                </Typography>
+                <Typography style={{ color: "#ffffff" }} variant="subtitle1">
+                  {moment(item.expiryDate).format("DD-MM-YYYY")}
                 </Typography>
               </Card>
             ))}

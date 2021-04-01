@@ -1,9 +1,9 @@
 import { Grid, makeStyles } from "@material-ui/core";
 import Head from "next/head";
-import { AdminProtectedPage } from "../../auth";
-import GenerateCode from "../../Components/admin/generateCode";
-import SideBar from "../../Components/admin/sideBar";
-import Header from "../../layout/header";
+import UsersList from "../../Components/vendors/usersList";
+import VendorHeader from "../../layout/vendorHeader";
+import SideBar from "../../Components/vendors/sideBar";
+import { UserProtectedPage } from "../../auth";
 
 const useStyle = makeStyles((theme) => ({
   desktopStyle: {
@@ -18,17 +18,17 @@ const useStyle = makeStyles((theme) => ({
   },
 }));
 
-export default function Dashboard() {
+export default function UserList() {
   const classes = useStyle();
   return (
     <div>
-      <AdminProtectedPage>
+      <UserProtectedPage>
         <div>
           <Head>
             <title>Captain Shield</title>
             <link rel="icon" href="/favicon.ico" />
           </Head>
-          <Header />
+          <VendorHeader />
           {/*//////////////////////////////////////////////////// desktop View */}
 
           <div className={classes.desktopStyle}>
@@ -37,7 +37,7 @@ export default function Dashboard() {
                 <SideBar />
               </Grid>
               <Grid item xs={10} sm={10}>
-                <GenerateCode />
+                <UsersList />
               </Grid>
             </Grid>
           </div>
@@ -45,10 +45,10 @@ export default function Dashboard() {
           {/*//////////////////////////////////////////////////      Mobile View  */}
 
           <div className={classes.mobStyle}>
-            <GenerateCode />
+            <UsersList />
           </div>
         </div>
-      </AdminProtectedPage>
+      </UserProtectedPage>
     </div>
   );
 }

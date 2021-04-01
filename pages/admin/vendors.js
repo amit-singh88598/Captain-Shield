@@ -47,14 +47,6 @@ export default function Vendors() {
           <div className={classes.mobStyle}>
             <VendorsList />
           </div>
-          {/* <Grid container>
-            <Grid item xs={2} sm={2}>
-              <SideBar />
-            </Grid>
-            <Grid item xs={10} sm={10}>
-              <VendorsList />
-            </Grid>
-          </Grid> */}
         </div>
       </AdminProtectedPage>
     </div>

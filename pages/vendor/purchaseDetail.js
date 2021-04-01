@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Card, CardActions, Chip, Grid, Typography } from "@material-ui/core";
 import { getVendors } from "../../actions/vendor";
-import capitalize from "../capitalize";
+import capitalize from "../../Components/capitalize";
 
 const useStyles = makeStyles((theme) => ({
   root: {

@@ -8,6 +8,7 @@ import {
   makeStyles,
   Typography,
 } from "@material-ui/core";
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { Gradient } from "react-gradient";
 import { getCodes } from "../../actions/vendor";
@@ -33,6 +34,7 @@ const useStyle = makeStyles((theme) => ({
     height: 180,
     margin: 20,
     backgroundColor: theme.palette.secondary.main,
+    cursor: "pointer",
   },
   saleCard: {
     borderRadius: 15,
@@ -98,6 +100,7 @@ const gradients = [
 // Dashboard
 
 export default function PurchaseDetails(props) {
+  const router = useRouter();
   const classes = useStyle();
   const { vendor } = useAuth();
   const [codesLength, setCodesLength] = useState(-1);
@@ -228,44 +231,24 @@ export default function PurchaseDetails(props) {
                   </Gradient>
                 </Grid>
                 <Grid item xs={12} sm={4}>
-                  {/*///////////////////////////////////////////////////////////////   Details of purchase Codes */}
+                  {/*///////////////////////////////////////////////////////////////   Available Codes Card */}
 
-                  <Card className={classes.totalCodes} elevation={2}>
-                    <CardContent>
-                      <Typography className={classes.heading} variant="h1">
-                        Purchase Details
-                      </Typography>
-                    </CardContent>
-                    <CardActions disableSpacing>
-                      <Typography
-                        className={classes.details}
-                        variant="subtitle1"
-                      >
-                        Date
-                      </Typography>
-                      <Typography
-                        className={classes.expand}
-                        variant="subtitle1"
-                      >
-                        Codes
-                      </Typography>
-                    </CardActions>
-                    {/* <CardActions disableSpacing>
-                      <Typography
-                        className={classes.details}
-                        variant="subtitle1"
-                      >
-                        1/04/2020
-                      </Typography>
-                      <Typography
-                        className={classes.expand}
-                        aria-label="show more"
-                        variant="subtitle1"
-                      >
-                        00
-                      </Typography>
-                    </CardActions> */}
-                  </Card>
+                  <Gradient
+                    className={classes.purchaseCard}
+                    gradients={gradients}
+                    property="background"
+                    duration={3000}
+                    angle="45deg"
+                    onClick={() => router.push("/vendor/purchaseDetail")}
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      fontSize: "1.8em",
+                      color: "#ffffff",
+                    }}
+                  >
+                    Purchase Details
+                  </Gradient>
                 </Grid>
               </Grid>
             </div>

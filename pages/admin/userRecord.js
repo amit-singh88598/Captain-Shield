@@ -47,14 +47,6 @@ export default function userRecord() {
           <div className={classes.mobStyle}>
             <UsersRecords />
           </div>
-          {/* <Grid container>
-            <Grid item xs={2} sm={2}>
-              <SideBar />
-            </Grid>
-            <Grid item xs={10} sm={10}>
-              <UsersRecords />
-            </Grid>
-          </Grid> */}
         </div>
       </AdminProtectedPage>
     </div>

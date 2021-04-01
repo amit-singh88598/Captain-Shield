@@ -1,13 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  Card,
-  CardActions,
-  CardContent,
-  Chip,
-  Grid,
-  Typography,
-} from "@material-ui/core";
+import { Card, CardActions, Chip, Grid, Typography } from "@material-ui/core";
 import { getUsersProfile } from "../../actions/vendor";
 import capitalize from "../capitalize";
 import moment from "moment";
@@ -22,10 +15,8 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 20,
     paddingBottom: 20,
     marginBottom: 20,
-    // padding: 40,
     backgroundColor: theme.palette.secondary.light,
     height: 670,
-    // height: "100%",
   },
   details: {
     color: theme.palette.primary.light,
@@ -40,7 +31,6 @@ const useStyles = makeStyles((theme) => ({
   expand: {
     transform: "rotate(0deg)",
     marginLeft: "auto",
-    // marginRight: 10,
     fontWeight: 500,
     backgroundColor: theme.palette.secondary.main,
     color: theme.palette.primary.light,
@@ -77,7 +67,6 @@ const useStyles = makeStyles((theme) => ({
     margin: 10,
     borderRadius: 20,
     backgroundColor: theme.palette.secondary.main,
-    // width: "100%",
   },
 
   //  Scroll bar

@@ -2,6 +2,8 @@ import axios from "axios";
 import jsCookies from "js-cookies";
 
 module.exports = {
+  // Get Vendor Total Available codes
+
   getCodes: async (vendorId, cb) => {
     try {
       const res = await axios.get(
@@ -21,6 +23,9 @@ module.exports = {
       console.log(error);
     }
   },
+
+  // Get Vendor Profile Details
+
   getProfile: async (cb) => {
     try {
       const res = await axios.get(`${process.env.BASE_URL}/vendors/profile`, {
@@ -39,6 +44,9 @@ module.exports = {
       cb(error, null);
     }
   },
+
+  // Get All Users Profile Details
+
   getUsersProfile: async (cb) => {
     const res = await axios.get(`${process.env.BASE_URL}/vendors/all/users`, {
       headers: {
@@ -53,6 +61,26 @@ module.exports = {
       cb(res.data.message, null);
     }
   },
+
+  // Get Perticular Vendor User's List
+
+  getUsersList: async (cb) => {
+    const res = await axios.get(`${process.env.BASE_URL}/vendors/users`, {
+      headers: {
+        auth: jsCookies.getItem("auth"),
+      },
+    });
+    if (res && res.status == 200) {
+      console.log(jsCookies.getItem("auth"));
+      cb(null, res.data);
+    } else {
+      console.log(res.data);
+      cb(res.data.message, null);
+    }
+  },
+
+  // Get All Vendors Details
+
   getVendors: async (cb) => {
     const res = await axios.get(`${process.env.BASE_URL}/vendors`, {
       headers: {
@@ -67,6 +95,26 @@ module.exports = {
       cb(res.data.message, null);
     }
   },
+
+  // // Get Purchase Details
+
+  // getVendors: async (cb) => {
+  //   const res = await axios.get(`${process.env.BASE_URL}/vendors`, {
+  //     headers: {
+  //       auth: jsCookies.getItem("auth"),
+  //     },
+  //   });
+  //   if (res && res.status == 200) {
+  //     console.log(jsCookies.getItem("auth"));
+  //     cb(null, res.data);
+  //   } else {
+  //     console.log(res.data);
+  //     cb(res.data.message, null);
+  //   }
+  // },
+
+  // Code Generation
+
   getGenerateCode: async (primaryNumber, code, cb) => {
     const res = await axios.get(
       `${process.env.BASE_URL}/keys/generate/${primaryNumber}/${code}`,

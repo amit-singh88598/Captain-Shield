@@ -4,7 +4,13 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import { Dashboard, Description, Receipt, Settings } from "@material-ui/icons";
+import {
+  Dashboard,
+  Description,
+  PeopleAlt,
+  Receipt,
+  Settings,
+} from "@material-ui/icons";
 import { useRouter } from "next/router";
 import { getProfile } from "../../actions/vendor";
 import capitalize from "../capitalize";
@@ -98,6 +104,17 @@ function SideBar(props) {
           <ListItem button>
             <a
               style={{ display: "flex" }}
+              onClick={() => router.push("/vendor/userList")}
+            >
+              <ListItemIcon>
+                <PeopleAlt className={classes.listItem} />
+              </ListItemIcon>
+              <ListItemText primary="Users List" />
+            </a>
+          </ListItem>
+          {/* <ListItem button>
+            <a
+              style={{ display: "flex" }}
               onClick={() => router.push("/vendor/dashboard")}
             >
               <ListItemIcon>
@@ -105,7 +122,7 @@ function SideBar(props) {
               </ListItemIcon>
               <ListItemText primary="Setting" />
             </a>
-          </ListItem>
+          </ListItem> */}
         </List>
       </div>
     </div>

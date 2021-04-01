@@ -255,42 +255,6 @@ export default function Dashboard(props) {
                     )}
                   </Gradient>
                 </Grid>
-                <Grid item xs={12} sm={4}>
-                  {/*///////////////////////////////////////////////////////////////   User List */}
-
-                  <Card className={classes.totalCodes} elevation={2}>
-                    <CardContent>
-                      <Typography className={classes.heading} variant="h1">
-                        User List
-                      </Typography>
-                    </CardContent>
-                    <CardActions disableSpacing>
-                      <Typography className={classes.details} variant="h6">
-                        S No.
-                      </Typography>
-                      <Typography className={classes.expand} variant="h6">
-                        Name
-                      </Typography>
-                    </CardActions>
-                    {Users.map((item, index) => (
-                      <CardActions disableSpacing key={index}>
-                        {/* <Typography
-                          className={classes.details}
-                          variant="subtitle1"
-                        >
-                          {item.sno}
-                        </Typography>
-                        <Typography
-                          className={classes.expand}
-                          aria-label="show more"
-                          variant="subtitle1"
-                        >
-                          {item.name}
-                        </Typography> */}
-                      </CardActions>
-                    ))}
-                  </Card>
-                </Grid>
               </Grid>
             </div>
           </div>

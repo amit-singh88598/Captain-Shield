@@ -57,6 +57,7 @@ export default function GenerateCode() {
         console.log(err);
       } else {
         console.log(result);
+        alert("Code Genrated Sucessfully");
       }
     });
   };
