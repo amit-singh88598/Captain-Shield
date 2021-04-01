@@ -47,12 +47,32 @@ module.exports = {
 
   // Get All Users Profile Details
 
-  getUsersProfile: async (cb) => {
+  getAllUsersProfile: async (cb) => {
     const res = await axios.get(`${process.env.BASE_URL}/vendors/all/users`, {
       headers: {
         auth: jsCookies.getItem("auth"),
       },
     });
+    if (res && res.status == 200) {
+      console.log(jsCookies.getItem("auth"));
+      cb(null, res.data);
+    } else {
+      console.log(res.data);
+      cb(res.data.message, null);
+    }
+  },
+
+  // Self Generated Code Users Profile Details
+
+  getSelfGeneratedUsersProfile: async (cb) => {
+    const res = await axios.get(
+      `${process.env.BASE_URL}/vendors/screch/users`,
+      {
+        headers: {
+          auth: jsCookies.getItem("auth"),
+        },
+      }
+    );
     if (res && res.status == 200) {
       console.log(jsCookies.getItem("auth"));
       cb(null, res.data);
@@ -96,9 +116,9 @@ module.exports = {
     }
   },
 
-  // // Get Purchase Details
+  // Get Purchase Codes Details
 
-  // getVendors: async (cb) => {
+  // getPurchaseCodes: async (cb) => {
   //   const res = await axios.get(`${process.env.BASE_URL}/vendors`, {
   //     headers: {
   //       auth: jsCookies.getItem("auth"),

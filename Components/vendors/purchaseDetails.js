@@ -230,10 +230,10 @@ export default function PurchaseDetails(props) {
                     )}
                   </Gradient>
                 </Grid>
-                <Grid item xs={12} sm={4}>
-                  {/*///////////////////////////////////////////////////////////////   Available Codes Card */}
+                {/* <Grid item xs={12} sm={4}> */}
+                {/*///////////////////////////////////////////////////////////////   Available Codes Card */}
 
-                  <Gradient
+                {/* <Gradient
                     className={classes.purchaseCard}
                     gradients={gradients}
                     property="background"
@@ -249,7 +249,7 @@ export default function PurchaseDetails(props) {
                   >
                     Purchase Details
                   </Gradient>
-                </Grid>
+                </Grid> */}
               </Grid>
             </div>
           </div>

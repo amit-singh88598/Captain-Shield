@@ -1,9 +1,9 @@
 import { Grid, makeStyles } from "@material-ui/core";
 import Head from "next/head";
-import { AdminProtectedPage } from "../../auth";
-import SideBar from "../../Components/admin/sideBar";
-import UsersRecords from "../../Components/admin/usersRecords";
-import Header from "../../layout/header";
+import { AdminProtectedPage } from "../../../auth";
+import SideBar from "../../../Components/admin/sideBar";
+import Header from "../../../layout/header";
+import AllUsersRecords from "../../../Components/admin/Records/allUsersRecords";
 
 const useStyle = makeStyles((theme) => ({
   desktopStyle: {
@@ -18,7 +18,7 @@ const useStyle = makeStyles((theme) => ({
   },
 }));
 
-export default function userRecord() {
+export default function Vendors() {
   const classes = useStyle();
   return (
     <div>
@@ -37,7 +37,7 @@ export default function userRecord() {
                 <SideBar />
               </Grid>
               <Grid item xs={10} sm={10}>
-                <UsersRecords />
+                <AllUsersRecords />
               </Grid>
             </Grid>
           </div>
@@ -45,7 +45,7 @@ export default function userRecord() {
           {/*//////////////////////////////////////////////////      Mobile View  */}
 
           <div className={classes.mobStyle}>
-            <UsersRecords />
+            <AllUsersRecords />
           </div>
         </div>
       </AdminProtectedPage>

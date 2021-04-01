@@ -89,7 +89,7 @@ function SideBar(props) {
           <ListItem button>
             <a
               style={{ display: "flex" }}
-              onClick={() => router.push("/admin/userRecord")}
+              onClick={() => router.push("/admin/records/userRecord")}
             >
               <ListItemIcon>
                 <ListAlt className={classes.listItem} />

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Card, CardActions, Chip, Grid, Typography } from "@material-ui/core";
-import { getUsersProfile } from "../../actions/vendor";
-import capitalize from "../capitalize";
+import { getAllUsersProfile } from "../../../actions/vendor";
+import capitalize from "../../capitalize";
 import moment from "moment";
 
 const useStyles = makeStyles((theme) => ({
@@ -77,11 +77,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function UsersRecords() {
+export default function ThroughVendorRecords() {
   const classes = useStyles();
   const [profile, setProfile] = useState(null);
   useEffect(async () => {
-    await getUsersProfile((error, result) => {
+    await getAllUsersProfile((error, result) => {
       if (error) {
         console.log(error);
       } else {
@@ -102,7 +102,7 @@ export default function UsersRecords() {
             fontSize: "1.8em",
           }}
         >
-          Users Record
+          Through Vendor Users Record
         </Typography>
         {/* //////////////////////////////////////////////////////////         Desktop Card  */}
 

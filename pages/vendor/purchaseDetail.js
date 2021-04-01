@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Card, CardActions, Chip, Grid, Typography } from "@material-ui/core";
-import { getVendors } from "../../actions/vendor";
+import { getPurchaseCodes } from "../../actions/vendor";
 import capitalize from "../../Components/capitalize";
 
 const useStyles = makeStyles((theme) => ({
@@ -77,16 +77,16 @@ const useStyles = makeStyles((theme) => ({
 
 export default function VendorsList() {
   const classes = useStyles();
-  const [profile, setProfile] = useState(null);
-  useEffect(async () => {
-    await getVendors((error, result) => {
-      if (error) {
-        console.log(error);
-      } else {
-        setProfile(result.data);
-      }
-    });
-  }, []);
+  // const [codes, setCodes] = useState(null);
+  // useEffect(async () => {
+  //   await getPurchaseCodes((error, result) => {
+  //     if (error) {
+  //       console.log(error);
+  //     } else {
+  //       setCodes(result.data);
+  //     }
+  //   });
+  // }, []);
 
   return (
     <div className={classes.root}>
@@ -116,62 +116,41 @@ export default function VendorsList() {
               <div className={classes.scroll} id="scroller">
                 <CardActions disableSpacing>
                   <Typography style={{ color: "#ffffff" }} variant="h6">
-                    Name
+                    Date
                   </Typography>
-                  <Typography
-                    style={{ marginLeft: 250 }}
-                    className={classes.details}
-                    variant="h6"
-                  >
-                    Number
-                  </Typography>
+
                   <Typography className={classes.expand} variant="h6">
                     Codes
                   </Typography>
                 </CardActions>
-                {profile &&
-                  profile.map((item, index) => (
-                    <CardActions disableSpacing key={index}>
-                      <Grid container spacing={3}>
-                        <Grid item xs={12} sm={4}>
-                          <Typography
-                            className={classes.details}
-                            aria-label="show more"
-                            variant="subtitle1"
-                            color="primary"
-                          >
-                            {capitalize(`${item.firstName} ${item.lastName}`)}
-                          </Typography>
-                        </Grid>
-                        <Grid item xs={12} sm={4}>
-                          <Typography
-                            className={classes.details}
-                            aria-label="show more"
-                            variant="subtitle1"
-                            style={{
-                              marginLeft: "auto",
-                              display: "flex",
-                              justifyContent: "center",
-                            }}
-                          >
-                            {item.primaryNumber}
-                          </Typography>
-                        </Grid>
-                        <Grid item xs={12} sm={4}>
-                          <Typography
-                            className={classes.expand}
-                            variant="subtitle1"
-                            style={{
-                              float: "right",
-                              marginRight: 20,
-                            }}
-                          >
-                            {item.keys.length}
-                          </Typography>
-                        </Grid>
-                      </Grid>
-                    </CardActions>
-                  ))}
+                {/* {codes &&
+                  codes.map((item, index) => ( */}
+                <CardActions disableSpacing>
+                  <Grid container spacing={3}>
+                    <Grid item xs={12} sm={4}>
+                      <Typography
+                        className={classes.details}
+                        aria-label="show more"
+                        variant="subtitle1"
+                        color="primary"
+                      ></Typography>
+                    </Grid>
+
+                    <Grid item xs={12} sm={4}>
+                      <Typography
+                        className={classes.expand}
+                        variant="subtitle1"
+                        style={{
+                          float: "right",
+                          marginRight: 20,
+                        }}
+                      >
+                        {/* {item.keys.length} */}
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </CardActions>
+                {/* ))} */}
               </div>
             </Card>
           </div>
@@ -180,14 +159,15 @@ export default function VendorsList() {
         {/* ///////////////////////////////////////////////////////           Mobile Card */}
 
         <div className={classes.mobStyle}>
-          {profile &&
-            profile.map((item, index) => (
-              <Card key={index} className={classes.mobCardStyle}>
-                <div style={{ display: "flex" }}>
-                  <Typography style={{ marginRight: 10, color: "#ffffff" }}>
-                    {capitalize(`${item.firstName} ${item.lastName}`)}
-                  </Typography>
-                  <Chip
+          {/* {codes &&
+            codes.map((item, index) => ( */}
+          <Card className={classes.mobCardStyle}>
+            {/* <div style={{ display: "flex" }}> */}
+            <Typography style={{ marginRight: 10, color: "#ffffff" }}>
+              bdagsvdha
+              {/* {capitalize(`${item.firstName} ${item.lastName}`)} */}
+            </Typography>
+            {/* <Chip
                     variant="outlined"
                     color="primary"
                     style={{
@@ -199,13 +179,14 @@ export default function VendorsList() {
                     }}
                     size="small"
                     label={item.keys.length}
-                  />
-                </div>
-                <Typography style={{ color: "#ffffff" }} variant="subtitle1">
-                  {item.primaryNumber}
-                </Typography>
-              </Card>
-            ))}
+                  /> */}
+            {/* </div> */}
+            <Typography style={{ color: "#ffffff" }} variant="subtitle1">
+              jasdbh
+              {/* {item.primaryNumber} */}
+            </Typography>
+          </Card>
+          {/* ))} */}
         </div>
       </Card>
     </div>
