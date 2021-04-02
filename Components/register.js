@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 200,
     borderRadius: 30,
     padding: 15,
-    backgroundColor: "#bbbdbf",
+    backgroundColor: theme.palette.primary.light,
     [theme.breakpoints.up("md")]: {
       position: "absolute",
       top: 100,
@@ -71,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
       marginTop: 20,
       borderRadius: 30,
       padding: 15,
-      backgroundColor: "#bbbdbf",
+      backgroundColor: theme.palette.primary.light,
     },
   },
   title: {

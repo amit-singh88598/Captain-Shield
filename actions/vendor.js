@@ -154,4 +154,24 @@ module.exports = {
       cb(res.data.message, null);
     }
   },
+
+  //Today Sale Details For Admin Dashboard
+
+  getTodaySaleDetails: async (cb) => {
+    const res = await axios.get(
+      `${process.env.BASE_URL}/vendors/keygenerate/today`,
+      {
+        headers: {
+          auth: jsCookies.getItem("auth"),
+        },
+      }
+    );
+    if (res && res.status == 200) {
+      console.log(jsCookies.getItem("auth"));
+      cb(null, res.data);
+    } else {
+      console.log(res.data);
+      cb(res.data.message, null);
+    }
+  },
 };

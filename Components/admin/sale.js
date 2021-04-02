@@ -1,22 +1,11 @@
-import {
-  Avatar,
-  Card,
-  CardActions,
-  CardContent,
-  CircularProgress,
-  Grid,
-  makeStyles,
-  Typography,
-} from "@material-ui/core";
-import React, { useEffect, useState } from "react";
+import { Avatar, Card, Grid, makeStyles, Typography } from "@material-ui/core";
 import { Gradient } from "react-gradient";
-// import { getCodes } from "../actions/vendor";
+import { useRouter } from "next/router";
 
 const useStyle = makeStyles((theme) => ({
   root: {
     paddingBottom: 45,
     padding: 10,
-    // paddingRight: 10,
     backgroundColor: theme.palette.primary.main,
   },
   cardStyle: {
@@ -98,44 +87,11 @@ const gradients = [
   ["#363131", "#bda713"],
 ];
 
-const Users = [
-  // {
-  //   name: "kamal Singh",
-  //   sno: "10000",
-  // },
-  // {
-  //   name: "Amit Singh",
-  //   sno: "10000",
-  // },
-  // {
-  //   name: "Akash Kumar",
-  //   sno: "10000",
-  // },
-  // {
-  //   name: "Pankaj Joshi",
-  //   sno: "10000",
-  // },
-  // {
-  //   name: "Ayush Tripathi",
-  //   sno: "10000",
-  // },
-];
-
 // Dashboard
 
-export default function Dashboard(props) {
+export default function Sales(props) {
   const classes = useStyle();
-  const [codesLength, setCodesLength] = useState(-1);
-  // useEffect(async () => {
-  //   await getCodes("605065bcc26a4d23baac1be7", (error, result) => {
-  //     if (error) {
-  //       console.log(error);
-  //     } else {
-  //       const temp = [];
-  //       setCodesLength(result.length);
-  //     }
-  //   });
-  // }, []);
+  const router = useRouter();
 
   return (
     <div>
@@ -216,40 +172,24 @@ export default function Dashboard(props) {
               </Grid>
 
               <Grid item xs={12} sm={4}>
-                {/*///////////////////////////////////////////////////////////////   User List */}
+                {/*///////////////////////////////////////////////////////////////   Sale Details Card */}
 
-                <Card className={classes.totalCodes} elevation={2}>
-                  <CardContent>
-                    <Typography className={classes.heading} variant="h1">
-                      Recent Sale
-                    </Typography>
-                  </CardContent>
-                  <CardActions disableSpacing>
-                    <Typography className={classes.details} variant="h6">
-                      Name
-                    </Typography>
-                    <Typography className={classes.expand} variant="h6">
-                      Codes
-                    </Typography>
-                  </CardActions>
-                  {Users.map((item, index) => (
-                    <CardActions disableSpacing key={index}>
-                      <Typography
-                        className={classes.details}
-                        aria-label="show more"
-                        variant="subtitle1"
-                      >
-                        {item.name}
-                      </Typography>
-                      <Typography
-                        className={classes.expand}
-                        variant="subtitle1"
-                      >
-                        {item.sno}
-                      </Typography>
-                    </CardActions>
-                  ))}
-                </Card>
+                <Gradient
+                  className={classes.purchaseCard}
+                  gradients={gradients}
+                  property="background"
+                  duration={3000}
+                  angle="45deg"
+                  onClick={() => router.push("/admin/todaySaleDetail")}
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    fontSize: "1.8em",
+                    color: "#ffffff",
+                  }}
+                >
+                  Today's Sale Details
+                </Gradient>
               </Grid>
             </Grid>
           </div>

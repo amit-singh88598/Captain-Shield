@@ -106,7 +106,7 @@ function SideBar(props) {
           <ListItem button>
             <a
               style={{ display: "flex" }}
-              onClick={() => router.push("/admin/upload")}
+              onClick={() => router.push("/admin/uploads")}
             >
               <ListItemIcon>
                 <Backup className={classes.listItem} />

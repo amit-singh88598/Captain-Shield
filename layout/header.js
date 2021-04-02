@@ -123,7 +123,7 @@ export default function Header() {
                       <ListAlt style={{ marginRight: 10 }} />
                       user Record
                     </MenuItem>
-                    <MenuItem onClick={() => router.push("/admin/upload")}>
+                    <MenuItem onClick={() => router.push("/admin/uploads")}>
                       <Backup style={{ marginRight: 10 }} />
                       Upload
                     </MenuItem>

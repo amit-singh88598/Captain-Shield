@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
     borderLeft: 0,
     borderRadius: 30,
     padding: 15,
-    backgroundColor: "#bbbdbf",
+    backgroundColor: theme.palette.primary.light,
     [theme.breakpoints.up("md")]: {
       position: "absolute",
       top: 100,
@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
       // marginTop: 120,
       borderRadius: 30,
       padding: 15,
-      backgroundColor: "#bbbdbf",
+      backgroundColor: theme.palette.primary.light,
     },
   },
   btnStyle: {
