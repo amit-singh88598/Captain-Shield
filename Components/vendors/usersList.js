@@ -185,7 +185,6 @@ export default function UsersList() {
                             }}
                           >
                             {moment(item.expiryDate).format("DD-MM-YYYY")}
-                            {/* {item.expiryDate} */}
                           </Typography>
                         </Grid>
                       </Grid>

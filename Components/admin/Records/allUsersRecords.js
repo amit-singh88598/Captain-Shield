@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: 20,
     marginBottom: 20,
     backgroundColor: theme.palette.secondary.light,
-    height: 670,
+    height: "100%",
   },
   details: {
     color: theme.palette.primary.light,
@@ -44,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: 20,
     width: 800,
     margin: 20,
+    height: "100%",
     backgroundColor: theme.palette.secondary.main,
   },
 
@@ -65,6 +66,7 @@ const useStyles = makeStyles((theme) => ({
   mobCardStyle: {
     padding: 10,
     margin: 10,
+    height: "100%",
     borderRadius: 20,
     backgroundColor: theme.palette.secondary.main,
   },
@@ -73,7 +75,7 @@ const useStyles = makeStyles((theme) => ({
 
   scroll: {
     overflowY: "scroll",
-    height: 540,
+    height: "100%",
   },
 }));
 
@@ -92,7 +94,7 @@ export default function AllUsersRecords() {
 
   return (
     <div className={classes.root}>
-      <Card className={classes.cardStyle}>
+      <Card className={classes.cardStyle} style={{ marginBottom: 150 }}>
         <Typography
           style={{
             margin: 10,
@@ -182,29 +184,35 @@ export default function AllUsersRecords() {
         <div className={classes.mobStyle}>
           {profile &&
             profile.map((item, index) => (
-              <Card key={index} className={classes.mobCardStyle}>
-                <div style={{ display: "flex" }}>
-                  <Typography style={{ marginRight: 10, color: "#ffffff" }}>
-                    {capitalize(`${item._user.name}`)}
+              <div className={classes.scroll} id="scroller">
+                <Card key={index} className={classes.mobCardStyle}>
+                  <div
+                    className={classes.scroll}
+                    id="scroller"
+                    style={{ display: "flex" }}
+                  >
+                    <Typography style={{ marginRight: 10, color: "#ffffff" }}>
+                      {capitalize(`${item._user.name}`)}
+                    </Typography>
+                    <Chip
+                      variant="outlined"
+                      color="primary"
+                      style={{
+                        cursor: "pointer",
+                        marginLeft: "auto",
+                        paddingLeft: 10,
+                        paddingRight: 10,
+                        color: "#ffffff",
+                      }}
+                      size="small"
+                      label={item._user.primaryNumber}
+                    />
+                  </div>
+                  <Typography style={{ color: "#ffffff" }} variant="subtitle1">
+                    {moment(item.expiryDate).format("DD-MM-YYYY")}
                   </Typography>
-                  <Chip
-                    variant="outlined"
-                    color="primary"
-                    style={{
-                      cursor: "pointer",
-                      marginLeft: "auto",
-                      paddingLeft: 10,
-                      paddingRight: 10,
-                      color: "#ffffff",
-                    }}
-                    size="small"
-                    label={item._user.primaryNumber}
-                  />
-                </div>
-                <Typography style={{ color: "#ffffff" }} variant="subtitle1">
-                  {moment(item.expiryDate).format("DD-MM-YYYY")}
-                </Typography>
-              </Card>
+                </Card>
+              </div>
             ))}
         </div>
       </Card>

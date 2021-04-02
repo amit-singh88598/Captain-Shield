@@ -1,73 +1,23 @@
-import {
-  Avatar,
-  Card,
-  CardActions,
-  CardContent,
-  CircularProgress,
-  Grid,
-  makeStyles,
-  Typography,
-} from "@material-ui/core";
-import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import { Gradient } from "react-gradient";
-import { getCodes } from "../../actions/vendor";
-import { useAuth } from "../../auth";
+import { makeStyles } from "@material-ui/core/styles";
+import { Card, CardActions, Chip, Grid, Typography } from "@material-ui/core";
+import { getPurchaseCodes } from "../../actions/vendor";
+import moment from "moment";
 
-const useStyle = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    paddingBottom: 45,
+    paddingBottom: 20,
     padding: 10,
     backgroundColor: theme.palette.primary.main,
   },
   cardStyle: {
     borderRadius: 20,
-    height: 650,
     backgroundColor: theme.palette.secondary.light,
+    height: 675,
   },
-  purchaseCard: {
-    borderStyle: "outset ",
-    borderRadius: 15,
-    borderTop: 0,
-    borderLeft: 0,
-    padding: 20,
-    height: 180,
-    margin: 20,
-    backgroundColor: theme.palette.secondary.main,
-    cursor: "pointer",
-  },
-  saleCard: {
-    borderRadius: 15,
-    padding: 20,
-    height: 180,
-    margin: 20,
-    backgroundColor: theme.palette.secondary.main,
-  },
-  availableCodesCard: {
-    borderRadius: 15,
-    padding: 20,
-    height: 180,
-    margin: 20,
-    backgroundColor: theme.palette.secondary.main,
-  },
-  priceTag: {
-    color: theme.palette.primary.light,
-  },
-  totalCodes: {
-    borderStyle: "outset ",
-    borderRadius: 15,
-    borderTop: 0,
-    borderLeft: 0,
-    padding: 20,
-    height: 370,
-    margin: 20,
-    backgroundColor: theme.palette.secondary.main,
-  },
-  availableCodesStyle: {
-    display: "flex",
-    justifyContent: "center",
-    color: theme.palette.primary.light,
-  },
+
+  // Desktop Style
+
   details: {
     color: theme.palette.primary.light,
   },
@@ -80,181 +30,166 @@ const useStyle = makeStyles((theme) => ({
   expand: {
     transform: "rotate(0deg)",
     marginLeft: "auto",
+    marginRight: 10,
     backgroundColor: theme.palette.secondary.main,
     color: theme.palette.primary.light,
   },
+  totalCodes: {
+    borderStyle: "outset ",
+    borderRadius: 15,
+    borderTop: 0,
+    borderLeft: 0,
+    padding: 5,
+    paddingBottom: 40,
+    // height: 600,
+    width: 700,
+    margin: 20,
+    backgroundColor: theme.palette.secondary.main,
+  },
 
-  // Scroller Style
+  desktopStyle: {
+    [theme.breakpoints.down("sm")]: {
+      display: "none",
+    },
+  },
+
+  // Mobile Style
+
+  mobStyle: {
+    [theme.breakpoints.up("md")]: {
+      display: "none",
+    },
+  },
+  mobCardStyle: {
+    padding: 10,
+    margin: 10,
+    borderRadius: 20,
+    backgroundColor: theme.palette.secondary.main,
+  },
+
+  //  Scroll bar
 
   scroll: {
     overflowY: "scroll",
-    height: 650,
+    height: 540,
   },
 }));
 
-const gradients = [
-  ["#363131", "#363131"],
-  ["#363131", "#bda713"],
-];
-
-// Dashboard
-
-export default function PurchaseDetails(props) {
-  const router = useRouter();
-  const classes = useStyle();
-  const { vendor } = useAuth();
-  const [codesLength, setCodesLength] = useState(-1);
+export default function PurchaseDetails() {
+  const classes = useStyles();
+  const [codes, setCodes] = useState(null);
   useEffect(async () => {
-    if (vendor) {
-      await getCodes(vendor._id, (error, result) => {
-        if (error) {
-          console.log(error);
-        } else {
-          setCodesLength(result.length);
-        }
-      });
-    }
+    await getPurchaseCodes((error, result) => {
+      if (error) {
+        console.log(error);
+      } else {
+        setCodes(result.data);
+      }
+    });
   }, []);
 
   return (
-    <div>
-      <div className={classes.root}>
-        <Card className={classes.cardStyle}>
-          <div className={classes.scroll} id="scroller">
-            <Typography
-              style={{
-                margin: 30,
-                marginLeft: 40,
-                color: "#ffffff",
-                fontWeight: 600,
-              }}
-              variant="h5"
-            >
-              Purchase
-            </Typography>
-            <div>
-              <Grid container>
-                <Grid item xs={12} sm={4}>
-                  {/*////////////////////////////////////////////////////////         Purchase Card */}
+    <div className={classes.root}>
+      <Card className={classes.cardStyle}>
+        <Typography
+          style={{
+            margin: 10,
+            marginLeft: 20,
+            color: "#ffffff",
+            fontWeight: 600,
+            fontSize: "1.8em",
+          }}
+        >
+          Purchase Details
+        </Typography>
 
-                  <Gradient
-                    className={classes.purchaseCard}
-                    gradients={gradients}
-                    property="background"
-                    transitionType="parallel"
-                    duration={3000}
-                    angle="45deg"
+        {/* //////////////////////////////////////////////////////////         Desktop Card  */}
+
+        <div className={classes.desktopStyle}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <Card className={classes.totalCodes} elevation={2}>
+              <div className={classes.scroll} id="scroller">
+                <CardActions disableSpacing>
+                  <Typography
+                    style={{ color: "#ffffff", marginLeft: 20 }}
+                    variant="h6"
                   >
-                    <div style={{ display: "flex" }}>
-                      <Avatar alt="Remy Sharp" src="/rupee6.jpg" />
+                    Date
+                  </Typography>
 
-                      <Typography
-                        style={{
-                          float: "right",
-                          marginLeft: "auto",
-                          fontWeight: 530,
-                          fontSize: "1.6em",
-                        }}
-                        className={classes.priceTag}
-                      >
-                        Purchase
-                      </Typography>
-                    </div>
-                    <Typography
-                      variant="h5"
-                      style={{
-                        marginTop: 20,
-                        fontWeight: 530,
-                      }}
-                      className={classes.priceTag}
-                    >
-                      ₹ 00
-                    </Typography>
-                    <div style={{ display: "flex" }}>
-                      <Typography
-                        variant="body1"
-                        style={{
-                          marginTop: 10,
-                          fontWeight: 400,
-                        }}
-                        className={classes.priceTag}
-                      >
-                        ₹ 00
-                      </Typography>
-                      <Typography
-                        variant="body2"
-                        style={{
-                          marginLeft: 10,
-                          marginTop: 12,
-                          fontWeight: 500,
-                        }}
-                        className={classes.priceTag}
-                      >
-                        Total Purchase
-                      </Typography>
-                    </div>
-                  </Gradient>
-                </Grid>
-                <Grid item xs={12} sm={4}>
-                  {/*///////////////////////////////////////////////////////////////   Available Codes Card */}
+                  <Typography className={classes.expand} variant="h6">
+                    Codes
+                  </Typography>
+                </CardActions>
+                {codes &&
+                  codes.map((item, index) => (
+                    <CardActions key={index} disableSpacing>
+                      <Grid container spacing={3}>
+                        <Grid item xs={12} sm={6}>
+                          <Typography
+                            className={classes.details}
+                            aria-label="show more"
+                            variant="subtitle1"
+                            color="primary"
+                          >
+                            {moment(item.date).format("DD-MM-YYYY")}
+                          </Typography>
+                        </Grid>
 
-                  <Gradient
-                    className={classes.purchaseCard}
-                    gradients={gradients}
-                    property="background"
-                    duration={3000}
-                    angle="45deg"
-                  >
-                    <Typography
-                      // variant="h5"
-                      style={{ fontSize: "1.8em" }}
-                      className={classes.availableCodesStyle}
-                    >
-                      Available Codes
-                    </Typography>
-                    {codesLength == -1 ? (
-                      <div
-                        style={{ marginTop: 25 }}
-                        className={classes.availableCodesStyle}
-                      >
-                        <CircularProgress />
-                      </div>
-                    ) : (
-                      <Typography
-                        variant="h4"
-                        style={{ marginTop: 25 }}
-                        className={classes.availableCodesStyle}
-                      >
-                        {codesLength}
-                      </Typography>
-                    )}
-                  </Gradient>
-                </Grid>
-                {/* <Grid item xs={12} sm={4}> */}
-                {/*///////////////////////////////////////////////////////////////   Available Codes Card */}
+                        <Grid item xs={12} sm={6}>
+                          <Typography
+                            className={classes.expand}
+                            variant="subtitle1"
+                            style={{
+                              float: "right",
+                              marginRight: 30,
+                            }}
+                          >
+                            {item.count}
+                          </Typography>
+                        </Grid>
+                      </Grid>
+                    </CardActions>
+                  ))}
+              </div>
+            </Card>
+          </div>
+        </div>
 
-                {/* <Gradient
-                    className={classes.purchaseCard}
-                    gradients={gradients}
-                    property="background"
-                    duration={3000}
-                    angle="45deg"
-                    onClick={() => router.push("/vendor/purchaseDetail")}
+        {/* ///////////////////////////////////////////////////////           Mobile Card */}
+
+        <div className={classes.mobStyle}>
+          {codes &&
+            codes.map((item, index) => (
+              <Card key={index} className={classes.mobCardStyle}>
+                <div style={{ display: "flex" }}>
+                  <Typography style={{ marginRight: 10, color: "#ffffff" }}>
+                    {moment(item.date).format("DD-MM-YYYY")}
+                  </Typography>
+                  <Chip
+                    variant="outlined"
+                    color="primary"
                     style={{
-                      display: "flex",
-                      justifyContent: "center",
-                      fontSize: "1.8em",
+                      cursor: "pointer",
+                      borderColor: "#ffffff",
+                      marginLeft: "auto",
+                      paddingLeft: 10,
+                      paddingRight: 10,
                       color: "#ffffff",
                     }}
-                  >
-                    Purchase Details
-                  </Gradient>
-                </Grid> */}
-              </Grid>
-            </div>
-          </div>
-        </Card>
-      </div>
+                    size="small"
+                    label={item.count}
+                  />
+                </div>
+              </Card>
+            ))}
+        </div>
+      </Card>
     </div>
   );
 }

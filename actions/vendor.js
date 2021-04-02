@@ -2,7 +2,7 @@ import axios from "axios";
 import jsCookies from "js-cookies";
 
 module.exports = {
-  // Get Vendor Total Available codes
+  // Get Vendor Total Available codes For Vendor Dashboard
 
   getCodes: async (vendorId, cb) => {
     try {
@@ -24,7 +24,7 @@ module.exports = {
     }
   },
 
-  // Get Vendor Profile Details
+  // Get Vendor Profile Details For Vendor Dashboard
 
   getProfile: async (cb) => {
     try {
@@ -45,7 +45,7 @@ module.exports = {
     }
   },
 
-  // Get All Users Profile Details
+  // Get All Users Profile Details For Admin Dashboard
 
   getAllUsersProfile: async (cb) => {
     const res = await axios.get(`${process.env.BASE_URL}/vendors/all/users`, {
@@ -82,7 +82,7 @@ module.exports = {
     }
   },
 
-  // Get Perticular Vendor User's List
+  // Get Perticular Vendor User's List For Vendor Dashboard
 
   getUsersList: async (cb) => {
     const res = await axios.get(`${process.env.BASE_URL}/vendors/users`, {
@@ -99,7 +99,7 @@ module.exports = {
     }
   },
 
-  // Get All Vendors Details
+  // Get All Vendors Details For Admin Dashboard
 
   getVendors: async (cb) => {
     const res = await axios.get(`${process.env.BASE_URL}/vendors`, {
@@ -116,22 +116,25 @@ module.exports = {
     }
   },
 
-  // Get Purchase Codes Details
+  // Get Purchase Codes Details For Vendor Dashboard
 
-  // getPurchaseCodes: async (cb) => {
-  //   const res = await axios.get(`${process.env.BASE_URL}/vendors`, {
-  //     headers: {
-  //       auth: jsCookies.getItem("auth"),
-  //     },
-  //   });
-  //   if (res && res.status == 200) {
-  //     console.log(jsCookies.getItem("auth"));
-  //     cb(null, res.data);
-  //   } else {
-  //     console.log(res.data);
-  //     cb(res.data.message, null);
-  //   }
-  // },
+  getPurchaseCodes: async (cb) => {
+    const res = await axios.get(
+      `${process.env.BASE_URL}/vendors/generateTime`,
+      {
+        headers: {
+          auth: jsCookies.getItem("auth"),
+        },
+      }
+    );
+    if (res && res.status == 200) {
+      console.log(jsCookies.getItem("auth"));
+      cb(null, res.data);
+    } else {
+      console.log(res.data);
+      cb(res.data.message, null);
+    }
+  },
 
   // Code Generation
 

@@ -4,7 +4,13 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import { Dashboard, ListAlt, Receipt, Settings } from "@material-ui/icons";
+import {
+  Backup,
+  Dashboard,
+  ListAlt,
+  Receipt,
+  Settings,
+} from "@material-ui/icons";
 import { useRouter } from "next/router";
 import { getProfile } from "../../actions/vendor";
 import capitalize from "../capitalize";
@@ -97,17 +103,17 @@ function SideBar(props) {
               <ListItemText primary="User Record" />
             </a>
           </ListItem>
-          {/* <ListItem button>
+          <ListItem button>
             <a
               style={{ display: "flex" }}
-              onClick={() => router.push("/admin/dashboard")}
+              onClick={() => router.push("/admin/upload")}
             >
               <ListItemIcon>
-                <Settings className={classes.listItem} />
+                <Backup className={classes.listItem} />
               </ListItemIcon>
-              <ListItemText primary="Setting" />
+              <ListItemText primary="Upload" />
             </a>
-          </ListItem> */}
+          </ListItem>
         </List>
       </div>
     </div>

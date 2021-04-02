@@ -2,7 +2,7 @@ import { Grid, makeStyles } from "@material-ui/core";
 import Head from "next/head";
 import SideBar from "../../Components/vendors/sideBar";
 import { UserProtectedPage } from "../../auth";
-import PurchaseDetails from "../../Components/vendors/purchaseDetails";
+import PurchaseDetails from "../../Components/vendors/purchase";
 import VendorHeader from "../../layout/vendorHeader";
 
 const useStyle = makeStyles((theme) => ({
