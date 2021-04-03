@@ -8,14 +8,13 @@ import { getGenerateCode } from "../../actions/vendor";
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.primary.main,
-    paddingBottom: 50,
     padding: 10,
   },
   cardStyle: {
     borderRadius: 20,
     padding: 20,
     backgroundColor: theme.palette.secondary.light,
-    height: 700,
+    height: "100vh",
   },
   totalCodes: {
     borderStyle: "outset ",

@@ -14,13 +14,12 @@ import { useAuth } from "../../auth";
 
 const useStyle = makeStyles((theme) => ({
   root: {
-    paddingBottom: 45,
     padding: 10,
     backgroundColor: theme.palette.primary.main,
   },
   cardStyle: {
     borderRadius: 20,
-    height: 650,
+    height: "100vh",
     backgroundColor: theme.palette.secondary.light,
   },
   purchaseCard: {
@@ -86,7 +85,7 @@ const useStyle = makeStyles((theme) => ({
 
   scroll: {
     overflowY: "scroll",
-    height: 650,
+    height: "100%",
   },
 }));
 

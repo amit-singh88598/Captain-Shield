@@ -44,33 +44,6 @@ export default function MyChart() {
 
   return (
     <div>
-      {/* <Chart
-        className={classes.chart}
-        width={"500px"}
-        height={"300px"}
-        chartType="PieChart"
-        loader={<div>Loading Chart</div>}
-        data={[
-          ["Task", "Hours per Day"],
-          ["January", 9],
-          ["February", 2],
-          ["March", 2],
-          ["April", 2],
-          ["May", 7],
-          ["June", 5],
-          ["July", 2],
-          ["August", 2],
-          ["September", 2],
-          ["October", 7],
-          ["November", 2],
-          ["December", 1],
-        ]}
-        options={{
-          title: "Codes Details",
-        }}
-        rootProps={{ "data-testid": "1" }}
-      /> */}
-
       <Chart
         width={"600px"}
         height={"400px"}

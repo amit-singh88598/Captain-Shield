@@ -7,9 +7,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     marginLeft: "auto",
-    // justifyContent: "flexEnd",
-    // justifyContent: "right",
-    // float: "right",
   },
   search: {
     position: "relative",
@@ -21,12 +18,11 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: theme.palette.primary.grey,
       color: "#000000",
     },
-    marginRight: theme.spacing(1),
-    marginLeft: 0,
+    marginRight: theme.spacing(3),
     width: "100%",
     [theme.breakpoints.up("sm")]: {
-      marginLeft: 100,
-      width: "30%",
+      marginLeft: 50,
+      width: "40%",
     },
   },
   searchIcon: {

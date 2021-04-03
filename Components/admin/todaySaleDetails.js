@@ -6,14 +6,13 @@ import capitalize from "../capitalize";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    paddingBottom: 20,
     padding: 10,
     backgroundColor: theme.palette.primary.main,
   },
   cardStyle: {
     borderRadius: 20,
     backgroundColor: theme.palette.secondary.light,
-    height: 675,
+    height: "100vh",
   },
 
   // Desktop Style
@@ -71,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
 
   scroll: {
     overflowY: "scroll",
-    height: 540,
+    height: "100%",
   },
 }));
 

@@ -1,8 +1,6 @@
 import {
   Avatar,
   Card,
-  CardActions,
-  CardContent,
   CircularProgress,
   Grid,
   makeStyles,
@@ -15,13 +13,12 @@ import { useAuth } from "../../auth";
 
 const useStyle = makeStyles((theme) => ({
   root: {
-    paddingBottom: 45,
     padding: 10,
     backgroundColor: theme.palette.primary.main,
   },
   cardStyle: {
     borderRadius: 20,
-    height: 650,
+    height: "100vh",
     backgroundColor: theme.palette.secondary.light,
   },
   purchaseCard: {
@@ -93,36 +90,13 @@ const useStyle = makeStyles((theme) => ({
 
   scroll: {
     overflowY: "scroll",
-    height: 650,
+    height: "100%",
   },
 }));
 
 const gradients = [
   ["#363131", "#363131"],
   ["#363131", "#bda713"],
-];
-
-const Users = [
-  {
-    sno: "1",
-    name: "kamal Singh",
-  },
-  {
-    sno: "2",
-    name: "Amit Singh",
-  },
-  {
-    sno: "3",
-    name: "Akash Kumar",
-  },
-  {
-    sno: "4",
-    name: "Pankaj Joshi",
-  },
-  {
-    sno: "5",
-    name: "Ayush Tripathi",
-  },
 ];
 
 // Dashboard

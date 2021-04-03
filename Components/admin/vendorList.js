@@ -6,14 +6,13 @@ import capitalize from "../capitalize";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    paddingBottom: 20,
     padding: 10,
     backgroundColor: theme.palette.primary.main,
   },
   cardStyle: {
     borderRadius: 20,
     backgroundColor: theme.palette.secondary.light,
-    height: 675,
+    height: "100vh",
   },
 
   // Desktop Style
@@ -71,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
 
   scroll: {
     overflowY: "scroll",
-    height: 540,
+    height: "100%",
   },
 }));
 
@@ -115,11 +114,14 @@ export default function VendorsList() {
             <Card className={classes.totalCodes} elevation={2}>
               <div className={classes.scroll} id="scroller">
                 <CardActions disableSpacing>
-                  <Typography style={{ color: "#ffffff" }} variant="h6">
+                  <Typography
+                    style={{ color: "#ffffff", marginLeft: 20 }}
+                    variant="h6"
+                  >
                     Name
                   </Typography>
                   <Typography
-                    style={{ marginLeft: 250 }}
+                    style={{ marginLeft: 230 }}
                     className={classes.details}
                     variant="h6"
                   >
@@ -163,7 +165,7 @@ export default function VendorsList() {
                             variant="subtitle1"
                             style={{
                               float: "right",
-                              marginRight: 20,
+                              marginRight: 30,
                             }}
                           >
                             {item.keys.length}

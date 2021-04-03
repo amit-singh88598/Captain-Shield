@@ -7,16 +7,13 @@ import moment from "moment";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    paddingBottom: 20,
     padding: 10,
     backgroundColor: theme.palette.primary.main,
   },
   cardStyle: {
     borderRadius: 20,
-    paddingBottom: 20,
-    marginBottom: 20,
     backgroundColor: theme.palette.secondary.light,
-    height: 670,
+    height: "100vh",
   },
   details: {
     color: theme.palette.primary.light,
@@ -73,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
 
   scroll: {
     overflowY: "scroll",
-    height: 540,
+    height: "100%",
   },
 }));
 
@@ -183,7 +180,11 @@ export default function SelfGeneratedRecords() {
           {profile &&
             profile.map((item, index) => (
               <Card key={index} className={classes.mobCardStyle}>
-                <div style={{ display: "flex" }}>
+                <div
+                  className={classes.scroll}
+                  id="scroller"
+                  style={{ display: "flex" }}
+                >
                   <Typography style={{ marginRight: 10, color: "#ffffff" }}>
                     {capitalize(`${item._user.name}`)}
                   </Typography>

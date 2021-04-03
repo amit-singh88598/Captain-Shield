@@ -7,7 +7,6 @@ import moment from "moment";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    paddingBottom: 20,
     padding: 10,
     backgroundColor: theme.palette.primary.main,
   },
@@ -16,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: 20,
     marginBottom: 20,
     backgroundColor: theme.palette.secondary.light,
-    height: 670,
+    height: "100vh",
   },
   details: {
     color: theme.palette.primary.light,
@@ -73,7 +72,7 @@ const useStyles = makeStyles((theme) => ({
 
   scroll: {
     overflowY: "scroll",
-    height: 540,
+    height: "100%",
   },
 }));
 

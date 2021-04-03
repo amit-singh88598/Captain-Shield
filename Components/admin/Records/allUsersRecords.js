@@ -7,7 +7,6 @@ import moment from "moment";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    paddingBottom: 20,
     padding: 10,
     backgroundColor: theme.palette.primary.main,
   },
@@ -16,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: 20,
     marginBottom: 20,
     backgroundColor: theme.palette.secondary.light,
-    height: "100%",
+    height: "100vh",
   },
   details: {
     color: theme.palette.primary.light,
@@ -94,7 +93,7 @@ export default function AllUsersRecords() {
 
   return (
     <div className={classes.root}>
-      <Card className={classes.cardStyle} style={{ marginBottom: 150 }}>
+      <Card className={classes.cardStyle}>
         <Typography
           style={{
             margin: 10,

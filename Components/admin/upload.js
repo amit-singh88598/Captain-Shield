@@ -10,14 +10,14 @@ import { Backup } from "@material-ui/icons";
 
 const useStyle = makeStyles((theme) => ({
   root: {
-    paddingBottom: 85,
+    // paddingBottom: 25,
     padding: 10,
-    height: "100%",
+    // height: "100vh",
     backgroundColor: theme.palette.primary.main,
   },
   cardStyle: {
     borderRadius: 20,
-    height: "100%",
+    height: "100vh",
     backgroundColor: theme.palette.secondary.light,
   },
   alignCenter: {
@@ -33,11 +33,8 @@ const useStyle = makeStyles((theme) => ({
     color: theme.palette.secondary.grey,
   },
   large: {
-    width: theme.spacing(18),
-    height: theme.spacing(18),
-  },
-  button: {
-    marginBottom: 100,
+    width: theme.spacing(20),
+    height: theme.spacing(20),
   },
 }));
 
@@ -80,7 +77,7 @@ export default function Upload() {
               />
             </label>
           </div>
-          <div className={classes.alignCenter} style={{ marginBottom: 20 }}>
+          <div className={classes.alignCenter} style={{ marginBottom: 30 }}>
             <label htmlFor="contained-button-file">
               <Button variant="contained" color="primary" component="span">
                 SELECT FILE
@@ -94,12 +91,11 @@ export default function Upload() {
               />
             </label>
           </div>
-          <div className={classes.alignCenter} style={{ marginBottom: 50 }}>
+          <div className={classes.alignCenter}>
             <Button
               variant="contained"
               color="primary"
               size="medium"
-              className={classes.button}
               startIcon={<Backup />}
             >
               Upload
