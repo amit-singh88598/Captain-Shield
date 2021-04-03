@@ -24,6 +24,28 @@ module.exports = {
     }
   },
 
+  //Search bar For Admin Dashboard
+
+  getSearchFieldDetails: async (codeId, cb) => {
+    try {
+      const res = await axios.get(
+        `${process.env.BASE_URL}/keys/search/${codeId}`,
+        {
+          headers: {
+            auth: jsCookies.getItem("auth"),
+          },
+        }
+      );
+      if (res && res.status == 200) {
+        cb(null, res.data.data);
+      } else {
+        cb(res.data.message, null);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  },
+
   // Get Vendor Profile Details For Vendor Dashboard
 
   getProfile: async (cb) => {
