@@ -26,14 +26,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const codes = [
-  { title: "10" },
-  { title: "20" },
-  { title: "50" },
-  { title: "100" },
-  { title: "200" },
-];
-
 export default function GenerateCode() {
   const classes = useStyles();
   const [primaryNumber, setPrimaryNumber] = useState("");
@@ -50,7 +42,6 @@ export default function GenerateCode() {
   }, []);
 
   const generateCode = async () => {
-    // console.log(primaryNumber);
     await getGenerateCode(primaryNumber, codes, (err, result) => {
       if (err) {
         console.log(err);
@@ -90,7 +81,6 @@ export default function GenerateCode() {
                         <TextField
                           fullWidth
                           {...params}
-                          // label="Select Vendor Name"
                           placeholder="Select Vendor Name"
                           variant="outlined"
                           style={{ backgroundColor: "#656565" }}
@@ -107,28 +97,15 @@ export default function GenerateCode() {
                       margin: 20,
                     }}
                   >
-                    {/* <Autocomplete
-                      id="combo-box-demo"
-                      onChange={(event) => {
-                        setCodes(event.target.value);
-                      }}
-                      options={codes}
-                      getOptionLabel={(option) => option.title}
-                      style={{ width: 400 }}
-                      renderInput={(params) => ( */}
                     <TextField
                       fullWidth
                       onChange={(event) => {
                         setCodes(event.target.value);
                       }}
-                      // {...params}
                       style={{ backgroundColor: "#656565" }}
                       placeholder="Select Total No's. Of Codes"
-                      // label="Select Total No's. Of Codes"
                       variant="outlined"
                     />
-                    {/* )}
-                    /> */}
                   </div>
                 </Grid>
               </Grid>

@@ -98,5 +98,3 @@ export const AdminProtectedPage = ({ children }) => {
     }
   }
 };
-
-// BASE_URL= https://captionshield.herokuapp.com/api

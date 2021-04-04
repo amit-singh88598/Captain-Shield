@@ -1,6 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Card, CardActions, Typography } from "@material-ui/core";
+import {
+  Card,
+  CardActions,
+  CircularProgress,
+  Typography,
+} from "@material-ui/core";
+import { useRouter } from "next/router";
+import { getCodeDetails } from "../../actions/vendor";
+
+import moment from "moment";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,12 +46,19 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SearchDetails() {
   const classes = useStyles();
+  const router = useRouter();
+  const [data, setData] = useState(null);
+  let { key } = router.query;
 
-  const [expanded, setExpanded] = React.useState(false);
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
+  useEffect(() => {
+    getCodeDetails(key, (error, result) => {
+      if (error) {
+        console.log(error);
+      } else {
+        setData(result.data[0]);
+      }
+    });
+  }, [key]);
 
   return (
     <div className={classes.root}>
@@ -58,13 +74,15 @@ export default function SearchDetails() {
         >
           Search Details
         </Typography>
-        <div className={classes.desktopStyle}>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          {data == null ? (
+            <CircularProgress color="primary" />
+          ) : (
             <Card className={classes.totalCodes} elevation={2}>
               <CardActions disableSpacing>
                 <Typography className={classes.details} variant="subtitle1">
@@ -72,12 +90,10 @@ export default function SearchDetails() {
                 </Typography>
                 <Typography
                   className={classes.expand}
-                  onClick={handleExpandClick}
-                  aria-expanded={expanded}
                   aria-label="show more"
                   variant="subtitle1"
                 >
-                  {/* {props.data.streetNumber} */}
+                  {data.activationCode}
                 </Typography>
               </CardActions>
               <CardActions disableSpacing>
@@ -86,12 +102,10 @@ export default function SearchDetails() {
                 </Typography>
                 <Typography
                   className={classes.expand}
-                  onClick={handleExpandClick}
-                  aria-expanded={expanded}
                   aria-label="show more"
                   variant="subtitle1"
                 >
-                  {/* {capitalize(`${props.data.street}`)} */}
+                  {data.status.toString()}
                 </Typography>
               </CardActions>
               <CardActions disableSpacing>
@@ -100,12 +114,10 @@ export default function SearchDetails() {
                 </Typography>
                 <Typography
                   className={classes.expand}
-                  onClick={handleExpandClick}
-                  aria-expanded={expanded}
                   aria-label="show more"
                   variant="subtitle1"
                 >
-                  {/* {capitalize(`${props.data.landMark}`)} */}
+                  {moment(data.createdAt + "").format("DD-MM-YYYY")}
                 </Typography>
               </CardActions>
               <CardActions disableSpacing>
@@ -114,40 +126,35 @@ export default function SearchDetails() {
                 </Typography>
                 <Typography
                   className={classes.expand}
-                  onClick={handleExpandClick}
-                  aria-expanded={expanded}
                   aria-label="show more"
                   variant="subtitle1"
                 >
-                  {/* {capitalize(`${props.data.city}`)} */}
+                  {moment(data.expiryDate + "").format("DD-MM-YYYY")}
                 </Typography>
               </CardActions>
+
               <CardActions disableSpacing>
                 <Typography className={classes.details} variant="subtitle1">
                   User Name
                 </Typography>
                 <Typography
                   className={classes.expand}
-                  onClick={handleExpandClick}
-                  aria-expanded={expanded}
                   aria-label="show more"
                   variant="subtitle1"
                 >
-                  {/* {capitalize(`${props.data.state}`)} */}
+                  {data._user ? data._user.firstName : "null"}
                 </Typography>
               </CardActions>
               <CardActions disableSpacing>
                 <Typography className={classes.details} variant="subtitle1">
-                  Contact Number
+                  User Contact Number
                 </Typography>
                 <Typography
                   className={classes.expand}
-                  onClick={handleExpandClick}
-                  aria-expanded={expanded}
                   aria-label="show more"
                   variant="subtitle1"
                 >
-                  {/* {props.data.pincode} */}
+                  {data._user ? data._user.primaryNumber : "null"}
                 </Typography>
               </CardActions>
               <CardActions disableSpacing>
@@ -156,30 +163,26 @@ export default function SearchDetails() {
                 </Typography>
                 <Typography
                   className={classes.expand}
-                  onClick={handleExpandClick}
-                  aria-expanded={expanded}
                   aria-label="show more"
                   variant="subtitle1"
                 >
-                  {/* {props.data.pincode} */}
+                  {data._vendor ? data._vendor.firstName : "null"}
                 </Typography>
               </CardActions>
               <CardActions disableSpacing>
                 <Typography className={classes.details} variant="subtitle1">
-                  Contact Number
+                  Vendor Contact Number
                 </Typography>
                 <Typography
                   className={classes.expand}
-                  onClick={handleExpandClick}
-                  aria-expanded={expanded}
                   aria-label="show more"
                   variant="subtitle1"
                 >
-                  {/* {props.data.pincode} */}
+                  {data._vendor ? data._vendor.primaryNumber : "null"}
                 </Typography>
               </CardActions>
             </Card>
-          </div>
+          )}
         </div>
       </Card>
     </div>

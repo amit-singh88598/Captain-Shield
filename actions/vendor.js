@@ -26,23 +26,30 @@ module.exports = {
 
   //Search bar For Admin Dashboard
 
-  getSearchFieldDetails: async (codeId, cb) => {
-    try {
-      const res = await axios.get(
-        `${process.env.BASE_URL}/keys/search/${codeId}`,
-        {
-          headers: {
-            auth: jsCookies.getItem("auth"),
-          },
-        }
-      );
-      if (res && res.status == 200) {
-        cb(null, res.data.data);
-      } else {
-        cb(res.data.message, null);
-      }
-    } catch (error) {
-      console.log(error);
+  searchKeys: async (key, cb) => {
+    const res = await axios.get(`${process.env.BASE_URL}/keys/search/${key}`, {
+      headers: {
+        auth: jsCookies.getItem("auth"),
+      },
+    });
+    if (res && res.status == 200) {
+      cb(null, res.data);
+    } else {
+      cb(res.data.message, null);
+    }
+  },
+
+  //get detail from key
+  getCodeDetails: async (key, cb) => {
+    const res = await axios.get(`${process.env.BASE_URL}/keys/${key}`, {
+      headers: {
+        auth: jsCookies.getItem("auth"),
+      },
+    });
+    if (res && res.status == 200) {
+      cb(null, res.data);
+    } else {
+      cb(res.data.message, null);
     }
   },
 
@@ -84,7 +91,7 @@ module.exports = {
     }
   },
 
-  // Self Generated Code Users Profile Details
+  // Self Generated Code Users Profile Details for Admin Dashboard
 
   getSelfGeneratedUsersProfile: async (cb) => {
     const res = await axios.get(
