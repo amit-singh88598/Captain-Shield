@@ -30,6 +30,8 @@ export const AuthProvider = ({ children }) => {
           }
         });
       }
+    } else {
+      setLoading(false);
     }
   });
 

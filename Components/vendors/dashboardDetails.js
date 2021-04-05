@@ -52,8 +52,6 @@ const useStyle = makeStyles((theme) => ({
     color: theme.palette.primary.light,
   },
 
-  ////
-
   totalCodes: {
     borderStyle: "outset ",
     borderRadius: 15,
@@ -107,7 +105,7 @@ const gradients = [
   ["#363131", "#bda713"],
 ];
 
-// Dashboard
+// Admin Dashboard
 
 export default function DashboardDetails(props) {
   const { vendor } = useAuth();

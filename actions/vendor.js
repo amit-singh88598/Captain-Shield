@@ -63,10 +63,8 @@ module.exports = {
         },
       });
       if (res && res.status == 200) {
-        console.log(jsCookies.getItem("auth"));
         cb(null, res.data);
       } else {
-        console.log(res.data);
         cb(res.data.message, null);
       }
     } catch (error) {
@@ -83,10 +81,8 @@ module.exports = {
       },
     });
     if (res && res.status == 200) {
-      console.log(jsCookies.getItem("auth"));
       cb(null, res.data);
     } else {
-      console.log(res.data);
       cb(res.data.message, null);
     }
   },
@@ -103,10 +99,8 @@ module.exports = {
       }
     );
     if (res && res.status == 200) {
-      console.log(jsCookies.getItem("auth"));
       cb(null, res.data);
     } else {
-      console.log(res.data);
       cb(res.data.message, null);
     }
   },
@@ -120,10 +114,8 @@ module.exports = {
       },
     });
     if (res && res.status == 200) {
-      console.log(jsCookies.getItem("auth"));
       cb(null, res.data);
     } else {
-      console.log(res.data);
       cb(res.data.message, null);
     }
   },
@@ -137,10 +129,8 @@ module.exports = {
       },
     });
     if (res && res.status == 200) {
-      console.log(jsCookies.getItem("auth"));
       cb(null, res.data);
     } else {
-      console.log(res.data);
       cb(res.data.message, null);
     }
   },
@@ -157,10 +147,8 @@ module.exports = {
       }
     );
     if (res && res.status == 200) {
-      console.log(jsCookies.getItem("auth"));
       cb(null, res.data);
     } else {
-      console.log(res.data);
       cb(res.data.message, null);
     }
   },
@@ -179,7 +167,6 @@ module.exports = {
     if (res && res.status == 200) {
       cb(null, res.data);
     } else {
-      console.log(res.data);
       cb(res.data.message, null);
     }
   },
@@ -196,10 +183,8 @@ module.exports = {
       }
     );
     if (res && res.status == 200) {
-      console.log(jsCookies.getItem("auth"));
       cb(null, res.data);
     } else {
-      console.log(res.data);
       cb(res.data.message, null);
     }
   },
