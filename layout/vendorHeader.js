@@ -78,8 +78,8 @@ export default function VendorHeader() {
           >
             Captain Shield
           </a>
-          <SearchBar />
-          <div style={{ display: "flex" }}>
+          {/* <SearchBar /> */}
+          <div style={{ display: "flex", marginLeft: "auto" }}>
             <Notification />
             <Setting />
             <div>

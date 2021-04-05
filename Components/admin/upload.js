@@ -10,9 +10,7 @@ import { Backup } from "@material-ui/icons";
 
 const useStyle = makeStyles((theme) => ({
   root: {
-    // paddingBottom: 25,
     padding: 10,
-    // height: "100vh",
     backgroundColor: theme.palette.primary.main,
   },
   cardStyle: {

@@ -1,33 +1,4 @@
-// import React, { Component } from "react";
-// import LineChart from "react-linechart";
-// import "../node_modules/react-linechart/dist/styles.css";
-
-// const data = [
-//   {
-//     color: "steelblue",
-//     points: [
-//       { x: 1, y: 2 },
-//       { x: 3, y: 5 },
-//       { x: 10, y: -3 },
-//     ],
-//   },
-// ];
-
-// export default function MyChart() {
-//   return (
-//     <div>
-//       <div className="App">
-//         <h1>My First LineChart</h1>
-//         <LineChart width={600} height={400} data={data} />
-//       </div>
-//     </div>
-//   );
-// }
-
-// import React from "react";
-
-import { Card, makeStyles } from "@material-ui/core";
-import { CallMissedSharp } from "@material-ui/icons";
+import { makeStyles } from "@material-ui/core";
 import React from "react";
 import Chart from "react-google-charts";
 

@@ -1,5 +1,4 @@
 import {
-  Avatar,
   Box,
   Button,
   Card,
@@ -64,7 +63,6 @@ const useStyles = makeStyles((theme) => ({
       height: 410,
       borderTop: 0,
       borderLeft: 0,
-      // marginTop: 120,
       borderRadius: 30,
       padding: 15,
       backgroundColor: theme.palette.primary.light,

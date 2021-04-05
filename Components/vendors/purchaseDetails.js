@@ -40,7 +40,6 @@ const useStyles = makeStyles((theme) => ({
     borderLeft: 0,
     padding: 5,
     paddingBottom: 40,
-    // height: 600,
     width: 700,
     margin: 20,
     backgroundColor: theme.palette.secondary.main,

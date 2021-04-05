@@ -8,11 +8,11 @@ import {
   makeStyles,
   Typography,
 } from "@material-ui/core";
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { Gradient } from "react-gradient";
 import { getCodes } from "../../actions/vendor";
 import { useAuth } from "../../auth";
-import MyChart from "./myChart";
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -112,6 +112,7 @@ const gradients = [
 export default function DashboardDetails(props) {
   const { vendor } = useAuth();
   const classes = useStyle();
+  const router = useRouter();
   const [codes, setCodes] = useState([]);
   const [codesLength, setCodesLength] = useState(-1);
   useEffect(async () => {
@@ -285,6 +286,7 @@ export default function DashboardDetails(props) {
                     property="background"
                     duration={3000}
                     angle="45deg"
+                    onClick={() => router.push("/vendor/availableCodes")}
                   >
                     <Typography
                       style={{ fontSize: "1.8em" }}

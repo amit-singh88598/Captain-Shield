@@ -4,13 +4,7 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import {
-  Backup,
-  Dashboard,
-  ListAlt,
-  Receipt,
-  Settings,
-} from "@material-ui/icons";
+import { Dashboard, ListAlt, Receipt } from "@material-ui/icons";
 import { useRouter } from "next/router";
 import { getProfile } from "../../actions/vendor";
 import capitalize from "../capitalize";
@@ -103,7 +97,7 @@ function SideBar(props) {
               <ListItemText primary="User Record" />
             </a>
           </ListItem>
-          <ListItem button>
+          {/* <ListItem button>
             <a
               style={{ display: "flex" }}
               onClick={() => router.push("/admin/uploads")}
@@ -113,7 +107,7 @@ function SideBar(props) {
               </ListItemIcon>
               <ListItemText primary="Upload" />
             </a>
-          </ListItem>
+          </ListItem> */}
         </List>
       </div>
     </div>

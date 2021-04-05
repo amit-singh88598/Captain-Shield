@@ -31,7 +31,6 @@ export default function Setting() {
         aria-controls="simple-menu"
         aria-haspopup="true"
         onClick={handleClick}
-        // size="small"
         style={{ marginTop: 5 }}
       >
         <Tooltip disableFocusListener disableTouchListener title="Settings">
